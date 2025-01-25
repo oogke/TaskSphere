@@ -100,6 +100,7 @@
     </h2>
     <input type="text" placeholder="firstname" id="fname" name="firstname">
     <input type="text" placeholder="lastname" id="lname" name="lastname">
+    <input type="email" placeholder="phone" id="phone" name="phone">
     <input type="email" placeholder="email" id="email" name="email">
     <input type="password" placeholder="Password" id="password" name="password">
     <button class="registerBtn" name="register" id="register-btn" data-bs-toggle="modal" data-bs-target="#codemodal">Register</button>
@@ -137,6 +138,7 @@ register.addEventListener('click',function(event)
   event.preventDefault();
 const firstnameValue=document.getElementById('fname').value;
 const lastnameValue=document.getElementById('lname').value;
+const phoneValue=document.getElementById('phone').value;
 const emailValue=document.getElementById('email').value;
 const passwordValue=document.getElementById('password').value;
 const roleValue=document.getElementById('role').value;
@@ -144,7 +146,7 @@ const roleValue=document.getElementById('role').value;
 const emailVer={
   firstname:firstnameValue,
    lastname:lastnameValue,
-  email:emailValue,
+  email:emailValue
 }
 
 async function sendEmailVerification()
@@ -171,6 +173,7 @@ if(verifcode==verifcodeUser)
   firstname:firstnameValue,
   lastname:lastnameValue,
   email:emailValue,
+  phone:phoneValue,
   password:passwordValue,
 
 };
