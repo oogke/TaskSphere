@@ -12,6 +12,9 @@ Route::get('/registerView', function () {
 Route::get('/loginView', function () {
     return view('login');
 });
+Route::get('/animation1', function () {
+    return view('animation/animation1');
+});
 Route::post('/emailverify',action: [UserController::class,'emailVerify'])->name('registerVerify');
 
 // Route::get('/registerView','register')->name("registerView");
