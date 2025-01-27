@@ -7,6 +7,8 @@ use App\Http\Controllers\API\BaseController as BaseController;
 
 use App\Mail\EmailVerification;
 use App\Models\User;
+use App\Models\userVerifQueue;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -33,19 +35,20 @@ return $this->sendResponse($verifcode,"The email hasbeen sent");
                 'firstname' => 'required|alpha',
                 'lastname' => 'required|alpha',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:6'
+                'password' => 'required|min:6',
+                'phone'=> 'required'
 
             ]
         );
         if ($validateData->fails()) {
             return $this->sendError("Validation Error", $validateData->errors()->all(), 307);
         }
-        $user = User::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
+        $user = userVerifQueue::create([
+            'fname' => $request->firstname,
+            'lname' => $request->lastname,
             'email' => $request->email,
             'password' => $request->password,
-           
+            'phone'=>$request->phone
         ]);
 
         return $this->sendResponse($user, 'user registered successfully');
@@ -66,10 +69,11 @@ return $this->sendResponse($verifcode,"The email hasbeen sent");
             return $this->sendError('Validation Error', $validateData->errors()->all(), 307);
         }
 
+            $authuser = UserVerifQueue::where('email', $request->email)->first();
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $authuser = Auth::user();
-            return response()->json(
+        // if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            if ($authuser && Hash::check($request->password, $authuser->password)) {         
+                   return response()->json(
                 [
                     'status' => true,
                     'message' => 'Login successful',

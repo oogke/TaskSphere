@@ -98,12 +98,12 @@
     <h2 class="reset-heading">
       <span class="popup-heading">Register</span>
     </h2>
-    <input type="text" placeholder="firstname" id="fname" name="firstname">
-    <input type="text" placeholder="lastname" id="lname" name="lastname">
-    <input type="email" placeholder="phone" id="phone" name="phone">
-    <input type="email" placeholder="email" id="email" name="email">
-    <input type="password" placeholder="Password" id="password" name="password">
-    <button class="registerBtn" name="register" id="register-btn" data-bs-toggle="modal" data-bs-target="#codemodal">Register</button>
+    <input type="text" placeholder="firstname" id="fname" name="firstname" required>
+    <input type="text" placeholder="lastname" id="lname" name="lastname" required>
+    <input type="email" placeholder="phone" id="phone" name="phone" required>
+    <input type="email" placeholder="email" id="email" name="email" required>
+    <input type="password" placeholder="Password" id="password" name="password" required>
+    <button class="registerBtn" name="register" id="register-btn" data-bs-toggle="modal" data-bs-target="#codemodal" type="submit">Register</button>
   </div>
 
   <div class="modal fade" id="codemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -129,8 +129,6 @@
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
     <script>
- 
-
 const register=document.getElementById('register-btn');
 register.addEventListener('click',function(event)
 {
@@ -145,7 +143,6 @@ const roleValue=document.getElementById('role').value;
 
 const emailVer={
   firstname:firstnameValue,
-   lastname:lastnameValue,
   email:emailValue
 }
 
@@ -162,7 +159,6 @@ const response= await fetch('/api/emailverify',{
 const data= await response.json();
  verifcode= data.data;
  console.log(verifcode);
-
 const CodeSubmit= document.getElementById('code-submit');
 CodeSubmit.addEventListener("click",function(event){
   event.preventDefault();
@@ -178,7 +174,6 @@ if(verifcode==verifcodeUser)
 
 };
 
-
 fetch('/api/register',{
   method: "POST",
   body: JSON.stringify(registerData),
@@ -186,9 +181,11 @@ fetch('/api/register',{
     'Content-Type':'application/json'
   }
 }).then(response=>{
+  console.log(response);
 return response.json();
 
-}).then(data=>
+})
+.then(data=>
 { 
     console.log(data);
    if(data.status == true)
@@ -204,55 +201,6 @@ return response.json();
 
 sendEmailVerification();
 });
-
-// function openmodal(VerificationData)
-// {
-//  
-//   
-//   const modalbody= document.getElementById('modalBody');
-
-//   const CodeSubmit= document.getElementById('code-submit');
-//   const verifcode=VerificationData;
-
-//   CodeSubmit.addEventListener('click',function(event)
-// {
-//   event.preventDefault();
-  
-// const verifcodeUser= 
-// })
-// }
-
-
-
-//database ma halna
-//  // const registerData= {
-//   firstname:firstnameValue,
-//   lastname:lastnameValue,
-//   email:emailValue,
-//   password:passwordValue
-// };
-// fetch('/api/register',{
-//   method: "POST",
-//   body: JSON.stringify(registerData),
-//   headers:{
-//     'Content-Type':'application/json'
-//   }
-// }).then(response=>{
-// return response.json();
-
-// }).then(data=>
-// { 
-// //     console.log(data);
-// // //   if(data.status == true && data.message =="User Created Successfully")
-// // // {
-//   window.location.href="/loginView";
-// // }
-// } ).catch(err=>{
-//   console.log(err);
-// })
-
-//database ma halna 
-
     </script>
 </body>
 
