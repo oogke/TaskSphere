@@ -1,21 +1,19 @@
-<?php
-require('../../../connection.php');
-session_start(); 
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin Application</title>
+    
+    <title>Employee Register Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style>
 table,
         th,td{
             border: 3px solid black;
             border-collapse: collapse;
      
-        }
-        
+        } 
        .adapplication
 {
     width: 100%;
@@ -179,16 +177,14 @@ top: 100px;
 </head>
 <body>
     <section class="adapplication">
-        <h1 id="adapplication-head">Professional Register Application</h1>
+        <h1 id="adapplication-head">Employee Register Application</h1>
         <div class="adapplication-table">
             <table>
                 <thead>
                     <tr>
                         <th scope="col" width="2%">S.N</th>
-                        <th scope="col" width="10%">Profile</th>
-                        <th scope="col" width="10%">Name</th>
-                        <th scope="col" width="10%">Username</th>
-                        <th scope="col" width="10%">Address</th>
+                        <th scope="col" width="10%">First Name</th>
+                        <th scope="col" width="10%">Last Name</th>
                         <th scope="col" width="10%">Phone Number</th>
                         <th scope="col" width="10%">Email</th>
                          <th scope="col" width="10%">Applied At</th>
@@ -196,30 +192,22 @@ top: 100px;
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-$query="SELECT * from papplication";
-$result=mysqli_query($con,$query);
-$n=1;
-while($data=mysqli_fetch_array($result))
-{
-    ?> 
-    <tr>
-    <td><?php echo $n++;?></td>
-    <!-- <td><?php echo $data['profile'] ?></td> -->
-     <td>
-        <img src="../../<?php echo $data['profile']; ?>" alt="Not Found" class="profile-img">
-     </td>
-    <td><?php echo $data['fullname'] ?></td>
-    <td><?php echo $data['username'] ?></td>
-    <td><?php echo $data['address'] ?></td>
-    <td><?php echo $data['phnum'] ?></td>
-    <td><?php echo $data['email'] ?></td>
-    <td><?php echo $data['created_at'] ?></td>
-    <td id="response-col">
-        <a><button id="accept-btn"  onclick="subpopup()">Accept</button></a>
-        <a href="reject.php?id=<?php echo $data['paid'];?>"><button id="reject-btn" >Reject</button></a>
-    </td>
-</tr>   
+                @foreach($userApplication as $application)  
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $application['fname'] }}</td>
+                <td>{{ $application['lname'] }}</td>
+                <td>{{ $application['phone'] }}</td>
+                <td>{{ $application['email'] }}</td>
+                <td>{{ $application['created_at'] }}</td>
+                <td id="response-col">
+                    <!-- <a id="accept-btn" type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#codemodal">Accept</a> -->
+                    <button class="registerBtn" name="register" id="register-btn" data-bs-toggle="modal" data-bs-target="#codemodal">Register</button>
+                    <a href="reject.php?id=1"><button id="reject-btn">Reject</button></a>
+                </td>
+            </tr>
+        @endforeach
+
 </div>
     </section>
     <div id="offuserpopup">
@@ -228,7 +216,7 @@ while($data=mysqli_fetch_array($result))
 <button type="reset" onclick="subpopup()" class="reset-btn">X</button></h3>
 <p>Are You sure You want to accept Application?</p>
 <div class="buttons">
-    <a href="accept.php?id=<?php echo $data['paid'];?>"><button >Yes,Sure</button></a>
+    <a href="accept.php?id=1"><button >Yes,Sure</button></a>
     <a href="#"><button onclick="subpopup()">No</button></a>
 </div>
 <!-- onclick="subpopup1()" -->
@@ -240,16 +228,30 @@ while($data=mysqli_fetch_array($result))
 <form action="accept.php" method="GET">
 <p>Enter the secret code:</p>
 <input type="password" class="scode-input" placeholder="Upto 5 character" name="scode">
-    <a href="accept.php?id=<?php echo $data['prof_id'];?>"><input type="submit" value="submit" name="submit"></a>
+    <a href="accept.php?id=1"><input type="submit" value="submit" name="submit"></a>
 </form>
-</div>
-    <?php
-}
-                    ?>
-                    
+</div>     
                 </tbody>
             </table>
-     
+            <div class="modal fade" id="codemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="CodemodalLabel" aria-hidden="true">
+      
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CodemodalLabel">Enter verification code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                <div id="codeInput">
+      <input type="text" placeholder="Enter here" name="verifcodeUser" id="code">
+      <input type="hidden" value="user" name="role" id="role">
+      <button class="btn btn-primary" id="code-submit">Submit</button>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <script>
      function subpopup()
             {

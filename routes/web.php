@@ -12,6 +12,9 @@ Route::get('/registerView', function () {
 Route::get('/loginView', function () {
     return view('login');
 });
+Route::get('/admin', function () {
+    return view('admin/admin');
+});
 Route::get('/animation1', function () {
     return view('animation/animation1');
 });

@@ -103,7 +103,7 @@
     <input type="email" placeholder="phone" id="phone" name="phone" required>
     <input type="email" placeholder="email" id="email" name="email" required>
     <input type="password" placeholder="Password" id="password" name="password" required>
-    <button class="registerBtn" name="register" id="register-btn" data-bs-toggle="modal" data-bs-target="#codemodal" type="submit">Register</button>
+    <button class="registerBtn" name="register" id="register-btn" data-bs-toggle="modal" data-bs-target="#codemodal">Register</button>
   </div>
 
   <div class="modal fade" id="codemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
