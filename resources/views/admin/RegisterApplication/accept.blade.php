@@ -147,3 +147,73 @@ else{
     </script> 
 </body>
 </html>
+<!-- //index page
+function subpopup()
+    //         {
+    //             let x=document.getElementById('offuserpopup');
+    //             if(x.style.display=="none")
+    //             {
+    //                 x.style.display="flex";
+    //                 }
+    //                 else{
+    //                     x.style.display="none";
+    //                     }
+    //                     }
+    //                     function subpopup1()
+    //         {
+    //             let y=document.getElementById('offuserpopup1');
+    //             let z=document.getElementById('offuserpopup');
+    //             if(y.style.display=="none" )
+    //             {
+    //                 y.style.display="flex";
+    //                 z.style.display="none";
+    //                 }
+    //                 else{
+    //                     y.style.display="none";
+                       
+    //                     }
+    //                     } -->
+<!-- 
+
+    <div id="offuserpopup">
+<h3 class="reset-heading">
+<span>Professional Application</span>
+<button type="reset" onclick="subpopup()" class="reset-btn">X</button></h3>
+<p>Are You sure You want to accept Application?</p>
+<div class="buttons">
+    <a href="accept.php?id=1"><button >Yes,Sure</button></a>
+    <a href="#"><button onclick="subpopup()">No</button></a>
+</div>
+ onclick="subpopup1()" -->
+<!-- </div>
+<div id="offuserpopup1">
+<h3 class="reset-heading">
+<span>professional Application</span>
+<button type="reset" onclick="subpopup1()" class="reset-btn">X</button></h3>
+<form action="accept.php" method="GET">
+<p>Enter the secret code:</p>
+<input type="password" class="scode-input" placeholder="Upto 5 character" name="scode">
+    <a href="accept.php?id=1"><input type="submit" value="submit" name="submit"></a>
+</form>
+</div>       -->
+
+<!-- 
+<div class="modal fade" id="codemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="CodemodalLabel" aria-hidden="true">
+      
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CodemodalLabel">Enter verification code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                <div id="codeInput">
+      <input type="text" placeholder="Enter here" name="verifcodeUser" id="code">
+      <input type="hidden" value="user" name="role" id="role">
+      <button class="btn btn-primary" id="code-submit">Submit</button>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
