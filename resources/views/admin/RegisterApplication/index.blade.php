@@ -51,7 +51,6 @@
             text-align: center;
             font-size: 19px;
 
-
         }
 
         #accept-btn {
@@ -206,28 +205,124 @@
                 <tbody>
                     @foreach($userApplication as $application)  
                         <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $application['fname'] }}</td>
-                                    <td>{{ $application['lname'] }}</td>
-                                    <td>{{ $application['phone'] }}</td>
-                                    <td>{{ $application['email'] }}</td>
-                                    <td>{{ $application['created_at'] }}</td>
-                                    <td id="response-col">
-                                        <!-- <a id="accept-btn" type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#codemodal">Accept</a> -->
-                                        <button class="registerBtn" name="register" id="register-btn" data-bs-toggle="modal"
-                                            data-bs-target="#codemodal">Register</button>
-                                        <a href="reject.php?id=1"><button id="reject-btn">Reject</button></a>
-                                    </td>
-                                </tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $application['fname'] }}</td>
+                            <td>{{ $application['lname'] }}</td>
+                            <td>{{ $application['phone'] }}</td>
+                            <td>{{ $application['email'] }}</td>
+                            <td>{{ $application['created_at'] }}</td>
+                            <td>
+                                <a href="" id="view-btn" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#acceptModal" data-bs-postid="${advenact.id}">Accept</a>
+                                <a href="" id="delete-btn" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#rejectModal" data-bs-postid="${advenact.id}">Reject</a>
+
+                            </td>
+
+                            <!-- secret code Modal -->
+                            <div class="modal fade" id="scodeModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                                tabindex="-1" aria-labelledby="singlePostLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="singlePostLabel">Enter the secret code</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="Password" id="scode" placeholder="secret code">
+                                            <input type="hidden" name="scode" value="{{ $application['id'] }}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" id="acceptBtn">okay</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- secret code Modal -->
+                        </tr>
                     @endforeach
 
-     
-        </tbody>   
-        </table>
-</div>
-    </section>
-    <script>
 
+                </tbody>
+
+
+
+
+                <!-- confirm reject -->
+                <div class="modal fade" id="rejectModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="single-data" width="100%" height="100%">
+                                    Are you sure you want to reject?
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                                <button type="button" class="btn btn-primary" id="rejectConfirmBtn">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- confirm reject -->
+
+                <!--confirm accept -->
+                <div class="modal fade" id="acceptModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="single-data" width="100%" height="100%">
+                                    Are you sure you want to Accept?
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                                <button type="button" class="btn btn-primary" id="acceptConfirmBtn" data-bs-toggle="modal"
+                                    data-bs-target="#scodeModal" data-bs-dismiss="modal">Accept</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--confirm accept -->
+            </table>
+
+        </div>
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <script>
+const rejectBtn = document.getElementById("rejectConfirmBtn");
+const acceptBtn = document.getElementById("acceptBtn");
+
+
+//accept operation
+
+
+//accept operation
+
+//reject operation
+
+
+//reject operation
     </script>
 </body>
 
