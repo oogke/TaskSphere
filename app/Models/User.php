@@ -24,7 +24,7 @@ class User extends Authenticatable
         'lname',
         'email',
         'password',
-        'phone'
+        'phone','scode'
     ];
 
     /**

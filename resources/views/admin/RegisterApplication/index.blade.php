@@ -28,26 +28,26 @@
 
         }
 
-        .adapplication-table {
+        #adapplication-table {
             width: 100%;
 
         }
 
-        .adapplication-table table {
+        #adapplication-table table {
             width: 100%;
 
         }
 
-        .adapplication-table table th {
+        #adapplication-table table th {
             font-size: 18px;
         }
 
-        .adapplication-table table tr {
+        #adapplication-table table tr {
             height: 100px;
 
         }
 
-        .adapplication-table table tr td {
+        #adapplication-table table tr td {
             text-align: center;
             font-size: 19px;
 
@@ -187,9 +187,12 @@
 </head>
 
 <body>
+<div id="toast-container" aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+  
+</div>
     <section class="adapplication">
         <h1 id="adapplication-head">Employee Register Application</h1>
-        <div class="adapplication-table">
+        <div id="adapplication-table">
             <table>
                 <thead>
                     <tr>
@@ -212,15 +215,17 @@
                             <td>{{ $application['email'] }}</td>
                             <td>{{ $application['created_at'] }}</td>
                             <td>
-                                <a href="" id="view-btn" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#acceptModal" data-bs-postid="${advenact.id}">Accept</a>
-                                <a href="" id="delete-btn" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#rejectModal" data-bs-postid="${advenact.id}">Reject</a>
+                            <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#acceptModal" data-application-id="{{ $application['id'] }}">Accept</a>
+                            <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal" data-application-id="{{ $application['id'] }}">Reject</a>
 
                             </td>
+    </tr>
+                    
+                    
+                    @endforeach
 
-                            <!-- secret code Modal -->
-                            <div class="modal fade" id="scodeModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        <!-- secret code Modal -->
+        <div class="modal fade" id="scodeModal" data-bs-backdrop="static" data-bs-keyboard="false"
                                 tabindex="-1" aria-labelledby="singlePostLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -231,24 +236,17 @@
                                         </div>
                                         <div class="modal-body">
                                             <input type="Password" id="scode" placeholder="secret code">
-                                            <input type="hidden" name="scode" value="{{ $application['id'] }}">
+                                            <input type="hidden" name="applicationId"  id="applicationIdInput">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" id="acceptBtn">okay</button>
+                                            <button type="button" class="btn btn-success scodeEnter">okay</button>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
+                                                data-bs-dismiss="modal" id="dismissModal">Close</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- secret code Modal -->
-                        </tr>
-                    @endforeach
-
-
-                </tbody>
-
-
 
 
                 <!-- confirm reject -->
@@ -268,7 +266,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                                <button type="button" class="btn btn-primary" id="rejectConfirmBtn">Reject</button>
+                                <button type="button" class="btn btn-primary rejectConfirmBtn" >Reject</button>
                             </div>
                         </div>
                     </div>
@@ -293,13 +291,17 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                                <button type="button" class="btn btn-primary" id="acceptConfirmBtn" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-primary acceptConfirmBtn"  data-bs-toggle="modal"
                                     data-bs-target="#scodeModal" data-bs-dismiss="modal">Accept</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--confirm accept -->
+                </tbody>
+
+
+
             </table>
 
         </div>
@@ -310,9 +312,86 @@
         crossorigin="anonymous"></script>
 
     <script>
-const rejectBtn = document.getElementById("rejectConfirmBtn");
-const acceptBtn = document.getElementById("acceptBtn");
 
+const acceptModal = document.getElementById('acceptModal');
+acceptModal.addEventListener('show.bs.modal', (event) => {
+  const button = event.relatedTarget; 
+  const applicationId = button.dataset.applicationId; 
+  const acceptBtn = document.querySelector(".acceptConfirmBtn");
+  acceptBtn.setAttribute("data-application-id",applicationId);
+});
+const rejectModal = document.getElementById('rejectModal');
+rejectModal.addEventListener('show.bs.modal', (event) => {
+  const button = event.relatedTarget; 
+  const applicationId = button.dataset.applicationId; 
+  const rejectBtn = document.querySelector(".rejectConfirmBtn");
+  rejectBtn.setAttribute("data-application-id",applicationId);
+
+});
+const scodeModal = document.getElementById('scodeModal');
+scodeModal.addEventListener('show.bs.modal', (event) => {
+  const button = event.relatedTarget; 
+  const applicationId = button.dataset.applicationId; 
+    scodeModal.querySelector('#applicationIdInput').value = applicationId; 
+});
+
+const table=document.getElementById("adapplication-table");
+table.addEventListener("click",(e)=>
+{
+    if(e.target.classList.contains("scodeEnter"))
+{
+const secretCode= document.getElementById("scode").value;
+const applicationID= document.getElementById("applicationIdInput").value;
+
+const formData= new FormData();
+formData.append("scode",secretCode);
+formData.append("applicationId",applicationID);
+console.log(formData);
+fetch('/api/passScode',{
+    method:"POST",
+    headers:
+    {
+   
+    },
+    body: formData
+}).then(response=>{return response.json()}
+
+).then(data=>
+{
+    console.log(data);
+    if(data.status == true)
+{
+    const dismissModal=document.getElementById("dismissModal").click();
+const msg="user Registered successfully";
+    showToast(msg);
+
+fetch('/api/removeData',{
+    method:"POST",
+    headers:
+    {
+
+    },
+    body:formData
+}).then(response=>{
+    // console.log(response)
+    return response.json()
+})
+.then(data=>
+{
+    console.log(data);
+    if(data.status==true)
+{
+    location.reload();
+}
+}
+)
+
+}
+}
+);
+}
+}
+);
 
 //accept operation
 
@@ -323,6 +402,40 @@ const acceptBtn = document.getElementById("acceptBtn");
 
 
 //reject operation
+
+
+
+function showToast(msg)
+{
+var ToastMsg= msg;
+    const toastHtml=`
+<div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+${ToastMsg}
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>`;
+    const toastElement = document.createElement('div');
+    toastElement.innerHTML = toastHtml;
+    const toastContainer = document.getElementById('toast-container');
+  toastContainer.appendChild(toastElement);
+  const toast = new bootstrap.Toast(toastElement.querySelector('.toast'),{
+    autohide:true,
+    delay:5000
+  });
+
+  toast.show();
+  toastElement.addEventListener('hidden.bs.toast', () => {
+    toastElement.remove();
+    if (toastContainer.children.length === 0) {
+      toastContainer.style.display = 'none';
+    }
+  });
+  toastContainer.style.display = 'block';
+}
+
     </script>
 </body>
 

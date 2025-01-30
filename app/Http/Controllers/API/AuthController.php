@@ -69,10 +69,10 @@ return $this->sendResponse($verifcode,"The email hasbeen sent");
             return $this->sendError('Validation Error', $validateData->errors()->all(), 307);
         }
 
-            $authuser = UserVerifQueue::where('email', $request->email)->first();
+            $authuser = User::where('email', $request->email)->first();
 
-        // if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            if ($authuser && Hash::check($request->password, $authuser->password)) {         
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // if ($authuser && Hash::check($request->password, $authuser->password)) {         
                    return response()->json(
                 [
                     'status' => true,

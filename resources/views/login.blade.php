@@ -110,11 +110,13 @@
                     'Content-Type': 'application/json'
                 }
             }).then(response => {
+                console.log(response);
                 return response.json();
             }).then(data => {
                if(data.status==true)
                {
                       const token = data.token;
+                      console.log(token);
                 localStorage.setItem('token', token);
                 if (localStorage.getItem('token')) {
  localStorage.setItem('isLoggedIn', 'true');

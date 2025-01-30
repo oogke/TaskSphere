@@ -13,3 +13,6 @@ Route::post('/register',[AuthController::class,'signup'])->name('register');
 Route::post('/emailverify',action: [AuthController::class,'emailVerify'])->name('registerVerify');
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('/RegisterApplication',[EmployeeController::class,'EmployeeData'])->name('RegisterApplication');
+Route::post('/passScode',[EmployeeController::class,'ScodeOperation'])->name('PassScode');
+Route::post('/removeData',[EmployeeController::class,'removeData'])->name('removeData');
+
