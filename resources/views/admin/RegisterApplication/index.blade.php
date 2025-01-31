@@ -326,13 +326,12 @@
             const acceptBtn = document.querySelector(".acceptConfirmBtn");
             acceptBtn.setAttribute("data-application-id", applicationId);
         });
-        const rejectModal = document.getElementById('rejectModal');
+       const rejectModal = document.getElementById('rejectModal');
         rejectModal.addEventListener('show.bs.modal', (event) => {
             const button = event.relatedTarget;
             const applicationId = button.dataset.applicationId;
             const rejectBtn = document.querySelector(".rejectConfirmBtn");
             rejectBtn.setAttribute("data-application-id", applicationId);
-
         });
         const scodeModal = document.getElementById('scodeModal');
         scodeModal.addEventListener('show.bs.modal', (event) => {
@@ -390,6 +389,39 @@
                 }
                 );
             }
+
+if(e.target.classList.contains("rejectConfirmBtn"))
+{
+ const applicationID= e.target.dataset.applicationId;
+ const data =
+ {
+    'applicationId':applicationID
+ }
+ fetch("/api/rejection",
+    {
+        method:"POST",
+        headers:
+        {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(data)
+    }
+ ).then(response=>
+    {
+        console.log(response)
+        return response.json()
+    }
+ ).then(data=>
+    {
+        if(data.status==true)
+    {
+        msg="Application is rejected successfully!!"
+        showToast(msg);
+        location.reload();
+    }
+    }
+ )
+}
         });
 
 

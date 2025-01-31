@@ -53,4 +53,16 @@ public function removeData(Request $request)
         return $this->sendResponse([], 'user deleted Successfully');
     }
 }
+public function rejection(Request $request)
+{
+
+$applicationID= $request->input('applicationId');
+$user = userVerifQueue::where('id',$applicationID)->delete();
+if($user)
+{
+    return $this->sendResponse([],"User is removed from apllications");
+}
+
+
+}
 }

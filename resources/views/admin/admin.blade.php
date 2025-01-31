@@ -251,8 +251,8 @@
             width: 100%;
             height: 700px;
             margin: auto; 
-            background: url("images/shine.jpeg") no-repeat;
-            background-position: center;
+            background: url("images/luffy.jpg") no-repeat;
+            background-position: top;
             background-size: cover;
 
         }
@@ -535,9 +535,9 @@
                 <div class="footer-center">
                     <h3>USEFUL LINKS</h3>
                     <a href="index.php">Home</a>
-                    <a href="food.php">Food</a>
-                    <a href="room.php">Rooms</a>
-                    <a href="contact.php">Contact Us</a>
+                    <a href="food.php">Task</a>
+                    <a href="room.php">Attendance</a>
+                    <a href="contact.php">Notices Us</a>
                     <a href="feedback.php">Feedback</a>
 
                 </div>

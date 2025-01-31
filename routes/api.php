@@ -15,4 +15,5 @@ Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('/RegisterApplication',[EmployeeController::class,'EmployeeData'])->name('RegisterApplication');
 Route::post('/passScode',[EmployeeController::class,'ScodeOperation'])->name('PassScode');
 Route::post('/removeData',[EmployeeController::class,'removeData'])->name('removeData');
+Route::post('/rejection',[EmployeeController::class,'rejection'])->name('rejection');
 
