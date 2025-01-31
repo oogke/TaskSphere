@@ -40,3 +40,20 @@ update
             $table->string('fname')->nullable()->change();
             $table->string('lname')->nullable()->change();
         });
+
+
+
+//userverif
+         Schema::table('user_verif_queues', function (Blueprint $table) {
+            $table->string('fname')->nullable()->change();
+            $table->string('lname')->nullable()->change();
+        });
+
+        //user
+           Schema::table('users', function (Blueprint $table) {
+            $table->string('profile', 400)->nullable()->change();
+            $table->string('address')->nullable()->change();
+            $table->string('gender')->nullable()->change();
+            $table->string('citizenCardFront', 400)->nullable()->change();
+            $table->string('citizenCardBack', 400)->nullable()->change();
+        });

@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('user_verif_queues', function (Blueprint $table) {
-            $table->string('fname')->nullable()->change();
-            $table->string('lname')->nullable()->change();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('roles');
     }
 };
