@@ -15,8 +15,8 @@ class UserController extends BaseController
      */
     public function index()
     {
-    $cafes= User::all();
-    return $this->sendResponse($cafes,"All the cafes");
+    $users= User::all();
+    return $this->sendResponse($users,"All the users");
     }
 
     /**
