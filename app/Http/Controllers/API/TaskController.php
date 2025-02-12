@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class TaskController extends BaseController
 {
+
+public function taskView(Request $request)
+{
+
+}
     /**
      * Display a listing of the resource.
      */

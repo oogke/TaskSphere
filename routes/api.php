@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\EmployeeController;
+use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,6 @@ Route::post('/rejection',[EmployeeController::class,'rejection'])->name('rejecti
 
 Route::get("/userIndex",[UserController::class,'index'])->name("getUserData");
 Route::get('/employeedata',[EmployeeController::class,'EmployeeData'])->name('EmployeeData');
+
+Route::get('/taskview',[TaskController::class,'taskView'])->name('taskview');
+Route::get('/projectview',[TaskController::class,'projectView'])->name('projectview');
