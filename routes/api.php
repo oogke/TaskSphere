@@ -13,9 +13,10 @@ Route::get('/user', function (Request $request) {
 Route::post('/register',[AuthController::class,'signup'])->name('register');
 Route::post('/emailverify', [AuthController::class,'emailVerify'])->name('registerVerify');
 Route::post('/login',[AuthController::class,'login'])->name('login');
-Route::get('/RegisterApplication',[EmployeeController::class,'EmployeeData'])->name('RegisterApplication');
+Route::get('/RegisterApplication',[EmployeeController::class,'EmployeeRegisterData'])->name('RegisterApplication');
 Route::post('/passScode',[EmployeeController::class,'ScodeOperation'])->name('PassScode');
 Route::post('/removeData',[EmployeeController::class,'removeData'])->name('removeData');
 Route::post('/rejection',[EmployeeController::class,'rejection'])->name('rejection');
 
 Route::get("/userIndex",[UserController::class,'index'])->name("getUserData");
+Route::get('/employeedata',[EmployeeController::class,'EmployeeData'])->name('EmployeeData');

@@ -10,11 +10,17 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends BaseController
 {
-public function EmployeeData(Request $request)
+public function EmployeeRegisterData(Request $request)
 {
     $userApplication = userVerifQueue::all();
     // dd($userApplication->toArray());
     return view('admin/RegisterApplication/index', compact('userApplication'));
+    
+}
+public function EmployeeData(Request $request)
+{
+    $users = User::all();
+    return view('projectManager/employees', compact('users'));
     
 }
 public function ScodeOperation(Request $request)

@@ -49,6 +49,7 @@ return $this->sendResponse($verifcode,"The email hasbeen sent");
             'email' => $request->email,
             'password' => $request->password,
             'phone'=>$request->phone
+         
         ]);
 
         return $this->sendResponse($user, 'user registered successfully');
