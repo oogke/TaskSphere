@@ -67,25 +67,10 @@ return $this->sendResponse($company,"Data inserted Successfully");
     {
         $query=Company::query();
        $companyname=$request->query("name");
-       $district=$request->query("district");
-       $location=$request->query("location");
-       $rating=$request->query("rating");
        $id=$request->query("id");
        if($companyname)
        {
 $query->where('name','LIKE',"%{$companyname}%");
-       }
-       if($district)
-       {
-$query->where('district','LIKE',"%{$district}%");
-       }
-       if($location)
-       {
-$query->where('location','LIKE',"%{$location}%");
-       }
-       if($rating)
-       {
-$query->where('rating','LIKE',"%{$rating}%");
        }
        if($id)
 {
@@ -94,13 +79,13 @@ $query->where('rating','LIKE',"%{$rating}%");
 }
 
 
-$cafes=$query->get();
-if($cafes->isEmpty())
+$company=$query->get();
+if($company->isEmpty())
 {
     return $this->sendResponse([],"No data found");
 
 }
-      return $this->sendResponse($cafes,"Your result");
+      return $this->sendResponse($company,"Your result");
 
     }
 
@@ -122,9 +107,9 @@ if($cafes->isEmpty())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
-        //image
+      
 
-$cafeUpdate= User::where("id",$id)->update([
+$companyUpdate= Company::where("id",$id)->update([
     'name'=>$request->name,
     'description'=>$request->description,
     'location'=>$request->location,
@@ -133,10 +118,10 @@ $cafeUpdate= User::where("id",$id)->update([
     'phone'=>$request->phone,
     'website'=>$request->website,  
 ]);
-$cafe=User::where('id',$id)->first();
-if($cafeUpdate>0)
+$company=User::where('id',$id)->first();
+if($companyUpdate>0)
 {
-return $this->sendResponse($cafe,"Data is updated");
+return $this->sendResponse($company,"Data is updated");
 }
 else{
     return $this->sendError("Data is not updated try again",[],402);
@@ -148,12 +133,12 @@ else{
      */
     public function destroy(string $id)
     {
-        $cafe=User::where('id',$id)->first();
-        if(!$cafe)
+        $company=User::where('id',$id)->first();
+        if(!$company)
         {
             return $this->sendError("cafe not found", [], 404);
         }
-     $query=  $cafe->delete();
+     $query=  $company->delete();
      if($query)
      {
                return $this->sendResponse([],"successfully deleted");

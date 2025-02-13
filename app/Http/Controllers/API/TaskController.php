@@ -47,7 +47,7 @@ public function taskView(Request $request)
 
 
 
-$cafe=User::create([
+$task=Task::create([
     'name'=>$request->name,
     'description'=>$request->description,
     'location'=>$request->location,
@@ -56,7 +56,7 @@ $cafe=User::create([
     'phone'=>$request->phone,
     'website'=>$request->website   
 ]);
-return $this->sendResponse($cafe,"Data inserted Successfully");
+return $this->sendResponse($task,"Data inserted Successfully");
 
     }
 
@@ -65,7 +65,7 @@ return $this->sendResponse($cafe,"Data inserted Successfully");
      */
     public function show(Request $request)
     {
-        $query=User::query();
+        $query=Task::query();
        $cafename=$request->query("name");
        $district=$request->query("district");
        $location=$request->query("location");
@@ -94,13 +94,13 @@ $query->where('rating','LIKE',"%{$rating}%");
 }
 
 
-$cafes=$query->get();
-if($cafes->isEmpty())
+$task=$query->get();
+if($task->isEmpty())
 {
     return $this->sendResponse([],"No data found");
 
 }
-      return $this->sendResponse($cafes,"Your result");
+      return $this->sendResponse($task,"Your result");
 
     }
 
@@ -122,9 +122,9 @@ if($cafes->isEmpty())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
-        //image
+       
 
-$cafeUpdate= User::where("id",$id)->update([
+$taskUpdate= Task::where("id",$id)->update([
     'name'=>$request->name,
     'description'=>$request->description,
     'location'=>$request->location,
@@ -133,10 +133,10 @@ $cafeUpdate= User::where("id",$id)->update([
     'phone'=>$request->phone,
     'website'=>$request->website,  
 ]);
-$cafe=User::where('id',$id)->first();
-if($cafeUpdate>0)
+$task=User::where('id',$id)->first();
+if($taskUpdate>0)
 {
-return $this->sendResponse($cafe,"Data is updated");
+return $this->sendResponse($task,"Data is updated");
 }
 else{
     return $this->sendError("Data is not updated try again",[],402);
@@ -148,12 +148,12 @@ else{
      */
     public function destroy(string $id)
     {
-        $cafe=User::where('id',$id)->first();
-        if(!$cafe)
+        $task=Task::where('id',$id)->first();
+        if(!$task)
         {
             return $this->sendError("cafe not found", [], 404);
         }
-     $query=  $cafe->delete();
+     $query=  $task->delete();
      if($query)
      {
                return $this->sendResponse([],"successfully deleted");
