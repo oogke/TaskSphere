@@ -36,26 +36,25 @@ return view('projectManager/projects/tasks/taskDash',compact('tasks'));
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date', 
-            'employee' => 'required',
-            'priority'=>'nullable'
-
-           
+            'employee' => 'required'
+        
         ]);
         if($validate->fails())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
 
-
+$employee=json_encode($request->employees);
 
 $task=Task::create([
     'name'=>$request->name,
     'description'=>$request->description,
-    'location'=>$request->location,
-    'district'=>$request->district,
-    'email'=>$request->email,
-    'phone'=>$request->phone,
-    'website'=>$request->website   
+    'sdate'=>$request->sdate,
+    'edate'=>$request->edate,
+    'employee'=>$employee,
+   'priority'=> $request->priority,
+   'workspaceId'=>$request->workspaceId,
+   'projectId'=>$request->projectId
 ]);
 return $this->sendResponse($task,"Data inserted Successfully");
 
@@ -67,34 +66,17 @@ return $this->sendResponse($task,"Data inserted Successfully");
     public function show(Request $request)
     {
         $query=Task::query();
-       $cafename=$request->query("name");
-       $district=$request->query("district");
-       $location=$request->query("location");
-       $rating=$request->query("rating");
-       $id=$request->query("id");
-       if($cafename)
+       $taskname=$request->query("name");
+        $id=$request->query("id");
+       if($taskname)
        {
-$query->where('name','LIKE',"%{$cafename}%");
-       }
-       if($district)
-       {
-$query->where('district','LIKE',"%{$district}%");
-       }
-       if($location)
-       {
-$query->where('location','LIKE',"%{$location}%");
-       }
-       if($rating)
-       {
-$query->where('rating','LIKE',"%{$rating}%");
+$query->where('name','LIKE',"%{$taskname}%");
        }
        if($id)
 {
     $query->where('id','LIKE',"%{$id}%");
 
 }
-
-
 $task=$query->get();
 if($task->isEmpty())
 {
@@ -111,28 +93,27 @@ if($task->isEmpty())
     public function update(Request $request, string $id)
     {
         $validate = Validator::make($request->all(), [
-            'name' => 'required|string',
-            'district' => 'required|string',
+           'name' => 'required|string',
             'description' => 'required|string',
-            'location' => 'required|string',
-            'phone' => 'required|string', 
-            'email' => 'required|email',
-            'website' => 'required|url'    
+            'sdate' => 'required|date',
+            'edate' => 'required|date', 
+            'employee' => 'required' 
         ]);
         if($validate->fails())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
        
-
+        $employee=json_encode($request->employees);
 $taskUpdate= Task::where("id",$id)->update([
     'name'=>$request->name,
     'description'=>$request->description,
-    'location'=>$request->location,
-    'district'=>$request->district,
-    'email'=>$request->email,
-    'phone'=>$request->phone,
-    'website'=>$request->website,  
+    'sdate'=>$request->sdate,
+    'edate'=>$request->edate,
+    'employee'=>$employee,
+   'priority'=> $request->priority,
+   'workspaceId'=>$request->workspaceId,
+   'projectId'=>$request->projectId
 ]);
 $task=User::where('id',$id)->first();
 if($taskUpdate>0)
@@ -152,7 +133,7 @@ else{
         $task=Task::where('id',$id)->first();
         if(!$task)
         {
-            return $this->sendError("cafe not found", [], 404);
+            return $this->sendError("task not found", [], 404);
         }
      $query=  $task->delete();
      if($query)

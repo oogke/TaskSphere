@@ -46,15 +46,15 @@ class ProjectController extends BaseController
         }
 
 
-
+        $employee=json_encode($request->employees);
 $project=Project::create([
     'name'=>$request->name,
     'description'=>$request->description,
-    'location'=>$request->location,
-    'district'=>$request->district,
-    'email'=>$request->email,
-    'phone'=>$request->phone,
-    'website'=>$request->website   
+    'sdate'=>$request->sdate,
+    'edate'=>$request->edate,
+    'members'=>$employee,
+   'leader'=> $request->leader
+ 
 ]);
 return $this->sendResponse($project,"Data inserted Successfully");
 
@@ -66,26 +66,11 @@ return $this->sendResponse($project,"Data inserted Successfully");
     public function show(Request $request)
     {
         $query=Project::query();
-       $cafename=$request->query("name");
-       $district=$request->query("district");
-       $location=$request->query("location");
-       $rating=$request->query("rating");
+       $projectname=$request->query("name");
        $id=$request->query("id");
-       if($cafename)
+       if($projectname)
        {
-$query->where('name','LIKE',"%{$cafename}%");
-       }
-       if($district)
-       {
-$query->where('district','LIKE',"%{$district}%");
-       }
-       if($location)
-       {
-$query->where('location','LIKE',"%{$location}%");
-       }
-       if($rating)
-       {
-$query->where('rating','LIKE',"%{$rating}%");
+$query->where('name','LIKE',"%{$projectname}%");
        }
        if($id)
 {
@@ -111,29 +96,28 @@ if($project->isEmpty())
     {
         $validate = Validator::make($request->all(), [
             'name' => 'required|string',
-            'district' => 'required|string',
             'description' => 'required|string',
-            'location' => 'required|string',
-            'phone' => 'required|string', 
-            'email' => 'required|email',
-            'website' => 'required|url'    
+            'sdate' => 'required|date',
+            'edate' => 'required|date', 
+            'leader' => 'required|string',
+            'members' => 'required|array'  
         ]);
         if($validate->fails())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
       
+        $employee=json_encode($request->employees);
 
 $projectUpdate= Project::where("id",$id)->update([
     'name'=>$request->name,
     'description'=>$request->description,
-    'location'=>$request->location,
-    'district'=>$request->district,
-    'email'=>$request->email,
-    'phone'=>$request->phone,
-    'website'=>$request->website,  
+    'sdate'=>$request->sdate,
+    'edate'=>$request->edate,
+    'members'=>$employee,
+   'leader'=> $request->leader
 ]);
-$project=User::where('id',$id)->first();
+$project=Project::where('id',$id)->first();
 if($projectUpdate>0)
 {
 return $this->sendResponse($project,"Data is updated");
@@ -151,7 +135,7 @@ else{
         $project=Project::where('id',$id)->first();
         if(!$project)
         {
-            return $this->sendError("cafe not found", [], 404);
+            return $this->sendError("project not found", [], 404);
         }
      $query=  $project->delete();
      if($query)

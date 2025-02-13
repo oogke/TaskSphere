@@ -47,15 +47,16 @@ class WorkspaceController extends BaseController
         }
 
 
+        $employee=json_encode($request->employees);
 
 $workspace=Workspace::create([
-    'name'=>$request->name,
+      'name'=>$request->name,
     'description'=>$request->description,
-    'location'=>$request->location,
-    'district'=>$request->district,
-    'email'=>$request->email,
-    'phone'=>$request->phone,
-    'website'=>$request->website   
+    'sdate'=>$request->sdate,
+    'edate'=>$request->edate,
+    'members'=>$employee,
+   'leader'=> $request->leader,
+   'projectId'=> $request->projectId
 ]);
 return $this->sendResponse($workspace,"Data inserted Successfully");
 
@@ -67,26 +68,11 @@ return $this->sendResponse($workspace,"Data inserted Successfully");
     public function show(Request $request)
     {
         $query=Workspace::query();
-       $cafename=$request->query("name");
-       $district=$request->query("district");
-       $location=$request->query("location");
-       $rating=$request->query("rating");
+       $workspacename=$request->query("name");
        $id=$request->query("id");
-       if($cafename)
+       if($workspacename)
        {
-$query->where('name','LIKE',"%{$cafename}%");
-       }
-       if($district)
-       {
-$query->where('district','LIKE',"%{$district}%");
-       }
-       if($location)
-       {
-$query->where('location','LIKE',"%{$location}%");
-       }
-       if($rating)
-       {
-$query->where('rating','LIKE',"%{$rating}%");
+$query->where('name','LIKE',"%{$workspacename}%");
        }
        if($id)
 {
@@ -112,27 +98,26 @@ if($workspace->isEmpty())
     {
         $validate = Validator::make($request->all(), [
             'name' => 'required|string',
-            'district' => 'required|string',
             'description' => 'required|string',
-            'location' => 'required|string',
-            'phone' => 'required|string', 
-            'email' => 'required|email',
-            'website' => 'required|url'    
+            'sdate' => 'required|date',
+            'edate' => 'required|date', 
+            'leader' => 'required|string',
+            'members' => 'required|array'
         ]);
         if($validate->fails())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
         //image
+        $employee=json_encode($request->employees);
 
 $workspaceUpdate= Workspace::where("id",$id)->update([
-    'name'=>$request->name,
+   'name'=>$request->name,
     'description'=>$request->description,
-    'location'=>$request->location,
-    'district'=>$request->district,
-    'email'=>$request->email,
-    'phone'=>$request->phone,
-    'website'=>$request->website,  
+    'sdate'=>$request->sdate,
+    'edate'=>$request->edate,
+    'members'=>$employee,
+   'leader'=> $request->leader
 ]);
 $workspace=Workspace::where('id',$id)->first();
 if($workspaceUpdate>0)
@@ -149,10 +134,10 @@ else{
      */
     public function destroy(string $id)
     {
-        $workspace=User::where('id',$id)->first();
+        $workspace=Workspace::where('id',$id)->first();
         if(!$workspace)
         {
-            return $this->sendError("cafe not found", [], 404);
+            return $this->sendError("workspace not found", [], 404);
         }
      $query=  $workspace->delete();
      if($query)

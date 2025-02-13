@@ -25,10 +25,6 @@ Route::post('/rejection',[EmployeeController::class,'rejection'])->name('rejecti
 Route::get("/userIndex",[UserController::class,'index'])->name("getUserData");
 Route::get('/employeedata',[EmployeeController::class,'EmployeeData'])->name('EmployeeData');
 
-Route::get('/taskview',[TaskController::class,'taskView'])->name('taskview');
-Route::get('/projectview',[TaskController::class,'projectView'])->name('projectview');
-
-
 Route::get('/taskIndex',[TaskController::class,'index'])->name('taskIndex');
 Route::get('/workspaceIndex',[WorkspaceController::class,'index'])->name('workspaceIndex');
 Route::get('/projectIndex',[ProjectController::class,'index'])->name('projectIndex');
