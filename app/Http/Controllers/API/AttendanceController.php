@@ -39,8 +39,6 @@ class AttendanceController extends BaseController
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
 
-
-
 $cafe=User::create([
     'name'=>$request->name,
     'description'=>$request->description,
@@ -68,18 +66,6 @@ return $this->sendResponse($cafe,"Data inserted Successfully");
        if($cafename)
        {
 $query->where('name','LIKE',"%{$cafename}%");
-       }
-       if($district)
-       {
-$query->where('district','LIKE',"%{$district}%");
-       }
-       if($location)
-       {
-$query->where('location','LIKE',"%{$location}%");
-       }
-       if($rating)
-       {
-$query->where('rating','LIKE',"%{$rating}%");
        }
        if($id)
 {
