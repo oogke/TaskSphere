@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\Validator;
 
 class WorkspaceController extends BaseController
 {
+    public function workspaceView()
+    {
+        $workspaces= Workspace::all();
+        return view('/projectManager/projects/workspaces/workspaceDash',compact('workspaces'));
+    }
 
-public function taskView(Request $request)
-{
 
-}
     /**
      * Display a listing of the resource.
      */
@@ -32,12 +34,11 @@ public function taskView(Request $request)
     {
         $validate = Validator::make($request->all(), [
             'name' => 'required|string',
-            'district' => 'required|string',
             'description' => 'required|string',
-            'location' => 'required|string',
-            'phone' => 'required|string', 
-            'email' => 'required|email',
-            'website' => 'required|url'
+            'sdate' => 'required|date',
+            'edate' => 'required|date', 
+            'leader' => 'required|string',
+            'members' => 'required|array'
            
         ]);
         if($validate->fails())

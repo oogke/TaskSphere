@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class ProjectController extends BaseController
 {
 
+    public function projectView()
+    {
+        $projects= Project::all();
+        return view('/projectManager/projects/projectDash',compact('projects'));
+    }
     /**
      * Display a listing of the resource.
      */
@@ -28,12 +33,11 @@ class ProjectController extends BaseController
     {
         $validate = Validator::make($request->all(), [
             'name' => 'required|string',
-            'district' => 'required|string',
             'description' => 'required|string',
-            'location' => 'required|string',
-            'phone' => 'required|string', 
-            'email' => 'required|email',
-            'website' => 'required|url'
+            'sdate' => 'required|date',
+            'edate' => 'required|date', 
+            'leader' => 'required|string',
+            'members' => 'required|array'
            
         ]);
         if($validate->fails())

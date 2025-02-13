@@ -52,4 +52,4 @@ Route::get('/companyDelete',[CompanyController::class,'delete'])->name('companyD
 
 Route::get('/WorkspaceDash' ,[WorkspaceController::class,'workspaceView'])->name('WorkspaceDash');
 Route::get('/projectDash' ,[WorkspaceController::class,'projectView'])->name('projectDash');
-Route::get('/taskDash' ,[WorkspaceController::class,'taskView'])->name('taskDash');
+Route::get('/taskDash' ,[TaskController::class,'taskView'])->name('taskDash');

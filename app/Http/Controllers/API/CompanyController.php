@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends BaseController
 {
+    // public function companyView()
+    // {
+    //     $companies= Company::all();
+    //     return view('admin/company/compan')
+    // }
 
 public function taskView(Request $request)
 {

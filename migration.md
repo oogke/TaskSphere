@@ -118,3 +118,27 @@ update
             $table->timestamps();
         });
 
+ Schema::table('workspaces', function (Blueprint $table) {
+           $table->string('status')->default('not started')->change();
+           $table->string('projectId')->nullable()->change();
+           $table->string('leader')->nullable()->change();
+        });
+
+         Schema::table('tasks', function (Blueprint $table) {
+            $table->string('status')->default('not started')->change();
+           $table->string('projectId')->nullable()->change();
+           $table->string('workspaceId')->nullable()->change();
+           $table->string('priority')->nullable()->change();
+        });
+
+         Schema::table('workspaces', function (Blueprint $table) {
+           $table->string('status')->default('not started')->change();
+           $table->string('projectId')->nullable()->change();
+           $table->string('leader')->nullable()->change();
+        });
+
+         Schema::table('projects', function (Blueprint $table) {
+            $table->string('status')->default('not started')->change();
+            $table->string('workspaceCount')->nullable()->change();
+            $table->string('leader')->nullable()->change();
+        });

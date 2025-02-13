@@ -14,7 +14,8 @@ class TaskController extends BaseController
 
 public function taskView(Request $request)
 {
-
+$tasks= Task::all();
+return view('projectManager/projects/tasks/taskDash',compact('tasks'));
 }
     /**
      * Display a listing of the resource.
@@ -31,13 +32,13 @@ public function taskView(Request $request)
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(), [
-            'name' => 'required|string',
-            'district' => 'required|string',
+           'name' => 'required|string',
             'description' => 'required|string',
-            'location' => 'required|string',
-            'phone' => 'required|string', 
-            'email' => 'required|email',
-            'website' => 'required|url'
+            'sdate' => 'required|date',
+            'edate' => 'required|date', 
+            'employee' => 'required',
+            'priority'=>'nullable'
+
            
         ]);
         if($validate->fails())
