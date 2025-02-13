@@ -33,3 +33,23 @@ Route::get('/taskIndex',[TaskController::class,'index'])->name('taskIndex');
 Route::get('/workspaceIndex',[WorkspaceController::class,'index'])->name('workspaceIndex');
 Route::get('/projectIndex',[ProjectController::class,'index'])->name('projectIndex');
 Route::get('/companyIndex',[CompanyController::class,'index'])->name('companyIndex');
+
+Route::get('/taskCreate',[TaskController::class,'create'])->name('taskCreate');
+Route::get('/workspaceCreate',[WorkspaceController::class,'create'])->name('workspaceCreate');
+Route::get('/projectCreate',[ProjectController::class,'create'])->name('projectCreate');
+Route::get('/companyCreate',[CompanyController::class,'create'])->name('companyCreate');
+
+Route::get('/taskUpdate',[TaskController::class,'update'])->name('taskUpdate');
+Route::get('/workspaceUpdate',[WorkspaceController::class,'update'])->name('workspaceUpdate');
+Route::get('/projectUpdate',[ProjectController::class,'update'])->name('projectUpdate');
+Route::get('/companyUpdate',[CompanyController::class,'update'])->name('companyUpdate');
+
+Route::get('/taskDelete',[TaskController::class,'delete'])->name('taskDelete');
+Route::get('/workspaceDelete',[WorkspaceController::class,'delete'])->name('workspaceDelete');
+Route::get('/projectDelete',[ProjectController::class,'delete'])->name('projectDelete');
+Route::get('/companyDelete',[CompanyController::class,'delete'])->name('companyDelete');
+
+
+Route::get('/WorkspaceDash' ,[WorkspaceController::class,'workspaceView'])->name('WorkspaceDash');
+Route::get('/projectDash' ,[WorkspaceController::class,'projectView'])->name('projectDash');
+Route::get('/taskDash' ,[WorkspaceController::class,'taskView'])->name('taskDash');
