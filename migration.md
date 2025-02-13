@@ -57,3 +57,64 @@ update
             $table->string('citizenCardFront', 400)->nullable()->change();
             $table->string('citizenCardBack', 400)->nullable()->change();
         });
+
+//workspaces
+        // Schema::create('workspaces', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->date('sdate');
+            $table->date('edate');
+            $table->json('members');
+            $table->string('leader');
+            $table->string('status');
+            $table->string('projectId');
+            $table->timestamps();
+        });
+
+        //projects
+        //   Schema::create('projects', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->date('sdate');
+            $table->date('edate');
+            $table->json('members');
+            $table->string('leader');
+            $table->string('workspaceCount');
+            $table->string('status');
+            $table->timestamps();
+        });
+
+        
+        //companies
+         Schema::create('companies', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->date('edate');
+            $table->string('address');
+            $table->string('phone')->unique();
+            $table->string('company_type');
+            $table->string('website')->nullable();
+            $table->string('CEO');
+            $table->timestamps();
+        });
+
+
+//tasks
+  Schema::create('tasks', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->date('sdate');
+            $table->date('edate');
+            $table->json('members');
+            $table->string('priority');
+            $table->string('status');
+            $table->string('workspaceId');
+            $table->string('projectId');
+            $table->string('status');
+
+            $table->timestamps();
+        });
+
