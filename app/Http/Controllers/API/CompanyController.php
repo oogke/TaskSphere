@@ -4,21 +4,25 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ProjectController extends BaseController
+class CompanyController extends BaseController
 {
 
+public function taskView(Request $request)
+{
+
+}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-    $project= Project::all();
-    return $this->sendResponse($project,"All the projects");
+    $company= Company::all();
+    return $this->sendResponse($company,"All the companies");
     }
 
     /**
@@ -43,7 +47,7 @@ class ProjectController extends BaseController
 
 
 
-$cafe=User::create([
+$company=Company::create([
     'name'=>$request->name,
     'description'=>$request->description,
     'location'=>$request->location,
@@ -52,7 +56,7 @@ $cafe=User::create([
     'phone'=>$request->phone,
     'website'=>$request->website   
 ]);
-return $this->sendResponse($cafe,"Data inserted Successfully");
+return $this->sendResponse($company,"Data inserted Successfully");
 
     }
 
@@ -61,15 +65,15 @@ return $this->sendResponse($cafe,"Data inserted Successfully");
      */
     public function show(Request $request)
     {
-        $query=User::query();
-       $cafename=$request->query("name");
+        $query=Company::query();
+       $companyname=$request->query("name");
        $district=$request->query("district");
        $location=$request->query("location");
        $rating=$request->query("rating");
        $id=$request->query("id");
-       if($cafename)
+       if($companyname)
        {
-$query->where('name','LIKE',"%{$cafename}%");
+$query->where('name','LIKE',"%{$companyname}%");
        }
        if($district)
        {

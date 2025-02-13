@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,8 +21,8 @@ public function taskView(Request $request)
      */
     public function index()
     {
-    $cafes= User::all();
-    return $this->sendResponse($cafes,"All the cafes");
+    $task= Task::all();
+    return $this->sendResponse($task,"All the tasks");
     }
 
     /**
