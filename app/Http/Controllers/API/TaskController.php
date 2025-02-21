@@ -15,7 +15,7 @@ class TaskController extends BaseController
 public function taskView(Request $request)
 {
 $tasks= Task::all();
-return view('projectManager/projects/tasks/taskDash',compact('tasks'));
+return view('projectManager/projects/tasks/manageTask',compact('tasks'));
 }
     /**
      * Display a listing of the resource.

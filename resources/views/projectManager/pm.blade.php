@@ -405,7 +405,7 @@
         <div class="right-nav">
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="{{route('projectDash')}}">Project</a></li>
+                <li><a href="{{route('projectView')}}">Project</a></li>
                 <li><a href="{{ route('EmployeeData')}}">Employees</a></li>
 
 

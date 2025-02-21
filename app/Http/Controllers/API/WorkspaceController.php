@@ -11,10 +11,16 @@ use Illuminate\Support\Facades\Validator;
 
 class WorkspaceController extends BaseController
 {
+
+
+    public function workspaceDash(Request $req, $id)
+    {
+
+    }
     public function workspaceView()
     {
         $workspaces= Workspace::all();
-        return view('/projectManager/projects/workspaces/workspaceDash',compact('workspaces'));
+        return view('projectManager/projects/workspaces/manageWorkspace',compact('workspaces'));
     }
 
 

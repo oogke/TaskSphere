@@ -12,10 +12,18 @@ use Illuminate\Support\Facades\Validator;
 class ProjectController extends BaseController
 {
 
+public function projectDash(Request $req , $id)
+{
+    $project= Project::where('id',$id)->first();
+
+    // return view('/projectManager/projects/projectDash',compact('project'));
+
+    return view('/projectManager/projects/projectDash', compact('project'));}
+
     public function projectView()
     {
         $projects= Project::all();
-        return view('/projectManager/projects/projectDash',compact('projects'));
+        return view('/projectManager/projects/manageProject',compact('projects'));
     }
     /**
      * Display a listing of the resource.

@@ -46,6 +46,13 @@ Route::get('/projectDelete',[ProjectController::class,'delete'])->name('projectD
 Route::get('/companyDelete',[CompanyController::class,'delete'])->name('companyDelete');
 
 
-Route::get('/WorkspaceDash' ,[WorkspaceController::class,'workspaceView'])->name('WorkspaceDash');
-Route::get('/projectDash' ,[WorkspaceController::class,'projectView'])->name('projectDash');
-Route::get('/taskDash' ,[TaskController::class,'taskView'])->name('taskDash');
+Route::get('/workspaceView' ,[WorkspaceController::class,'workspaceView'])->name('workspaceView');
+Route::get('/projectView' ,[ProjectController::class,'projectView'])->name('projectView');
+Route::get('/taskView' ,[TaskController::class,'taskView'])->name('taskView');
+
+
+Route::post('/workspaceDashCon/{id}' ,[WorkspaceController::class,'workspaceDash'])->name('workspaceDashCon');
+Route::post('/projectDashCon/{id}' ,[ProjectController::class,'projectDash'])->name('projectDashCon');
+Route::post('/taskDashCon/{id}' ,[TaskController::class,'taskDash'])->name('taskDashCon');
+
+Route::view('/taskDash/{project}' ,'projectManager/projects/projectDash')->name('projectDash');
