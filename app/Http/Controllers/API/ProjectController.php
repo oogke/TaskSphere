@@ -8,9 +8,17 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use View;
 
 class ProjectController extends BaseController
 {
+
+    public function projectCreateView()
+    {
+$employees= User::all();
+return View('projectManager.projects.createProject',compact('employees'));
+
+    }
 
 public function projectDash(Request $req , $id)
 {

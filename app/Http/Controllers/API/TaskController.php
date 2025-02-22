@@ -11,7 +11,12 @@ use Illuminate\Support\Facades\Validator;
 
 class TaskController extends BaseController
 {
+    public function taskCreateView()
+    {
+$employees= User::all();
+return View('projectManager.projects.tasks.createTask',compact('employees'));
 
+    }
 public function taskView(Request $request)
 {
 $tasks= Task::all();

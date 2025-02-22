@@ -56,3 +56,8 @@ Route::post('/projectDashCon/{id}' ,[ProjectController::class,'projectDash'])->n
 Route::post('/taskDashCon/{id}' ,[TaskController::class,'taskDash'])->name('taskDashCon');
 
 Route::view('/taskDash/{project}' ,'projectManager/projects/projectDash')->name('projectDash');
+
+
+Route::get('/projectCreateView',[ProjectController::class,'projectCreateView'])->name('projectCreateView');
+Route::get('/workspaceCreateView',[WorkspaceController::class,'workspaceCreateView'])->name('workspaceCreateView');
+Route::get('/taskCreateView',[TaskController::class,'taskCreateView'])->name('taskCreateView');

@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Validator;
 class WorkspaceController extends BaseController
 {
 
+    public function workspaceCreateView()
+    {
+$employees= User::all();
+return View('projectManager.projects.workspaces.createWorkspace',compact('employees'));
 
+    }
     public function workspaceDash(Request $req, $id)
     {
 
