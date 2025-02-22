@@ -186,7 +186,8 @@
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
             </select><br>
-
+<input type="hidden" name="workspaceId" value="7" id="workspaceId">
+<input type="hidden" name="projectId" value="7" id="projectId">
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -198,27 +199,70 @@
 <script>
         document.getElementById('taskForm').addEventListener('submit', function(event) {
             event.preventDefault();  // Prevent normal form submission
-
+const taskForm=document.getElementById("taskForm");
             // Get form data
             const name = document.getElementById('name').value;
             const description = document.getElementById('description').value;
-            const startDate = document.getElementById('startdate').value;
-            const endDate = document.getElementById('enddate').value;
+            const sdate = document.getElementById('startdate').value;
+            const edate = document.getElementById('enddate').value;
+            const selectedOptions=Array.from(document.getElementById("employees").selectedOptions);
+          
+            const employees= selectedOptions.map(option=>option.value);
+            
             const priority = document.getElementById('priority').value;
+            const projectId = document.getElementById('projectId').value;
+            const workspaceId = document.getElementById('workspaceId').value;
 
             document.getElementById('output').style.display="block"
             document.getElementById('output').innerHTML = `
                 <h2>Task Details:</h2>
                 <p><strong>Name:</strong> ${name}</p>
                 <p><strong>Description:</strong> ${description}</p>
-                <p><strong>Start Date:</strong> ${startDate}</p>
-                <p><strong>End Date:</strong> ${endDate}</p>
+                <p><strong>Start Date:</strong> ${sdate}</p>
+                <p><strong>End Date:</strong> ${edate}</p>
                 <p><strong>Priority:</strong> ${priority}</p>
             `;
-           
-
-            
-           
+           const token= localStorage.getItem("token");
+const formData= new FormData;
+formData.append("name",name);
+formData.append("description",description);
+formData.append("sdate",sdate);
+formData.append("edate",edate);
+formData.append("priority",priority);
+formData.append("workspaceId",workspaceId);
+formData.append("projectId",projectId);
+employees.forEach(employee => {
+    formData.append('employee[]',employee)
+ });
+ 
+fetch("/api/taskCreate",{
+method:"POST",
+headers:
+{
+    'Authorization' :`Bearer ${token}`,
+    
+},
+body:formData
+}).then(response=>
+{
+    
+    return response.json();
+}
+).then(data=>
+{
+   if(data.status==true)
+   {
+    alert("Task Assignment Successful") 
+    document.getElementById('output').style.display="none"
+    taskForm.reset();
+    
+  
+   }
+   else{
+alert("Error! Try Again")
+   }
+}
+)
         });
     </script>
 </body>

@@ -30,10 +30,10 @@ Route::get('/workspaceIndex',[WorkspaceController::class,'index'])->name('worksp
 Route::get('/projectIndex',[ProjectController::class,'index'])->name('projectIndex');
 Route::get('/companyIndex',[CompanyController::class,'index'])->name('companyIndex');
 
-Route::get('/taskCreate',[TaskController::class,'create'])->name('taskCreate');
-Route::get('/workspaceCreate',[WorkspaceController::class,'create'])->name('workspaceCreate');
-Route::get('/projectCreate',[ProjectController::class,'create'])->name('projectCreate');
-Route::get('/companyCreate',[CompanyController::class,'create'])->name('companyCreate');
+Route::post('/taskCreate',[TaskController::class,'store'])->name('taskCreate');
+Route::post('/workspaceCreate',[WorkspaceController::class,'store'])->name('workspaceCreate');
+Route::post('/projectCreate',[ProjectController::class,'store'])->name('projectCreate');
+Route::post('/companyCreate',[CompanyController::class,'store'])->name('companyCreate');
 
 Route::get('/taskUpdate',[TaskController::class,'update'])->name('taskUpdate');
 Route::get('/workspaceUpdate',[WorkspaceController::class,'update'])->name('workspaceUpdate');

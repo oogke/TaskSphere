@@ -41,7 +41,7 @@ return view('projectManager/projects/tasks/manageTask',compact('tasks'));
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date', 
-            'employee' => 'required'
+            'employee' => 'required|array'
         
         ]);
         if($validate->fails())
@@ -49,7 +49,7 @@ return view('projectManager/projects/tasks/manageTask',compact('tasks'));
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
 
-$employee=json_encode($request->employees);
+$employee=json_encode($request->employee);
 
 $task=Task::create([
     'name'=>$request->name,

@@ -47,6 +47,11 @@
             margin: 90px auto;
             box-shadow: 5px 5px 13px -2px black;
             position: relative;  
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+  
         }
         .top ::before {
             content: "";
@@ -55,9 +60,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url(images/even2.jpg) top;
+            background: url(images/image.png) top no-repeat;
             filter: blur(1px);
             z-index: -1;
+        
         }
 
          .projectActions ::before {
@@ -130,10 +136,11 @@
             width: 170px;
             height: 70px;
             margin-left: 30px;
-            background-color: #F5E0B7;
+            background-color:rgb(255, 255, 255);
             border: 1px solid black;
             border-radius: 10px;
             box-shadow: 5px 5px 9px -2px black;
+         font-weight: bold;
         }
         .workspaceActions a button {
             width: 170px;
@@ -148,7 +155,7 @@
             width: 170px;
             height: 70px;
             margin-left: 30px;
-            background-color: #F5E0B7;
+            background-color:rgb(250, 250, 250);
             border: 1px solid black;
             border-radius: 10px;
             box-shadow: 5px 5px 9px -2px black;
