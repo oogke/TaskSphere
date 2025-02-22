@@ -17,6 +17,13 @@ $employees= User::all();
 return View('projectManager.projects.tasks.createTask',compact('employees'));
 
     }
+    public function taskUpdateView(Request $request)
+    {
+        $taskId= $request->id;
+$emp= User::where('id',$taskId)->get();
+return View('projectManager.projects.tasks.updateTask',compact('emp'));
+
+    }
 public function taskView(Request $request)
 {
 $tasks= Task::all();

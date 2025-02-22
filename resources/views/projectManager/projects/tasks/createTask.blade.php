@@ -253,9 +253,9 @@ body:formData
    if(data.status==true)
    {
     alert("Task Assignment Successful") 
-    document.getElementById('output').style.display="none"
-    taskForm.reset();
-    
+    // document.getElementById('output').style.display="none"
+    // taskForm.reset();
+    location.href="/api/taskView";
   
    }
    else{

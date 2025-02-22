@@ -56,11 +56,11 @@
       <td>{{ $task->description }}</td>
       <td>{{ $task->sdate }}</td>
       <td>{{ $task->edate }}</td>
-      <td>{{ implode(', ', json_decode($task->members, true)) }}</td>
+      <td>{{ implode(', ', json_decode($task->employee, true)) }}</td>
       <td>{{ $task->status }}</td>
       <td>{{ $task->leader }}</td>
       <td>
-<a href="">Edit</a> | <a href="">Delete</a>
+<a href="" data-id="{{ $task->id  }}" id="editBtn">Edit</a> | <a href="" data-id="{{ $task->id  }}" id="deleteBtn">Delete</a>
 
 
       </td>
@@ -71,8 +71,8 @@
     </tbody>
 </table>
 
-
-<div class="output" id="output"></div>
+<!-- 
+<div class="output" id="output"></div> -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
@@ -80,16 +80,71 @@
     crossorigin="anonymous"></script>
 
  <script>
-   document.getElementById('output').style.display="block"
-            document.getElementById('output').innerHTML = `
-                <h2>Task Details:</h2>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Description:</strong> ${description}</p>
-                <p><strong>Start Date:</strong> ${startDate}</p>
-                <p><strong>End Date:</strong> ${endDate}</p>
-                <p><strong>Priority:</strong> ${priority}</p>
-            `;
+//    document.getElementById('output').style.display="block"
+//             document.getElementById('output').innerHTML = `
+//                 <h2>Task Details:</h2>
+//                 <p><strong>Name:</strong> ${name}</p>
+//                 <p><strong>Description:</strong> ${description}</p>
+//                 <p><strong>Start Date:</strong> ${startDate}</p>
+//                 <p><strong>End Date:</strong> ${endDate}</p>
+//                 <p><strong>Priority:</strong> ${priority}</p>
+//             `;
 </script>   
+
+
+<script>
+// const table= document.querySelector('.table');
+// const editBtn= document.getElementById("editBtn");
+// table.addEventListener("click",event=>
+//     {
+// event.preventDefault();
+// if(event.target && event.target.)
+
+
+//     }
+// );
+
+
+
+const token=localStorage.getItem("token");
+
+const deleteBtn= document.getElementById("deleteBtn");
+
+editBtn.addEventListener("click",event=>
+    {
+        event.preventDefault();
+      const taskId= editBtn.getAttribute("data-id");
+      fetch("/api/taskUpdateView",{
+        method:"post",
+        headers:
+        {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(taskId)
+      }).then(response=>
+      {
+        console.log(response)
+        return response.json()
+      }
+      ).then(data=>
+      {
+        if(data.status==true)
+      {
+        console.log("I made it")
+      }
+      else{
+        console.log("Fuck it")
+      }
+      }
+      )
+    }
+);
+
+
+
+</script>
+
 
 </body>
 </html>

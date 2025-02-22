@@ -61,3 +61,7 @@ Route::view('/taskDash/{project}' ,'projectManager/projects/projectDash')->name(
 Route::get('/projectCreateView',[ProjectController::class,'projectCreateView'])->name('projectCreateView');
 Route::get('/workspaceCreateView',[WorkspaceController::class,'workspaceCreateView'])->name('workspaceCreateView');
 Route::get('/taskCreateView',[TaskController::class,'taskCreateView'])->name('taskCreateView');
+
+Route::post('/projectUpdateView',[ProjectController::class,'projectUpdateView'])->name('projectUpdateView');
+Route::post('/workspaceUpdateView',[WorkspaceController::class,'workspaceUpdateView'])->name('workspaceUpdateView');
+Route::post('/taskUpdateView',[TaskController::class,'taskUpdateView'])->name('taskUpdateView');
