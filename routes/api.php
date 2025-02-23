@@ -40,10 +40,10 @@ Route::get('/workspaceUpdate',[WorkspaceController::class,'update'])->name('work
 Route::get('/projectUpdate',[ProjectController::class,'update'])->name('projectUpdate');
 Route::get('/companyUpdate',[CompanyController::class,'update'])->name('companyUpdate');
 
-Route::get('/taskDelete',[TaskController::class,'delete'])->name('taskDelete');
-Route::get('/workspaceDelete',[WorkspaceController::class,'delete'])->name('workspaceDelete');
-Route::get('/projectDelete',[ProjectController::class,'delete'])->name('projectDelete');
-Route::get('/companyDelete',[CompanyController::class,'delete'])->name('companyDelete');
+Route::delete('/taskDelete',[TaskController::class,'destroy'])->name('taskDelete');
+Route::delete('/workspaceDelete',[WorkspaceController::class,'destroy'])->name('workspaceDelete');
+Route::delete('/projectDelete',[ProjectController::class,'destroy'])->name('projectDelete');
+Route::delete('/companyDelete',[CompanyController::class,'destroy'])->name('companyDelete');
 
 
 Route::get('/workspaceView' ,[WorkspaceController::class,'workspaceView'])->name('workspaceView');

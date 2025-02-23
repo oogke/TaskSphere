@@ -19,7 +19,7 @@ return View('projectManager.projects.tasks.createTask',compact('employees'));
     }
     public function taskUpdateView(Request $request)
     {
-        $taskId= $request->id;
+        $taskId= $request->taskId;
 $emp= User::where('id',$taskId)->get();
 return View('projectManager.projects.tasks.updateTask',compact('emp'));
 
@@ -140,9 +140,11 @@ else{
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
+$id= $request->taskId;
         $task=Task::where('id',$id)->first();
+       
         if(!$task)
         {
             return $this->sendError("task not found", [], 404);

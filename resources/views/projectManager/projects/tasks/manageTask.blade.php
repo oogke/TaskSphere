@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
-    ≈<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1AnmER5vPpTOjzHfyDgKZ3t5zRt9D6EIj2Cz/0lmUwF6F78IDXQ" crossorigin="anonymous">
-    <style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+     <style>
         .output {
             margin-top: 30px;
             background: #f8f9fa;
@@ -33,6 +33,7 @@
 </head>
 
 <body>
+<a href="{{ route('taskCreateView') }}"><button>Assign Task</button></a>
 
 <table class="table table-striped table-hover">
 <thead>
@@ -60,7 +61,7 @@
       <td>{{ $task->status }}</td>
       <td>{{ $task->leader }}</td>
       <td>
-<a href="" data-id="{{ $task->id  }}" id="editBtn">Edit</a> | <a href="" data-id="{{ $task->id  }}" id="deleteBtn">Delete</a>
+<a href="" data-id="{{ $task->id  }}" class="editBtn">Edit</a> | <a href="" data-id="{{ $task->id  }}" class="deleteBtnFirst" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a>
 
 
       </td>
@@ -73,78 +74,115 @@
 
 <!-- 
 <div class="output" id="output"></div> -->
+<!-- Delete Modal -->
+<div class="modal fade" id="DeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      Are you sure you want to delete it?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closeModalButton" data-bs-dismiss="modal">close</button>
+        <button type="button" class="btn btn-primary deleteBtn" >Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Delete Modal -->
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
-    crossorigin="anonymous"></script>
-
- <script>
-//    document.getElementById('output').style.display="block"
-//             document.getElementById('output').innerHTML = `
-//                 <h2>Task Details:</h2>
-//                 <p><strong>Name:</strong> ${name}</p>
-//                 <p><strong>Description:</strong> ${description}</p>
-//                 <p><strong>Start Date:</strong> ${startDate}</p>
-//                 <p><strong>End Date:</strong> ${endDate}</p>
-//                 <p><strong>Priority:</strong> ${priority}</p>
-//             `;
-</script>   
 
 
 <script>
-// const table= document.querySelector('.table');
-// const editBtn= document.getElementById("editBtn");
-// table.addEventListener("click",event=>
-//     {
-// event.preventDefault();
-// if(event.target && event.target.)
-
-
-//     }
-// );
-
-
-
-const token=localStorage.getItem("token");
-
-const deleteBtn= document.getElementById("deleteBtn");
-
-editBtn.addEventListener("click",event=>
+  const table= document.querySelector('.table');
+  const editBtn= document.querySelector(".editBtn");
+  const token = localStorage.getItem("token");
+  table.addEventListener("click",event=>
+  {
+    event.preventDefault();
+    
+    //edit Operation
+    if(event.target && event.target.classList.contains('editBtn'))
     {
-        event.preventDefault();
-      const taskId= editBtn.getAttribute("data-id");
-      fetch("/api/taskUpdateView",{
-        method:"post",
+      console.log("Hello i am archana")
+      const taskId= event.target.getAttribute("data-id");
+      editOperation(taskId);
+  }
+  //edit Operation
+  
+  }
+    );
+
+    const deleteModal = document.getElementById('DeleteModal'); 
+    if (deleteModal) {
+      deleteModal.addEventListener('show.bs.modal', function (event) {
+        var Deletebutton = event.relatedTarget;
+        var taskId = Deletebutton.getAttribute('data-id');
+        var deleteBtn= document.querySelector(".deleteBtn");
+        deleteBtn.addEventListener('click',function(event)
+        {
+          event.preventDefault();
+          deleteOperation(taskId)
+        })
+    });
+  }
+
+
+  function editOperation(Id)
+  {
+    const taskId= Id;
+    fetch("/api/taskUpdateView",{
+        method:"POST",
         headers:
         {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type':'application/json'
+          'Authorization':`Bearer ${token}`,
+          'Content-Type' : 'application/json'
         },
-        body:JSON.stringify(taskId)
+        body:JSON.stringify({taskId:taskId})
       }).then(response=>
       {
-        console.log(response)
-        return response.json()
+        console.log(response) 
       }
-      ).then(data=>
-      {
-        if(data.status==true)
-      {
-        console.log("I made it")
-      }
-      else{
-        console.log("Fuck it")
-      }
-      }
-      )
-    }
-);
+    )
+  }
+  
+  function deleteOperation(id)
+  {
+    const taskId= id;
+   
+    fetch(`/api/taskDelete`,{
+            method: "DELETE",
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
 
+            },
+            body: JSON.stringify({taskId :taskId})
+          }).then(response=>
+          {
+            return response.json();
+          }
+        ).then(data=>{
+          console.log(data);
+          if(data.message=="successfully deleted")
+          {
+            // window.location.href="/";
+            const closeButton = document.querySelector('.closeModalButton');
 
+// Trigger the click event using JavaScript
+closeButton.click();
+location.reload();
+          }
+        });
+  }
+  
+                
+                
+              </script>
 
-</script>
-
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

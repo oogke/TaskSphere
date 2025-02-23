@@ -217,6 +217,75 @@
 
 
 
+  // const deleteBtn= document.querySelector(".deleteBtn");
+  // const token=localStorage.getItem("token");
+  
+  // const deleteBtnFirst= document.querySelector(".deleteBtnFirst");
+  
+  // editBtn.addEventListener("click",event=>
+  //     {
+    //         event.preventDefault();
+    //       const taskId= editBtn.getAttribute("data-id");
+    //       fetch("/api/taskUpdateView",{
+      //         method:"post",
+      //         headers:
+      //         {
+        //             'Authorization': `Bearer ${token}`,
+        //             'Content-Type':'application/json'
+        //         },
+        //         body:JSON.stringify(taskId)
+        //       }).then(response=>
+        //       {
+          //         console.log(response)
+          //         return response.json()
+          //       }
+          //       ).then(data=>
+          //       {
+            //         if(data.status==true)
+            //       {
+              //         console.log("I made it")
+              //       }
+              //       else{
+                //         console.log("Fuck it")
+                //       }
+                //       }
+                //       )
+                //     }
+                // );
+                
+
+
+
+
+  
+  //delete Operation
+  // if(event.target && event.target.className=="deleteBtn")
+  // {
+    //   const taskId= event.target.getAttribute("data-id");
+    // fetch("/api/taskDelete",{
+      
+    //   method:"POST",
+    //   headers:
+    //   {
+      //     'Authorization':`Bearer ${token}`,
+      //     'Content-Type' : 'application/json'
+      //   },
+      //   body:JSON.stringify(taskId)
+      // }).then(response=>
+      // {
+        //   console.log(response)
+        
+        // }
+        // )
+        
+        
+        // }
+        
+        
+        
+        
+        //delete Operation
+        
             
         });
     </script>

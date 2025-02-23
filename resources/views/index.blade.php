@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .projectActions {
             height: 400px;
             border: 2px solid black;
-            width: 60%;
+            width: 80%;
             border-radius: 30px;
             margin: 90px auto;
             box-shadow: 5px 5px 13px -2px black;
@@ -20,7 +21,7 @@
         .workspaceActions {
             height: 400px;
             border: 2px solid black;
-            width: 60%;
+            width: 80%;
             border-radius: 30px;
             margin: 90px auto;
             box-shadow: 5px 5px 13px -2px black;
@@ -30,7 +31,7 @@
         .taskActions{
             height: 500px;
             border: 2px solid black;
-            width: 60%;
+            width: 80%;
             border-radius: 30px;
             margin: 90px auto;
             box-shadow: 5px 5px 13px -2px black;
@@ -73,7 +74,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url(images/luffy.jpg) top;
+            background: url(images/luffy.jpg) top no-repeat;
             filter: blur(1.5px);
             z-index: -1;
         }
@@ -85,7 +86,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url(images/guid3.jpg) center;
+            background: url(images/guid3.jpg) center no-repeat;
             filter: blur(1.5px);
             z-index: -1;
         }
@@ -96,7 +97,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url(images/heaven2.jpg) bottom;
+            background: url(images/heaven2.jpg) bottom no-repeat;
             filter: blur(1.5px);
             z-index: -1;
         }
@@ -126,6 +127,7 @@
             border: 1px solid black;
             border-radius: 10px;
             box-shadow: 5px 5px 9px -2px black;
+            
         }
         .top h1{
             text-align: center;
@@ -146,7 +148,7 @@
             width: 170px;
             height: 70px;
             margin-left: 30px;
-            background-color: #F5E0B7;
+            background-color:rgb(255, 255, 255);
             border: 1px solid black;
             border-radius: 10px;
             box-shadow: 5px 5px 9px -2px black;
@@ -193,10 +195,13 @@
         <h1>
             Project
         </h1>
-        <a href="{{route('pmPanel')}}"><button>
+        <a href="{{route('projectView')}}"><button>
+                Manage
+            </button></a>
+        <a href="{{route('projectCreateView')}}"><button>
                 Create
             </button></a>
-        <a href="{{route('pmPanel')}}"><button>
+        <a href="{{route('projectUpdateView')}}"><button>
                 Update
             </button></a>
         <a href="{{route('pmPanel')}}"><button>
@@ -212,10 +217,13 @@
         <h1>
             Workspaces
         </h1>
-        <a href="{{route('pmPanel')}}"><button>
+        <a href="{{route('workspaceView')}}"><button>
+                Manage
+            </button></a>
+        <a href="{{route('workspaceCreateView')}}"><button>
                 Create
             </button></a>
-        <a href="{{route('pmPanel')}}"><button>
+        <a href="{{route('workspaceUpdateView')}}"><button>
                 Update
             </button></a>
         <a href="{{route('pmPanel')}}"><button>
@@ -231,10 +239,13 @@
         <h1>
             Tasks
         </h1>
-        <a href="{{route('pmPanel')}}"><button>
+        <a href="{{route('taskView')}}"><button>
+                Manage
+            </button></a>
+        <a href="{{route('taskCreateView')}}"><button>
                 Create
             </button></a>
-        <a href="{{route('pmPanel')}}"><button>
+        <a href="{{route('taskUpdateView')}}"><button>
                 Update
             </button></a>
         <a href="{{route('pmPanel')}}"><button>
@@ -244,6 +255,7 @@
                 Show
             </button></a>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
