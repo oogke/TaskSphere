@@ -206,7 +206,6 @@ const taskForm=document.getElementById("taskForm");
             const sdate = document.getElementById('startdate').value;
             const edate = document.getElementById('enddate').value;
             const selectedOptions=Array.from(document.getElementById("employees").selectedOptions);
-          
             const employees= selectedOptions.map(option=>option.value);
             
             const priority = document.getElementById('priority').value;

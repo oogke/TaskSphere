@@ -156,15 +156,15 @@
         <h1>Task Form</h1>
         <form id="taskForm">
             <label for="name">Task Name:</label>
-            <input type="text" id="name" name="name" required><br>
+            <input type="text" id="name" name="name" required value="{{ $task['name'] }}" data-taskId="{{ $task['id'] }}"><br>
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea><br>
+            <textarea id="description" name="description" value="{{ $task['description'] }}" required></textarea><br>
 
             <div class="custom-select">
   <label for="employees">Select Employees:</label>
   <select id="employees" name="employee[]" multiple>
-  @foreach ($emp as $employee)
+  @foreach ($employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
     <option value="elderberry">Elderberry</option>
@@ -173,7 +173,7 @@
 <div class="custom-select">
   <label for="leader">choose Leader:</label>
   <select id="leader" name="leader[]" multiple>
-  @foreach ( $emp as $employee)
+  @foreach ( $employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
     <option value="elderberry">Elderberry</option>
@@ -181,10 +181,18 @@
 </div>
 
             <label for="startdate">Start Date:</label>
-            <input type="date" id="startdate" name="startdate" required><br>
+            <input type="date" id="startdate" name="startdate" value="{{ $task['sdate'] }}" required><br>
 
             <label for="enddate">End Date:</label>
-            <input type="date" id="enddate" name="enddate" required><br>
+            <input type="date" id="enddate" name="enddate" value="{{ $task['edate'] }}" required><br>
+            <label for="priority">Priority:</label>
+            <select id="priority" name="priority" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select><br>
+<input type="hidden" name="workspaceId" value="{{ $task['workspaceId'] }}" id="workspaceId">
+<input type="hidden" name="projectId" value="{{ $task['projectId'] }}" id="projectId">
 
             <button type="submit">Submit</button>
         </form>
@@ -198,94 +206,66 @@
 
             // Get form data
             const name = document.getElementById('name').value;
+            const taskId= document.getElementById('name').getAttribute('data-taskId');
             const description = document.getElementById('description').value;
-            const members = Array.from(document.getElementById('employees').selectedOptions).map(option => option.value);
-            const leader = Array.from(document.getElementById('leader').selectedOptions).map(option => option.value);
-            const startDate = document.getElementById('startdate').value;
-            const endDate = document.getElementById('enddate').value;
+            const employees = Array.from(document.getElementById('employees').selectedOptions).map(option => option.value);
+            const sdate = document.getElementById('startdate').value;
+            const edate = document.getElementById('enddate').value;
+            const priority = document.getElementById('priority').value;
+            const projectId = document.getElementById('projectId').value;
+            const workspaceId = document.getElementById('workspaceId').value;
 
             // Output the data (you can send this data to a server here or process it)
             const output = document.getElementById('output');
             output.innerHTML = `<h2>Task Submitted</h2>
                 <p><strong>Task Name:</strong> ${name}</p>
                 <p><strong>Description:</strong> ${description}</p>
-                <p><strong>Members:</strong> ${members.join(', ')}</p>
-                <p><strong>Leader:</strong> ${leader}</p>
-                <p><strong>Start Date:</strong> ${startDate}</p>
-                <p><strong>End Date:</strong> ${endDate}</p>`;
+                <p><strong>Members:</strong> ${employees.join(', ')}</p>
+                <p><strong>Start Date:</strong> ${sdate}</p>
+                <p><strong>End Date:</strong> ${edate}</p>`;
             output.style.display = 'block';
 
 
+const token= localStorage.getItem("token");
+const formData= new FormData;
+formData.append("name",name);
+formData.append("description",description);
+formData.append("sdate",sdate);
+formData.append("edate",edate);
+formData.append("priority",priority);
+formData.append("workspaceId",workspaceId);
+formData.append("projectId",projectId);
+employees.forEach(employee => {
+    formData.append('employee[]',employee)
+ });
 
-  // const deleteBtn= document.querySelector(".deleteBtn");
-  // const token=localStorage.getItem("token");
+
+
+fetch(`/api/taskUpdate/${taskId}`,{
+method:"POST",
+headers:
+{
+    'Authorization' :`Bearer ${token}`,
+    
+},
+body:formData
+}).then(response=>
+{
+    return response.json();
+}
+).then(data=>
+{
+   if(data.status==true)
+   {
+    alert("Task update Successful") 
+    location.href="/api/taskView";
   
-  // const deleteBtnFirst= document.querySelector(".deleteBtnFirst");
-  
-  // editBtn.addEventListener("click",event=>
-  //     {
-    //         event.preventDefault();
-    //       const taskId= editBtn.getAttribute("data-id");
-    //       fetch("/api/taskUpdateView",{
-      //         method:"post",
-      //         headers:
-      //         {
-        //             'Authorization': `Bearer ${token}`,
-        //             'Content-Type':'application/json'
-        //         },
-        //         body:JSON.stringify(taskId)
-        //       }).then(response=>
-        //       {
-          //         console.log(response)
-          //         return response.json()
-          //       }
-          //       ).then(data=>
-          //       {
-            //         if(data.status==true)
-            //       {
-              //         console.log("I made it")
-              //       }
-              //       else{
-                //         console.log("Fuck it")
-                //       }
-                //       }
-                //       )
-                //     }
-                // );
-                
-
-
-
-
-  
-  //delete Operation
-  // if(event.target && event.target.className=="deleteBtn")
-  // {
-    //   const taskId= event.target.getAttribute("data-id");
-    // fetch("/api/taskDelete",{
-      
-    //   method:"POST",
-    //   headers:
-    //   {
-      //     'Authorization':`Bearer ${token}`,
-      //     'Content-Type' : 'application/json'
-      //   },
-      //   body:JSON.stringify(taskId)
-      // }).then(response=>
-      // {
-        //   console.log(response)
-        
-        // }
-        // )
-        
-        
-        // }
-        
-        
-        
-        
-        //delete Operation
-        
+   }
+   else{
+alert("Error! Try Again")
+   }
+}
+)
             
         });
     </script>

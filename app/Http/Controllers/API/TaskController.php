@@ -19,9 +19,10 @@ return View('projectManager.projects.tasks.createTask',compact('employees'));
     }
     public function taskUpdateView(Request $request)
     {
-        $taskId= $request->taskId;
-$emp= User::where('id',$taskId)->get();
-return View('projectManager.projects.tasks.updateTask',compact('emp'));
+        $employees= User::all();
+        $taskId= $request->query('taskId');
+$task= Task::where('id',$taskId)->first();
+return View('projectManager.projects.tasks.updateTask',compact('task','employees'));
 
     }
 public function taskView(Request $request)
@@ -105,18 +106,18 @@ if($task->isEmpty())
     public function update(Request $request, string $id)
     {
         $validate = Validator::make($request->all(), [
-           'name' => 'required|string',
+            'name' => 'required|string',
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date', 
-            'employee' => 'required' 
+            'employee' => 'required|array'
         ]);
         if($validate->fails())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
        
-        $employee=json_encode($request->employees);
+        $employee=json_encode($request->employee);
 $taskUpdate= Task::where("id",$id)->update([
     'name'=>$request->name,
     'description'=>$request->description,

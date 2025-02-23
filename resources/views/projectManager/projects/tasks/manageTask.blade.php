@@ -45,7 +45,6 @@
       <th scope="col">end date</th>
       <th scope="col">Members</th>
       <th scope="col">status</th>
-      <th scope="col">Leader</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -57,11 +56,11 @@
       <td>{{ $task->description }}</td>
       <td>{{ $task->sdate }}</td>
       <td>{{ $task->edate }}</td>
-      <td>{{ implode(', ', json_decode($task->employee, true)) }}</td>
+      <td>{{ implode(', ', json_decode($task->employee,true)) }}</td>
       <td>{{ $task->status }}</td>
       <td>{{ $task->leader }}</td>
       <td>
-<a href="" data-id="{{ $task->id  }}" class="editBtn">Edit</a> | <a href="" data-id="{{ $task->id  }}" class="deleteBtnFirst" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a>
+<a href="" data-id="{{ $task->id  }}" class="editBtn">Edit</a> | <a href="" data-id="{{ $task->id}}" class="deleteBtnFirst" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a>
 
 
       </td>
@@ -107,7 +106,7 @@
     //edit Operation
     if(event.target && event.target.classList.contains('editBtn'))
     {
-      console.log("Hello i am archana")
+
       const taskId= event.target.getAttribute("data-id");
       editOperation(taskId);
   }
@@ -134,19 +133,20 @@
   function editOperation(Id)
   {
     const taskId= Id;
-    fetch("/api/taskUpdateView",{
-        method:"POST",
-        headers:
-        {
-          'Authorization':`Bearer ${token}`,
-          'Content-Type' : 'application/json'
-        },
-        body:JSON.stringify({taskId:taskId})
-      }).then(response=>
-      {
-        console.log(response) 
-      }
-    )
+    window.location.href=`/api/taskUpdateView?taskId=${taskId}`;
+    // fetch("/api/taskUpdateView",{
+    //     method:"POST",
+    //     headers:
+    //     {
+    //       'Authorization':`Bearer ${token}`,
+    //       'Content-Type' : 'application/json'
+    //     },
+    //     body:JSON.stringify({taskId:taskId})
+    //   }).then(response=>
+    //   {
+    //     console.log(response) 
+    //   }
+    // )
   }
   
   function deleteOperation(id)

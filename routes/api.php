@@ -35,7 +35,7 @@ Route::post('/workspaceCreate',[WorkspaceController::class,'store'])->name('work
 Route::post('/projectCreate',[ProjectController::class,'store'])->name('projectCreate');
 Route::post('/companyCreate',[CompanyController::class,'store'])->name('companyCreate');
 
-Route::get('/taskUpdate',[TaskController::class,'update'])->name('taskUpdate');
+Route::post('/taskUpdate/{id}',[TaskController::class,'update'])->name('taskUpdate');
 Route::get('/workspaceUpdate',[WorkspaceController::class,'update'])->name('workspaceUpdate');
 Route::get('/projectUpdate',[ProjectController::class,'update'])->name('projectUpdate');
 Route::get('/companyUpdate',[CompanyController::class,'update'])->name('companyUpdate');
@@ -62,6 +62,6 @@ Route::get('/projectCreateView',[ProjectController::class,'projectCreateView'])-
 Route::get('/workspaceCreateView',[WorkspaceController::class,'workspaceCreateView'])->name('workspaceCreateView');
 Route::get('/taskCreateView',[TaskController::class,'taskCreateView'])->name('taskCreateView');
 
-Route::post('/projectUpdateView',[ProjectController::class,'projectUpdateView'])->name('projectUpdateView');
-Route::post('/workspaceUpdateView',[WorkspaceController::class,'workspaceUpdateView'])->name('workspaceUpdateView');
-Route::post('/taskUpdateView',[TaskController::class,'taskUpdateView'])->name('taskUpdateView');
+Route::get('/projectUpdateView',[ProjectController::class,'projectUpdateView'])->name('projectUpdateView');
+Route::get('/workspaceUpdateView',[WorkspaceController::class,'workspaceUpdateView'])->name('workspaceUpdateView');
+Route::get('/taskUpdateView',[TaskController::class,'taskUpdateView'])->name('taskUpdateView');
