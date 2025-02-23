@@ -3,32 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    <title>Tasks</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
      <style>
-        .output {
-            margin-top: 30px;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-
-        .output h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .output p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .output strong {
-            color: #007bff;
-        }
+        
     </style>
 </head>
 
@@ -71,8 +49,7 @@
     </tbody>
 </table>
 
-<!-- 
-<div class="output" id="output"></div> -->
+
 <!-- Delete Modal -->
 <div class="modal fade" id="DeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -134,19 +111,7 @@
   {
     const taskId= Id;
     window.location.href=`/api/taskUpdateView?taskId=${taskId}`;
-    // fetch("/api/taskUpdateView",{
-    //     method:"POST",
-    //     headers:
-    //     {
-    //       'Authorization':`Bearer ${token}`,
-    //       'Content-Type' : 'application/json'
-    //     },
-    //     body:JSON.stringify({taskId:taskId})
-    //   }).then(response=>
-    //   {
-    //     console.log(response) 
-    //   }
-    // )
+   
   }
   
   function deleteOperation(id)

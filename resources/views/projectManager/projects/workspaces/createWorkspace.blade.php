@@ -105,7 +105,7 @@
 <body>
 
     <div class="form-container">
-        <h1>Workspace Form</h1>
+        <h1>Create Workspace</h1>
         <form id="workspaceForm">
             <label for="name">Workspace Name:</label>
             <input type="text" id="name" name="name" required><br>
@@ -124,7 +124,6 @@
   @foreach ( $employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 <div class="custom-select">
@@ -133,11 +132,10 @@
   @foreach ( $employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 
-
+<input type="hidden" name="projectId" value="7" id="projectId">
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -147,14 +145,16 @@
     <script>
         document.getElementById('workspaceForm').addEventListener('submit', function(event) {
             event.preventDefault();  // Prevent normal form submission
+            const token= localStorage.getItem("token");
 
             // Get form data
             const name = document.getElementById('name').value;
             const description = document.getElementById('description').value;
             const startDate = document.getElementById('startdate').value;
             const endDate = document.getElementById('enddate').value;
-            const members = Array.from(document.getElementById('employees').selectedOptions).map(option => option.value);
-            const leader = Array.from(document.getElementById('leader').selectedOptions).map(option => option.value);
+            const selectedEmployees = Array.from(document.getElementById('employees').selectedOptions).map(option => option.value);
+            const selectedLeaders = Array.from(document.getElementById('leader').selectedOptions).map(option => option.value);
+            const projectId = document.getElementById('projectId').value;
 
             // Display data (for now, just show it on the page)
             document.getElementById('output').style.display="block";
@@ -164,14 +164,49 @@
                 <p><strong>Description:</strong> ${description}</p>
                 <p><strong>Start Date:</strong> ${startDate}</p>
                 <p><strong>End Date:</strong> ${endDate}</p>
-                <p><strong>Members:</strong> ${members}</p>
-                <p><strong>Leader:</strong> ${leader}</p>
+                <p><strong>Members:</strong> ${selectedEmployees}</p>
+                <p><strong>Leader:</strong> ${selectedLeaders}</p>
             `;
 
+            const formData= new FormData;
+formData.append("name",name);
+formData.append("description",description);
+formData.append("sdate",startDate);
+formData.append("edate",endDate);
+formData.append("projectId",projectId);
+selectedEmployees.forEach(employee=> {
+                formData.append('employee[]',employee)
+            });
+            selectedLeaders.forEach(leader=> {
+                formData.append('leader[]',leader)
+            });
 
-
-
-            
+            fetch("/api/workspaceCreate",{
+method:"POST",
+headers:
+{
+    'Authorization' :`Bearer ${token}`,
+    
+},
+body:formData
+}).then(response=>
+{
+    console.log(response);
+    return response.json();
+}
+).then(data=>
+{
+   if(data.status==true)
+   {
+    alert("Workspace created Successful") 
+    location.href="/api/workspaceView";
+  
+   }
+   else{
+alert("Error! Try Again")
+   }
+}
+)
         });
     </script>
 

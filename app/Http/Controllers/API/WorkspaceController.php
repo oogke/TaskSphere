@@ -48,8 +48,8 @@ return View('projectManager.projects.workspaces.createWorkspace',compact('employ
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date', 
-            'leader' => 'required|string',
-            'members' => 'required|array'
+            'leader' => 'required|array',
+            'employee' => 'required|array'
            
         ]);
         if($validate->fails())
@@ -58,7 +58,8 @@ return View('projectManager.projects.workspaces.createWorkspace',compact('employ
         }
 
 
-        $employee=json_encode($request->employees);
+        $employee=json_encode($request->employee);
+        $leader=json_encode($request->leader);
 
 $workspace=Workspace::create([
       'name'=>$request->name,
@@ -66,7 +67,7 @@ $workspace=Workspace::create([
     'sdate'=>$request->sdate,
     'edate'=>$request->edate,
     'members'=>$employee,
-   'leader'=> $request->leader,
+   'leader'=> $leader,
    'projectId'=> $request->projectId
 ]);
 return $this->sendResponse($workspace,"Data inserted Successfully");

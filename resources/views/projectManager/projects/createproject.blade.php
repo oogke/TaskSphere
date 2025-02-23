@@ -153,9 +153,9 @@
 <body>
 
     <div class="form-container">
-        <h1>Task Form</h1>
+        <h1>create Project</h1>
         <form id="taskForm">
-            <label for="name">Task Name:</label>
+            <label for="name">Project Name:</label>
             <input type="text" id="name" name="name" required><br>
 
             <label for="description">Description:</label>
@@ -167,7 +167,6 @@
   @foreach ( $employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 <div class="custom-select">
@@ -176,7 +175,6 @@
   @foreach ( $employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 
@@ -195,12 +193,13 @@
     <script>
         document.getElementById('taskForm').addEventListener('submit', function(event) {
             event.preventDefault();  // Prevent normal form submission
+            const token= localStorage.getItem("token");
 
             // Get form data
             const name = document.getElementById('name').value;
             const description = document.getElementById('description').value;
-            const members = Array.from(document.getElementById('employees').selectedOptions).map(option => option.value);
-            const leader = Array.from(document.getElementById('leader').selectedOptions).map(option => option.value);
+            const selectedEmployees = Array.from(document.getElementById('employees').selectedOptions).map(option => option.value);
+            const selectedLeaders = Array.from(document.getElementById('leader').selectedOptions).map(option => option.value);
             const startDate = document.getElementById('startdate').value;
             const endDate = document.getElementById('enddate').value;
 
@@ -209,13 +208,51 @@
             output.innerHTML = `<h2>Task Submitted</h2>
                 <p><strong>Task Name:</strong> ${name}</p>
                 <p><strong>Description:</strong> ${description}</p>
-                <p><strong>Members:</strong> ${members.join(', ')}</p>
-                <p><strong>Leader:</strong> ${leader}</p>
+                <p><strong>Members:</strong> ${selectedEmployees.join(', ')}</p>
+                <p><strong>Leader:</strong> ${selectedLeaders.join(',')}</p>
                 <p><strong>Start Date:</strong> ${startDate}</p>
                 <p><strong>End Date:</strong> ${endDate}</p>`;
             output.style.display = 'block';
 
 
+            const formData= new FormData;
+            formData.append("name",name);
+formData.append("description",description);
+formData.append("sdate",startDate);
+formData.append("edate",endDate);
+            selectedEmployees.forEach(employee=> {
+                formData.append('employee[]',employee)
+            });
+            selectedLeaders.forEach(leader=> {
+                formData.append('leader[]',leader)
+            });
+
+            fetch("/api/projectCreate",{
+method:"POST",
+headers:
+{
+    'Authorization' :`Bearer ${token}`,
+    
+},
+body:formData
+}).then(response=>
+{
+    console.log(response);
+    return response.json();
+}
+).then(data=>
+{
+   if(data.status==true)
+   {
+    alert("Project Creation Successful") 
+    location.href="/api/projectView";
+  
+   }
+   else{
+alert("Error! Try Again")
+   }
+}
+)
 
             
         });

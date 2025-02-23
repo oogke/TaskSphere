@@ -157,7 +157,7 @@
 
 
 <div class="form-container">
-        <h1>Task Form</h1>
+        <h1>Assign Task</h1>
         <form id="taskForm">
             <label for="name">Task Name:</label>
             <input type="text" id="name" name="name" required><br>
@@ -171,7 +171,6 @@
   @foreach ( $employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
             <label for="startdate">Start Date:</label>
@@ -199,6 +198,7 @@
 <script>
         document.getElementById('taskForm').addEventListener('submit', function(event) {
             event.preventDefault();  // Prevent normal form submission
+            const token= localStorage.getItem("token");
 const taskForm=document.getElementById("taskForm");
             // Get form data
             const name = document.getElementById('name').value;
@@ -221,7 +221,6 @@ const taskForm=document.getElementById("taskForm");
                 <p><strong>End Date:</strong> ${edate}</p>
                 <p><strong>Priority:</strong> ${priority}</p>
             `;
-           const token= localStorage.getItem("token");
 const formData= new FormData;
 formData.append("name",name);
 formData.append("description",description);

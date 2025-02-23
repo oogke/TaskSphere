@@ -52,8 +52,8 @@ public function projectDash(Request $req , $id)
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date', 
-            'leader' => 'required|string',
-            'members' => 'required|array'
+            'leader' => 'required|array',
+            'employee' => 'required|array'
            
         ]);
         if($validate->fails())
@@ -62,17 +62,18 @@ public function projectDash(Request $req , $id)
         }
 
 
-        $employee=json_encode($request->employees);
+        $employee=json_encode($request->employee);
+        $leader=json_encode($request->leader);
 $project=Project::create([
     'name'=>$request->name,
     'description'=>$request->description,
     'sdate'=>$request->sdate,
     'edate'=>$request->edate,
     'members'=>$employee,
-   'leader'=> $request->leader
+   'leader'=> $leader
  
 ]);
-return $this->sendResponse($project,"Data inserted Successfully");
+return $this->sendResponse($project,"Project Created Successfully");
 
     }
 
