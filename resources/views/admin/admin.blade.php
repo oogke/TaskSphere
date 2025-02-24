@@ -406,6 +406,7 @@
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="{{ route('RegisterApplication')}}">Employee Applications</a></li>
+                <li><a href="{{ route('EmployeeData')}}">Employees</a></li>
 
                 <?php
                 if (isset($_SESSION['adminpanel']['logged_in']) && $_SESSION['adminpanel']['logged_in'] == true) {
