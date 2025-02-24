@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects</title>
+  <title>Workspaces</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     
@@ -39,8 +39,8 @@
       <td>{{ $workspace->status }}</td>
       <td>{{ $workspace->leader }}</td>
       <td>
-        <a href="" data-id="{{ $workspace->id }}">Edit</a> | <a href="" data-id="{{ $workspace->id }}">Delete</a> | <a
-        href="" id="goToBtn" data-id="{{ $workspace->id }}">Open</a>
+        <a href="" data-id="{{ $workspace->id }}" class="editBtn">Edit</a> | <a href="" data-id="{{ $workspace->id }}" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a> | <a
+        href="" class="goToBtn" data-id="{{ $workspace->id }}">Open</a>
 
 
       </td>
@@ -85,9 +85,9 @@
     //edit Operation
     if(event.target && event.target.classList.contains('editBtn'))
     {
-
-      const taskId= event.target.getAttribute("data-id");
-      editOperation(taskId);
+console.log("Edit btn is clicked");
+      const workspaceId= event.target.getAttribute("data-id");
+      editOperation(workspaceId);
   }
   //edit Operation
   
@@ -98,12 +98,12 @@
     if (deleteModal) {
       deleteModal.addEventListener('show.bs.modal', function (event) {
         var Deletebutton = event.relatedTarget;
-        var taskId = Deletebutton.getAttribute('data-id');
+        var workspaceId = Deletebutton.getAttribute('data-id');
         var deleteBtn= document.querySelector(".deleteBtn");
         deleteBtn.addEventListener('click',function(event)
         {
           event.preventDefault();
-          deleteOperation(taskId)
+          deleteOperation(workspaceId)
         })
     });
   }
@@ -111,23 +111,24 @@
 
   function editOperation(Id)
   {
-    const taskId= Id;
-    window.location.href=`/api/taskUpdateView?taskId=${taskId}`;
+    const workspaceId= Id;
+    console.log("hello");
+    window.location.href=`/api/workspaceUpdateView?workspaceId=${workspaceId}`;
     
   }
   
   function deleteOperation(id)
   {
-    const taskId= id;
+    const workspaceId= id;
    
-    fetch(`/api/taskDelete`,{
+    fetch(`/api/workspaceDelete`,{
             method: "DELETE",
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
 
             },
-            body: JSON.stringify({taskId :taskId})
+            body: JSON.stringify({workspaceId :workspaceId})
           }).then(response=>
           {
             return response.json();
@@ -144,10 +145,7 @@ closeButton.click();
 location.reload();
           }
         });
-  }
-  
-                
-                
+  } 
               </script>
 
 

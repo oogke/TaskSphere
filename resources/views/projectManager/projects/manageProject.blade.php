@@ -39,8 +39,8 @@
       <td>{{ $project->status }}</td>
       <td>{{ $project->leader }}</td>
       <td>
-        <a href="" data-id="{{ $project->id }}">Edit</a> | <a href="" data-id="{{ $project->id }}">Delete</a> | <a
-        href="" id="goToBtn" data-id="{{ $project->id }}">Open</a>
+      <a href="" data-id="{{ $project->id}}" class="editBtn">Edit</a> | <a href="" data-id="{{ $project->id}}" class="deleteBtnFirst" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</a>
+      | <a href="" class="goToBtn" data-id="{{ $project->id }}">Open</a>
 
 
       </td>
@@ -88,8 +88,8 @@
     if(event.target && event.target.classList.contains('editBtn'))
     {
 
-      const taskId= event.target.getAttribute("data-id");
-      editOperation(taskId);
+      const projectId= event.target.getAttribute("data-id");
+      editOperation(projectId);
   }
   //edit Operation
   
@@ -100,12 +100,12 @@
     if (deleteModal) {
       deleteModal.addEventListener('show.bs.modal', function (event) {
         var Deletebutton = event.relatedTarget;
-        var taskId = Deletebutton.getAttribute('data-id');
+        var projectId = Deletebutton.getAttribute('data-id');
         var deleteBtn= document.querySelector(".deleteBtn");
         deleteBtn.addEventListener('click',function(event)
         {
           event.preventDefault();
-          deleteOperation(taskId)
+          deleteOperation(projectId)
         })
     });
   }
@@ -113,23 +113,23 @@
 
   function editOperation(Id)
   {
-    const taskId= Id;
-    window.location.href=`/api/taskUpdateView?taskId=${taskId}`;
+    const projectId= Id;
+    window.location.href=`/api/projectUpdateView?projectId=${projectId}`;
 
   }
   
   function deleteOperation(id)
   {
-    const taskId= id;
+    const projectId= id;
    
-    fetch(`/api/taskDelete`,{
+    fetch(`/api/projectDelete`,{
             method: "DELETE",
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
 
             },
-            body: JSON.stringify({taskId :taskId})
+            body: JSON.stringify({projectId :projectId})
           }).then(response=>
           {
             return response.json();
@@ -146,10 +146,7 @@ closeButton.click();
 location.reload();
           }
         });
-  }
-  
-                
-                
+  }         
               </script>
 
 

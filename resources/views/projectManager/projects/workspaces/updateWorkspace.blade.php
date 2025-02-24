@@ -153,13 +153,13 @@
 <body>
 
     <div class="form-container">
-        <h1>Task Form</h1>
+        <h1>Workspace Form</h1>
         <form id="taskForm">
-            <label for="name">Task Name:</label>
-            <input type="text" id="name" name="name" required value="{{ $task['name'] }}" data-taskId="{{ $task['id'] }}"><br>
+            <label for="name">Workspace Name:</label>
+            <input type="text" id="name" name="name" required value="{{ $workspace['name'] }}" data-taskId="{{ $workspace['id'] }}"><br>
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" value="{{ $task['description'] }}" required></textarea><br>
+            <textarea id="description" name="description" value="{{ $workspace['description'] }}" required></textarea><br>
 
             <div class="custom-select">
   <label for="employees">Select Employees:</label>
@@ -167,7 +167,6 @@
   @foreach ($employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 <div class="custom-select">
@@ -176,23 +175,22 @@
   @foreach ( $employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 
             <label for="startdate">Start Date:</label>
-            <input type="date" id="startdate" name="startdate" value="{{ $task['sdate'] }}" required><br>
+            <input type="date" id="startdate" name="startdate" value="{{ $workspace['sdate'] }}" required><br>
 
             <label for="enddate">End Date:</label>
-            <input type="date" id="enddate" name="enddate" value="{{ $task['edate'] }}" required><br>
+            <input type="date" id="enddate" name="enddate" value="{{ $workspace['edate'] }}" required><br>
             <label for="priority">Priority:</label>
             <select id="priority" name="priority" required>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
             </select><br>
-<input type="hidden" name="workspaceId" value="{{ $task['workspaceId'] }}" id="workspaceId">
-<input type="hidden" name="projectId" value="{{ $task['projectId'] }}" id="projectId">
+<input type="hidden" name="workspaceId" value="{{ $workspace['workspaceId'] }}" id="workspaceId">
+<input type="hidden" name="projectId" value="{{ $workspace['projectId'] }}" id="projectId">
 
             <button type="submit">Submit</button>
         </form>
@@ -213,7 +211,7 @@
             const edate = document.getElementById('enddate').value;
             const priority = document.getElementById('priority').value;
             const projectId = document.getElementById('projectId').value;
-            const workspaceId = document.getElementById('workspaceId').value;
+        
 
             // Output the data (you can send this data to a server here or process it)
             const output = document.getElementById('output');
@@ -251,6 +249,7 @@ headers:
 body:formData
 }).then(response=>
 {
+ 
     return response.json();
 }
 ).then(data=>

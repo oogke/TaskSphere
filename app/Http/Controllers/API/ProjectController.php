@@ -19,7 +19,14 @@ $employees= User::all();
 return View('projectManager.projects.createProject',compact('employees'));
 
     }
+    public function projectUpdateView(Request $request)
+    {
+        $employees= User::all();
+        $projectId= $request->query('projectId');
+$project= Project::where('id',$projectId)->first();
+return View('projectManager.projects.updateProject',compact('project','employees'));
 
+    }
 public function projectDash(Request $req , $id)
 {
     $project= Project::where('id',$id)->first();
@@ -147,8 +154,9 @@ else{
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
+        $id=$request->projectId;
         $project=Project::where('id',$id)->first();
         if(!$project)
         {

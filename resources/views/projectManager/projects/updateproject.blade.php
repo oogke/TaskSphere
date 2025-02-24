@@ -176,7 +176,6 @@
   @foreach ( $employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 
@@ -212,8 +211,7 @@
             const sdate = document.getElementById('startdate').value;
             const edate = document.getElementById('enddate').value;
             const priority = document.getElementById('priority').value;
-            const projectId = document.getElementById('projectId').value;
-            const workspaceId = document.getElementById('workspaceId').value;
+    
 
             // Output the data (you can send this data to a server here or process it)
             const output = document.getElementById('output');

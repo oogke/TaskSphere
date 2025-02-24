@@ -36,9 +36,9 @@ Route::post('/projectCreate',[ProjectController::class,'store'])->name('projectC
 Route::post('/companyCreate',[CompanyController::class,'store'])->name('companyCreate');
 
 Route::post('/taskUpdate/{id}',[TaskController::class,'update'])->name('taskUpdate');
-Route::get('/workspaceUpdate',[WorkspaceController::class,'update'])->name('workspaceUpdate');
-Route::get('/projectUpdate',[ProjectController::class,'update'])->name('projectUpdate');
-Route::get('/companyUpdate',[CompanyController::class,'update'])->name('companyUpdate');
+Route::post('/workspaceUpdate/{id}',[WorkspaceController::class,'update'])->name('workspaceUpdate');
+Route::post('/projectUpdate/{id}',[ProjectController::class,'update'])->name('projectUpdate');
+Route::post('/companyUpdate',[CompanyController::class,'update'])->name('companyUpdate');
 
 Route::delete('/taskDelete',[TaskController::class,'destroy'])->name('taskDelete');
 Route::delete('/workspaceDelete',[WorkspaceController::class,'destroy'])->name('workspaceDelete');

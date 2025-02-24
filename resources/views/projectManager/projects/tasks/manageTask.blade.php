@@ -131,21 +131,14 @@
             return response.json();
           }
         ).then(data=>{
-          console.log(data);
           if(data.message=="successfully deleted")
           {
-            // window.location.href="/";
             const closeButton = document.querySelector('.closeModalButton');
-
-// Trigger the click event using JavaScript
 closeButton.click();
 location.reload();
           }
         });
   }
-  
-                
-                
               </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

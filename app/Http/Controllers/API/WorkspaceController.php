@@ -18,6 +18,18 @@ $employees= User::all();
 return View('projectManager.projects.workspaces.createWorkspace',compact('employees'));
 
     }
+
+    public function workspaceUpdateView(Request $request)
+    {
+        $employees= User::all();
+        $workspaceId= $request->query('projectId');
+        dd($workspaceId);
+$workspace= Workspace::where('id',$workspaceId)->first();
+return View('projectManager.projects.workspaces.updateWorkspace',compact('workspace','employees'));
+
+    }
+
+
     public function workspaceDash(Request $req, $id)
     {
 
@@ -144,8 +156,9 @@ else{
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
+    public function destroy(Request $request)
+    { 
+        $id=$request->workspaceId;
         $workspace=Workspace::where('id',$id)->first();
         if(!$workspace)
         {
