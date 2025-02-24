@@ -167,7 +167,6 @@
   @foreach ($employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 <div class="custom-select">

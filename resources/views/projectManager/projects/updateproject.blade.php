@@ -156,10 +156,10 @@
         <h1>Task Form</h1>
         <form id="taskForm">
             <label for="name">Task Name:</label>
-            <input type="text" id="name" name="name" required value="{{ $task['name'] }}" data-taskId="{{ $task['id'] }}"><br>
+            <input type="text" id="name" name="name" required value="{{ $project['name'] }}" data-projectId="{{ $project['id'] }}"><br>
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" value="{{ $task['description'] }}" required></textarea><br>
+            <textarea id="description" name="description" value="{{ $project['description'] }}" required></textarea><br>
 
             <div class="custom-select">
   <label for="employees">Select Employees:</label>
@@ -167,7 +167,6 @@
   @foreach ($employees as $employee)
 <option value="{{ $employee->id}}">{{ $employee->fname}}</option>
   @endforeach
-    <option value="elderberry">Elderberry</option>
   </select>
 </div>
 <div class="custom-select">
@@ -180,19 +179,16 @@
 </div>
 
             <label for="startdate">Start Date:</label>
-            <input type="date" id="startdate" name="startdate" value="{{ $task['sdate'] }}" required><br>
+            <input type="date" id="startdate" name="startdate" value="{{ $project['sdate'] }}" required><br>
 
             <label for="enddate">End Date:</label>
-            <input type="date" id="enddate" name="enddate" value="{{ $task['edate'] }}" required><br>
+            <input type="date" id="enddate" name="enddate" value="{{ $project['edate'] }}" required><br>
             <label for="priority">Priority:</label>
             <select id="priority" name="priority" required>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
             </select><br>
-<input type="hidden" name="workspaceId" value="{{ $task['workspaceId'] }}" id="workspaceId">
-<input type="hidden" name="projectId" value="{{ $task['projectId'] }}" id="projectId">
-
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -205,9 +201,10 @@
 
             // Get form data
             const name = document.getElementById('name').value;
-            const taskId= document.getElementById('name').getAttribute('data-taskId');
+            const projectId= document.getElementById('name').getAttribute('data-projectId');
             const description = document.getElementById('description').value;
             const employees = Array.from(document.getElementById('employees').selectedOptions).map(option => option.value);
+            const leaders = Array.from(document.getElementById('leader').selectedOptions).map(option => option.value);
             const sdate = document.getElementById('startdate').value;
             const edate = document.getElementById('enddate').value;
             const priority = document.getElementById('priority').value;
@@ -231,15 +228,16 @@ formData.append("description",description);
 formData.append("sdate",sdate);
 formData.append("edate",edate);
 formData.append("priority",priority);
-formData.append("workspaceId",workspaceId);
-formData.append("projectId",projectId);
 employees.forEach(employee => {
     formData.append('employee[]',employee)
+ });
+ leaders.forEach(leader => {
+    formData.append('leader[]',leader)
  });
 
 
 
-fetch(`/api/taskUpdate/${taskId}`,{
+fetch(`/api/projectUpdate/${projectId}`,{
 method:"POST",
 headers:
 {
@@ -255,8 +253,8 @@ body:formData
 {
    if(data.status==true)
    {
-    alert("Task update Successful") 
-    location.href="/api/taskView";
+    alert("project update Successful") 
+    location.href="/api/projectView";
   
    }
    else{

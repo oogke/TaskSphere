@@ -22,8 +22,8 @@ return View('projectManager.projects.workspaces.createWorkspace',compact('employ
     public function workspaceUpdateView(Request $request)
     {
         $employees= User::all();
-        $workspaceId= $request->query('projectId');
-        dd($workspaceId);
+        $workspaceId= $request->query('workspaceId');
+     
 $workspace= Workspace::where('id',$workspaceId)->first();
 return View('projectManager.projects.workspaces.updateWorkspace',compact('workspace','employees'));
 
@@ -125,15 +125,16 @@ if($workspace->isEmpty())
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date', 
-            'leader' => 'required|string',
-            'members' => 'required|array'
+            'leader' => 'required|array',
+            'employee' => 'required|array'
         ]);
         if($validate->fails())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
         //image
-        $employee=json_encode($request->employees);
+        $employee=json_encode($request->employee);
+        $leader=json_encode($request->leader);
 
 $workspaceUpdate= Workspace::where("id",$id)->update([
    'name'=>$request->name,
@@ -141,7 +142,7 @@ $workspaceUpdate= Workspace::where("id",$id)->update([
     'sdate'=>$request->sdate,
     'edate'=>$request->edate,
     'members'=>$employee,
-   'leader'=> $request->leader
+   'leader'=> $leader
 ]);
 $workspace=Workspace::where('id',$id)->first();
 if($workspaceUpdate>0)

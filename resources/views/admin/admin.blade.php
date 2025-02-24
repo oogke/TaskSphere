@@ -569,48 +569,7 @@
     </section>
 
     <script>
-        // user login and register
-        function popupbox(popupname) {
-            let x = document.getElementById(popupname);
-
-            if (x.style.display == "none") {
-                x.style.display = "flex";
-            }
-            else {
-                x.style.display = "none";
-            }
-        }
-        // user login and register
-
-
-
-
-        // admin login
-        function adminlogin() {
-            let x = document.getElementById('adminlogin-popup');
-            if (x.style.display == "none") {
-                x.style.display = "flex";
-            }
-            else {
-                x.style.display = "none";
-            }
-        }
-        // admin login
-
-        let registerBtn = document.getElementById("register-btn");
-
-        registerBtn.addEventListener("click", handleClick);
-
-        function handleClick() {
-            let scode_check = document.getElementById("scode-check");
-            if (scode_check.style.display == "none") {
-                scode_check.style.display = "flex";
-            }
-            else {
-                scode_check.style.display = "none";
-            }
-        }
-
+    
 
 
     </script>

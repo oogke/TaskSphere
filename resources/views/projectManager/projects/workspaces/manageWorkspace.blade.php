@@ -85,9 +85,9 @@
     //edit Operation
     if(event.target && event.target.classList.contains('editBtn'))
     {
-console.log("Edit btn is clicked");
       const workspaceId= event.target.getAttribute("data-id");
-      editOperation(workspaceId);
+     
+       editOperation(workspaceId);
   }
   //edit Operation
   
@@ -112,7 +112,7 @@ console.log("Edit btn is clicked");
   function editOperation(Id)
   {
     const workspaceId= Id;
-    console.log("hello");
+  
     window.location.href=`/api/workspaceUpdateView?workspaceId=${workspaceId}`;
     
   }
@@ -120,7 +120,6 @@ console.log("Edit btn is clicked");
   function deleteOperation(id)
   {
     const workspaceId= id;
-   
     fetch(`/api/workspaceDelete`,{
             method: "DELETE",
             headers: {

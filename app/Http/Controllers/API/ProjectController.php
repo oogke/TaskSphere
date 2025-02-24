@@ -123,15 +123,16 @@ if($project->isEmpty())
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date', 
-            'leader' => 'required|string',
-            'members' => 'required|array'  
+            'leader' => 'required|array',
+            'employee' => 'required|array'  
         ]);
         if($validate->fails())
         {
             return $this->sendError("Validation Error" ,$validate->errors()->all(),402);
         }
       
-        $employee=json_encode($request->employees);
+        $employee=json_encode($request->employee);
+        $leader=json_encode($request->leader);
 
 $projectUpdate= Project::where("id",$id)->update([
     'name'=>$request->name,
@@ -139,7 +140,7 @@ $projectUpdate= Project::where("id",$id)->update([
     'sdate'=>$request->sdate,
     'edate'=>$request->edate,
     'members'=>$employee,
-   'leader'=> $request->leader
+   'leader'=> $leader
 ]);
 $project=Project::where('id',$id)->first();
 if($projectUpdate>0)

@@ -156,7 +156,7 @@
         <h1>Workspace Form</h1>
         <form id="taskForm">
             <label for="name">Workspace Name:</label>
-            <input type="text" id="name" name="name" required value="{{ $workspace['name'] }}" data-taskId="{{ $workspace['id'] }}"><br>
+            <input type="text" id="name" name="name" required value="{{ $workspace['name'] }}" data-workspaceId="{{ $workspace['id'] }}"><br>
 
             <label for="description">Description:</label>
             <textarea id="description" name="description" value="{{ $workspace['description'] }}" required></textarea><br>
@@ -204,9 +204,10 @@
 
             // Get form data
             const name = document.getElementById('name').value;
-            const taskId= document.getElementById('name').getAttribute('data-taskId');
+            const workspaceId= document.getElementById('name').getAttribute('data-workspaceId');
             const description = document.getElementById('description').value;
             const employees = Array.from(document.getElementById('employees').selectedOptions).map(option => option.value);
+            const leader = Array.from(document.getElementById('leader').selectedOptions).map(option => option.value);
             const sdate = document.getElementById('startdate').value;
             const edate = document.getElementById('enddate').value;
             const priority = document.getElementById('priority').value;
@@ -231,15 +232,17 @@ formData.append("description",description);
 formData.append("sdate",sdate);
 formData.append("edate",edate);
 formData.append("priority",priority);
-formData.append("workspaceId",workspaceId);
 formData.append("projectId",projectId);
 employees.forEach(employee => {
     formData.append('employee[]',employee)
  });
+ leader.forEach(employee => {
+    formData.append('leader[]',leader)
+ });
 
 
 
-fetch(`/api/taskUpdate/${taskId}`,{
+fetch(`/api/workspaceUpdate/${workspaceId}`,{
 method:"POST",
 headers:
 {
@@ -256,8 +259,8 @@ body:formData
 {
    if(data.status==true)
    {
-    alert("Task update Successful") 
-    location.href="/api/taskView";
+    alert("Workspace update Successful") 
+    location.href="/api/workspaceView";
   
    }
    else{
