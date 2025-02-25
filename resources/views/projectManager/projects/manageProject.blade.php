@@ -92,11 +92,24 @@
       editOperation(projectId);
   }
   //edit Operation
-  
+
+
+
+//open Dashboard
+if(event.target && event.target.classList.contains("goToBtn"))
+{
+  const projectId= event.target.getAttribute("data-id");
+openProjectDashboard(projectId);
+}
+
+
+//open Dashboard
+
   }
     );
 
-    const deleteModal = document.getElementById('DeleteModal'); 
+   
+   const deleteModal = document.getElementById('DeleteModal'); 
     if (deleteModal) {
       deleteModal.addEventListener('show.bs.modal', function (event) {
         var Deletebutton = event.relatedTarget;
@@ -109,7 +122,6 @@
         })
     });
   }
-
 
   function editOperation(Id)
   {
@@ -146,7 +158,16 @@ closeButton.click();
 location.reload();
           }
         });
-  }         
+
+  }     
+  
+  
+function openProjectDashboard(id)
+{
+  const projectId= id;
+ window.location.href=`/api/projectDash/${projectId}`;
+}
+
               </script>
 
 

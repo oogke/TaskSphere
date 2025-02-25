@@ -27,10 +27,9 @@ class ProjectController extends BaseController
         return View('projectManager.projects.updateProject', compact('project', 'employees'));
 
     }
-    public function projectDash(Request $req, $id)
+    public function projectDash(Request $req, string $id)
     {
         $project = Project::where('id', $id)->first();
-
         return view('/projectManager/projects/projectDash', compact('project'));
     }
 
@@ -65,7 +64,12 @@ class ProjectController extends BaseController
         if ($validate->fails()) {
             return $this->sendError("Validation Error", $validate->errors()->all(), 402);
         }
-
+//         $employee=[];
+// foreach($request->employee as $employeeId)
+// {
+// $employeeName= User::where('id',$employeeId)->first();
+// $employee[]=$employeeName;
+// }
 
         $employee = json_encode($request->employee);
         $leader = json_encode($request->leader);

@@ -25,4 +25,13 @@
 <h1>Project Dashboard</h1>
 <p>Project Name: {{ $project->name }}</p>
 <p>Project Description: {{ $project->description }}</p>
+<p>Project Start Date: {{ $project->sdate }}</p>
+<p>Project End Date: {{ $project->edate }}</p>
+<p>Project Creation Time: {{ $project->created_at }}</p>
+<p>Project Status: {{ $project->status }}</p>
+<p>Project Employee: {{
+implode(', ',json_decode($project->members)) }}
+</p>
+<p>Project Status: {{ $project->status }}</p>
+
 <!-- Add more fields as needed -->
