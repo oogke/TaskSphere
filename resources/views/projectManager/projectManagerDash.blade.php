@@ -88,6 +88,7 @@
   <a href="#" onclick="navigateTo('/react/projectManager/workspaces')">Workspaces</a>
   <a href="#" onclick="navigateTo('/react/projectManager/tasks')">Tasks</a>
   <a href="#" onclick="navigateTo('/react/projectManager/attendances')">Attendance</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/projectDash')">Project Dashboard</a>
     <a href="#">Notices</a>
     <a href="#">Settings</a>
     <a href="#">Logout</a>

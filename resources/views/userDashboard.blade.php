@@ -11,10 +11,14 @@
       padding: 0;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
+    html, body {
       height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
     }
 
     .sidebar {
@@ -25,6 +29,11 @@
       flex-direction: column;
       padding: 20px;
       transition: all 0.3s ease;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
     }
 
     .sidebar h2 {
@@ -48,9 +57,12 @@
     }
 
     #main {
-      flex: 1;
+      margin-left: 250px;
+      height: 100vh;
+      overflow-y: auto;
       padding: 20px;
       background-color: #f1f5f9;
+      flex: 1;
     }
 
     .toggle-btn {
@@ -76,26 +88,32 @@
 
       .toggle-btn {
         display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1100;
+      }
+
+      #main {
+        margin-left: 0;
       }
     }
   </style>
 </head>
 <body>
-
   <div class="sidebar" id="sidebar">
     <h2>Tasksphere</h2> 
     <a href="#" onclick="navigateTo('/react/user/projects')">Projects</a>
-  <a href="#" onclick="navigateTo('/react/user/workspaces')">Workspaces</a>
-  <a href="#" onclick="navigateTo('/react/user/tasks')">Tasks</a>
-  <a href="#" onclick="navigateTo('/react/user/attendances')">Attendance</a>
+    <a href="#" onclick="navigateTo('/react/user/workspaces')">Workspaces</a>
+    <a href="#" onclick="navigateTo('/react/user/tasks')">Tasks</a>
+    <a href="#" onclick="navigateTo('/react/user/attendances')">Attendance</a>
     <a href="#">Notices</a>
     <a href="#">Settings</a>
     <a href="#">Logout</a>
   </div>
 
   <div id="main">
-   
-   
+    
   </div>
 
   <script>
@@ -104,15 +122,14 @@
       sidebar.classList.toggle('active');
     }
 
+    function navigateTo(path) {
+      history.pushState({}, '', path);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
+  </script>
 
-  function navigateTo(path) {
-    history.pushState({}, '', path);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-  }
-</script>
+  @viteReactRefresh
+  @vite('resources/js/react/user/UserApp.jsx')
 
-
-    @viteReactRefresh
-    @vite('resources/js/react/user/UserApp.jsx')
 </body>
 </html>

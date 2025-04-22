@@ -8,7 +8,6 @@ const [error, setError]=useState(null);
 
 useEffect(()=>
 {
-    console.log("fetching data....");
 let isMounted = true;
 fetch(url)
 .then((res)=>
