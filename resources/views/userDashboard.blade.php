@@ -84,10 +84,10 @@
 
   <div class="sidebar" id="sidebar">
     <h2>Tasksphere</h2> 
-    <a href="#">Projects</a>
-    <a href="#">Workspaces</a>
-    <a href="#">Tasks</a>
-    <a href="#">Attendance</a>
+    <a href="#" onclick="navigateTo('/react/user/projects')">Projects</a>
+  <a href="#" onclick="navigateTo('/react/user/workspaces')">Workspaces</a>
+  <a href="#" onclick="navigateTo('/react/user/tasks')">Tasks</a>
+  <a href="#" onclick="navigateTo('/react/user/attendances')">Attendance</a>
     <a href="#">Notices</a>
     <a href="#">Settings</a>
     <a href="#">Logout</a>
@@ -103,8 +103,16 @@
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('active');
     }
-  </script>
+
+
+  function navigateTo(path) {
+    history.pushState({}, '', path);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  }
+</script>
+
+
     @viteReactRefresh
-    @vite('resources/js/react/app.jsx')
+    @vite('resources/js/react/user/UserApp.jsx')
 </body>
 </html>

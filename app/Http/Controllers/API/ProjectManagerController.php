@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class ProjectManagerController extends Controller
 {
 
-public function adminDash()
+public function projectManagerDash()
 {
-    return view('project-manager.projects.project-dash');
+    return view('projectManager/projectManagerDash');
 }
 
     /**

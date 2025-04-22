@@ -350,7 +350,7 @@
 
     <div class="admin">
       <h1>Admin Panel</h1>
-      <a href="{{route('registerView')}}"><button>
+      <a href="{{route('adminDash')}}"><button>
         Admin Dashboard
         </button></a>
     <a href="{{route('registerView')}}"><button>

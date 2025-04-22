@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+
+    public function adminDash()
+{
+    return view('admin/adminDash');
+}
     /**
      * Display a listing of the resource.
      */
