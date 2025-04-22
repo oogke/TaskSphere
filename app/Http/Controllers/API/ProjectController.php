@@ -13,6 +13,11 @@ use View;
 class ProjectController extends BaseController
 {
 
+    public function projectDashView()
+    {
+        return view('project-manager.projects.project-dash');
+    }
+
     public function projectCreateView()
     {
         $employees = User::all();

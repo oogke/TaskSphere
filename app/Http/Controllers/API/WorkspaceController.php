@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Validator;
 
 class WorkspaceController extends BaseController
 {
+public function workspaceDash()
+{
+    return view('project-manager.projects.workspaces.workspace-dash');
+}
 
     public function workspaceCreateView()
     {
@@ -29,11 +33,6 @@ return View('projectManager.projects.workspaces.updateWorkspace',compact('worksp
 
     }
 
-
-    public function workspaceDash(Request $req, $id)
-    {
-
-    }
     public function workspaceView()
     {
         $workspaces= Workspace::all();

@@ -187,9 +187,10 @@ return response.json();
 })
 .then(data=>
 { 
-    console.log(data);
+ 
    if(data.status == true)
  {
+
   window.location.href="/loginView";
 }
 } ).catch(err=>{

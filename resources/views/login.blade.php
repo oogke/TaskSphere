@@ -117,7 +117,7 @@
                {
                       const token = data.token;
                     //   const role= data.role;
-                      console.log(token);
+                   
                 localStorage.setItem('token', token);
                 // localStorage.setItem('role', role);
                 if (localStorage.getItem('token')) {

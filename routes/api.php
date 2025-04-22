@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\ProjectController;
+use App\Http\Controllers\API\ProjectManagerController;
 use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\WorkspaceController;
@@ -63,3 +65,20 @@ Route::get('/taskCreateView',[TaskController::class,'taskCreateView'])->name('ta
 Route::get('/projectUpdateView',[ProjectController::class,'projectUpdateView'])->name('projectUpdateView');
 Route::get('/workspaceUpdateView',[WorkspaceController::class,'workspaceUpdateView'])->name('workspaceUpdateView');
 Route::get('/taskUpdateView',[TaskController::class,'taskUpdateView'])->name('taskUpdateView');
+
+
+Route::get('/userDash/{id}' ,[UserController::class,'update'])->name('userDash');
+Route::get('/projectManagerDash/{id}' ,[ProjectManagerController::class,'update'])->name('projectManagerDash');
+Route::get('/adminDash/{id}' ,[AdminController::class,'update'])->name('adminDash');
+
+Route::get('/userDash' ,[UserController::class,'show'])->name('userDash');
+Route::get('/projectManagerDash' ,[ProjectManagerController::class,'show'])->name('projectManagerDash');
+Route::get('/adminDash' ,[AdminController::class,'show'])->name('adminDash');
+
+Route::get('/userDash' ,[UserController::class,'destroy'])->name('userDash');
+Route::get('/projectManagerDash' ,[ProjectManagerController::class,'destroy'])->name('projectManagerDash');
+Route::get('/adminDash' ,[AdminController::class,'update'])->name('destroy');
+
+Route::get('/userDash' ,[UserController::class,'userDash'])->name('userDash');
+Route::get('/projectManagerDash' ,[ProjectManagerController::class,'projectManagerDash'])->name('projectManagerDash');
+Route::get('/adminDash' ,[AdminController::class,'adminDash'])->name('adminDash');

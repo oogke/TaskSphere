@@ -66,7 +66,84 @@
             z-index: -1;
         
         }
-
+        .user{
+            height: 500px;
+            border: 2px solid black;
+            width: 100%;
+            border-radius: 30px;
+            margin: 90px auto;
+            box-shadow: 5px 5px 13px -2px black;
+            position: relative;  
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+  
+        }
+        .user ::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(images/dms2.jpg) center no-repeat;
+            filter: blur(1px);
+            z-index: -1;
+        
+        }
+        .projectManager{
+            height: 500px;
+            border: 2px solid black;
+            width: 100%;
+            border-radius: 30px;
+            margin: 90px auto;
+            box-shadow: 5px 5px 13px -2px black;
+            position: relative;  
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+  
+        }
+        .projectManager ::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(images/gonXkillua.jpg) center no-repeat;
+            filter: blur(1px);
+            z-index: -1;
+        
+        }
+        .admin{
+            height: 500px;
+            border: 2px solid black;
+            width: 100%;
+            border-radius: 30px;
+            margin: 90px auto;
+            box-shadow: 5px 5px 13px -2px black;
+            position: relative;  
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+  
+        }
+        .admin ::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(images/n1.jpg) center no-repeat;
+            filter: blur(1px);
+            z-index: -1;
+        
+        }
          .projectActions ::before {
             content: "";
             position: absolute;
@@ -144,6 +221,51 @@
             box-shadow: 5px 5px 9px -2px black;
          font-weight: bold;
         }
+        .user h1{
+            text-align: center;
+            font-family: cursive;
+            font-size: 50px;
+        }
+        .user a button {
+            width: 170px;
+            height: 70px;
+            margin-left: 30px;
+            background-color:rgb(255, 255, 255);
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 5px 5px 9px -2px black;
+         font-weight: bold;
+        }
+        .projectManager h1{
+            text-align: center;
+            font-family: cursive;
+            font-size: 50px;
+        }
+        .projectManager a button {
+            width: 170px;
+            height: 70px;
+            margin-left: 30px;
+            background-color:rgb(255, 255, 255);
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 5px 5px 9px -2px black;
+         font-weight: bold;
+        }
+        .admin h1{
+            text-align: center;
+            font-family: cursive;
+            font-size: 50px;
+        }
+        .admin a button {
+            width: 170px;
+            height: 70px;
+            margin-left: 30px;
+            background-color:rgb(255, 255, 255);
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 5px 5px 9px -2px black;
+         font-weight: bold;
+        }
         .workspaceActions a button {
             width: 170px;
             height: 70px;
@@ -188,7 +310,62 @@
         </button></a>   
     </div>
    
+    <div class="user">
+      <h1>user Panel</h1>
+      <a href="{{route('userDash')}}"><button>
+          User Dashboard
+        </button></a>
+    <a href="{{route('registerView')}}"><button>
+            Manage
+        </button></a>
+    <a href="{{route('loginView')}}"><button>
+            Create
+        </button></a>
+    <a href="{{route('adminPanel')}}"><button>
+            Update 
+        </button></a>
+    <a href="{{route('pmPanel')}}"><button>
+          Delete
+        </button></a>
+    </div>
    
+    <div class="projectManager">
+      <h1>Project Manager Panel</h1>
+      <a href="{{route('projectManagerDash')}}"><button>
+          Project Manager Dashboard
+        </button></a>
+    <a href="{{route('registerView')}}"><button>
+            Manage
+        </button></a>
+    <a href="{{route('loginView')}}"><button>
+            Create
+        </button></a>
+    <a href="{{route('adminPanel')}}"><button>
+            Update 
+        </button></a>
+    <a href="{{route('pmPanel')}}"><button>
+          Delete
+        </button></a>
+    </div>
+
+    <div class="admin">
+      <h1>Admin Panel</h1>
+      <a href="{{route('registerView')}}"><button>
+        Admin Dashboard
+        </button></a>
+    <a href="{{route('registerView')}}"><button>
+            Manage
+        </button></a>
+    <a href="{{route('loginView')}}"><button>
+            Create
+        </button></a>
+    <a href="{{route('adminPanel')}}"><button>
+            Update 
+        </button></a>
+    <a href="{{route('pmPanel')}}"><button>
+          Delete
+        </button></a>
+    </div>
 
 
     <div class="projectActions">
@@ -256,6 +433,8 @@
             </button></a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @viteReactRefresh
+@vite('resources/js/react/app.jsx')
 </body>
 
 </html>

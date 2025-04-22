@@ -5,21 +5,20 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ProjectManagerController extends Controller
 {
 
-public function userDash()
+public function adminDash()
 {
-    return view('userDashboard');
+    return view('project-manager.projects.project-dash');
 }
-
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+    
     }
 
     /**
