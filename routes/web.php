@@ -38,3 +38,13 @@ Route::get('/react/projectManager/{any}', function () {
 Route::get('/react/admin/{any}', function () {
     return view('admin/adminDash'); // or 'dashboard' or whatever Blade view you're using
 })->where('any', '.*');
+
+Route::view('/design/projectDash','design/projectDash')->name('projectDashDesign');
+Route::view('/design/workspaceDash','design/workspaceDashDesign')->name('workspaceDashDesign');
+Route::view('/design/taskDash','design/taskDashDesign')->name('taskDashDesign');
+Route::view('/design/projectManagerDash','design/projectManagerDash')->name('projectManagerDashDesign');
+Route::view('/design/adminDash','design/adminDash')->name('adminDashDesign');
+Route::view('/design/userDash','design/userDashDesign')->name('userDashDesign');
+Route::view('/design/projectIndex','design/projectIndex')->name('projectIndexDesign');
+Route::view('/design/workspaceIndex','design/workspaceIndex')->name('workspaceIndexDesign');
+Route::view('/design/taskIndex','design/taskIndex')->name('taskIndexDesign');

@@ -39,6 +39,17 @@
             position: relative;
 
         }
+        .design{
+            height: 500px;
+            border: 2px solid black;
+            width: 80%;
+            border-radius: 30px;
+            margin: 90px auto;
+            box-shadow: 5px 5px 13px -2px black;
+
+            position: relative;
+
+        }
 
         .top{
             height: 500px;
@@ -178,6 +189,17 @@
             filter: blur(1.5px);
             z-index: -1;
         }
+        .design::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(images/hello.jpg) bottom no-repeat;
+            filter: blur(1.5px);
+            z-index: -1;
+        }
 
         .projectActions h1 {
             text-align: center;
@@ -191,6 +213,11 @@
             font-size: 50px;
         }
         .taskActions h1 {
+            text-align: center;
+            font-family: cursive;
+            font-size: 50px;
+        }
+        .design h1 {
             text-align: center;
             font-family: cursive;
             font-size: 50px;
@@ -283,6 +310,16 @@
             border: 1px solid black;
             border-radius: 10px;
             box-shadow: 5px 5px 9px -2px black;
+        }
+        .design a button {
+            width: 170px;
+            height: 70px;
+            margin-left: 30px;
+            background-color:rgb(250, 250, 250);
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 5px 5px 9px -2px black;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -431,6 +468,40 @@
         <a href="{{route('pmPanel')}}"><button>
                 Show
             </button></a>
+    </div>
+
+    <div class="design">
+        <h1>
+            Design
+        </h1>
+        <a href="{{route('projectDashDesign')}}"><button>
+        Project Dashboard
+            </button></a>
+        <a href="{{route('workspaceDashDesign')}}"><button>
+        Workspace Dash
+            </button></a>
+        <a href="{{route('taskDashDesign')}}"><button>
+        taskDash
+            </button></a>
+        <a href="{{route('adminDashDesign')}}"><button>
+        adminDash
+            </button></a>
+        <a href="{{route('projectManagerDashDesign')}}"><button>
+        projectManagerDash
+            </button></a>
+            <a href="{{route('userDashDesign')}}"><button>
+            userDash
+            </button></a>
+            <a href="{{route('projectIndexDesign')}}"><button>
+            projectIndex
+            </button></a>
+            <a href="{{route('workspaceIndexDesign')}}"><button>
+            workspaceIndex
+            </button></a>
+            <a href="{{route('taskIndexDesign')}}"><button>
+            taskIndex
+            </button></a>
+         
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
