@@ -1,0 +1,206 @@
+
+
+/* 🔄 Horizontal Scrollbar Styling */
+.workspaceIndex {
+  display: flex;
+  flex-wrap: nowrap; /* ✨ Change: No wrap */
+  gap: 30px;
+  overflow-x: auto; /* ✨ Enable horizontal scroll */
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.projectRow {
+  min-width: 280px; /* ✨ Ensure width for horizontal scroll */
+  background-color: #1e293b;
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0; /* ✨ Prevent shrinking on scroll */
+}
+
+.projectRow:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 255, 170, 0.3);
+}
+
+.projectRow ul {
+  list-style: none;
+  padding: 0;
+}
+
+.projectRow ul li {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.statusBtn {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.statusBtn:hover {
+  background-color: #22c55e;
+}
+.workspaceHead
+{
+  font-family: Arial, sans-serif;
+font-size: 1.4rem;
+}
+.secondDiv
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px;
+}
+.todoHead
+{
+  font-family: 'Baloo 2', cursive;
+
+}
+.todo
+{
+  width: 45%;
+  height: 500px;
+position: relative;
+
+  box-shadow: 0 4px 4px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 20px;
+  
+}
+.todoBody
+{
+width: 92%;
+height: 80%;
+overflow-y: auto;
+position: absolute;
+margin: auto;
+}
+.notificationBody
+{
+width: 92%;
+height: 80%;
+overflow-y: auto;
+position: absolute;
+margin: auto;
+}
+.notification
+{
+  width: 45%;
+  height: 500px;
+position: relative;
+  box-shadow: 0 4px 4px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+.notificationHead
+{
+  font-family: 'Baloo 2', cursive;
+
+}
+.todolist
+{
+  width: 98%;
+  margin: auto;
+  background-color: #1e293b;
+  border: 1px solid black;
+  border-radius: 20px;
+  height: 70px;
+  margin-top: 10px;
+  
+}
+.notificationlist
+{
+  width: 98%;
+  margin: auto;
+  border: 1px solid black;
+  background-color: #1e293b;
+  border-radius: 20px;
+  height: 70px;
+  margin-top: 10px;
+
+}
+.todoBar
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+.notificationBar
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+.todoItem {
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 100%;
+padding: 0 20px;
+color: white;
+font-family: 'Arial', sans-serif;
+}
+.notificationItem {
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 100%;
+padding: 0 20px;
+color: white;
+font-family: 'Arial', sans-serif;
+font-size: 1rem;
+}
+.notificationlist:hover{
+transform: translateY(-2px);
+}
+.todolist:hover{
+transform: translateY(-2px);
+
+}
+.notificationTitle {
+flex: 1;
+margin-left: 10px;
+}
+.notificationTime{
+font-size: 0.8rem;
+}
+
+.todoSerial {
+width: 30px;
+font-weight: bold;
+}
+.todoName {
+flex: 1;
+margin-left: 10px;
+}
+.todoStatus {
+padding: 5px 10px;
+border-radius: 15px;
+font-size: 0.9rem;
+font-weight: bold;
+}
+.todoStatus.pending {
+background-color: #facc15; /* yellow */
+color: black;
+}
+
+.todoStatus.done {
+background-color: #10b981; /* green */
+color: white;
+}
+

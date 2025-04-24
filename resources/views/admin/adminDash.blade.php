@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/c5a4938a4c.js" crossorigin="anonymous"></script>
+  <title>Admin Dashboard</title>
   <style>
     * {
       box-sizing: border-box;

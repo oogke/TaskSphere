@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/c5a4938a4c.js" crossorigin="anonymous"></script>
   <title>User Dashboard</title>
   <style>
     * {
@@ -51,6 +53,7 @@
       flex: 1;
       padding: 20px;
       background-color: #f1f5f9;
+      overflow-y: auto;
     }
 
     .toggle-btn {

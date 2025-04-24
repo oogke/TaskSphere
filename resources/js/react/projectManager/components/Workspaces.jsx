@@ -1,15 +1,86 @@
 import useFetch from "../../hooks/UseFetch";
+import '../assets/css/workspaces.css';
 
-function Projects() {
-    
+function Workspaces() {
     const { data, loading, error } = useFetch("/api/workspaceIndex");
+
     return (
-        <div>
-            <h1>I am here</h1>
-            {loading && <p>Loading...</p>}
-            {error && <p>Error: {error}</p>}
-            {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-        </div>
+        <>
+            <h1 id="workspaceHeading">Workspaces</h1>
+
+            <div className="workspaceIndex">
+                <div className="workspaceCard">
+                    <ul>
+                        <li>TaskSphere</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>SwiftStay</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>Ownah</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>Mental Health Support System</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>Soul</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>Soul API</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>Soul API</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>Soul API</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>Soul API</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+
+                <div className="workspaceCard">
+                    <ul>
+                        <li>Soul API</li>
+                        <li><button className="workspaceBtn">Open</button></li>
+                    </ul>
+                </div>
+            </div>
+        </>
     );
 }
-export default Projects;
+
+export default Workspaces;

@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/c5a4938a4c.js" crossorigin="anonymous"></script>
   <title>User Dashboard</title>
+  
   <style>
     * {
       box-sizing: border-box;
@@ -107,6 +110,7 @@
     <a href="#" onclick="navigateTo('/react/user/workspaces')">Workspaces</a>
     <a href="#" onclick="navigateTo('/react/user/tasks')">Tasks</a>
     <a href="#" onclick="navigateTo('/react/user/attendances')">Attendance</a>
+    <a href="#" onclick="navigateTo('/react/user/userdash')">UserDash</a>
     <a href="#">Notices</a>
     <a href="#">Settings</a>
     <a href="#">Logout</a>
