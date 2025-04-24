@@ -304,8 +304,64 @@ font-size: 1.4rem;
   background-color: #10b981; /* green */
   color: white;
 }
+.userthirdDiv
+{
+  
+  box-shadow: 0 4px 4px 4px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      padding: 20px;
+      height: fit-content;
+}
+#userTaskTableBody tr{
+  background-color: white;
+}
+#userTaskTableBody tr:hover{
+  background-color: #334155;
+}
+.usertable-container {
+            max-height: 70vh;
+            overflow-y: auto;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            background-color: #0f172a;
+            padding: 10px;
+        }
+
+        .usertable-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .usertable-container table thead {
+            position: sticky;
+            top: 0;
+            background-color: #1e293b;
+            z-index: 1;
+        }
+
+        .usertable-container th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+
+        .usertable-container th {
+            color: #cbd5e1;
+        }
 
 
+        @media screen and (max-width: 768px) {
+            #userheading {
+                font-size: 2rem;
+            }
+
+            .usertable-container th, td {
+                font-size: 0.9rem;
+                padding: 8px 10px;
+            }
+
+           
+        }
   </style>
 </head>
 <body>
@@ -445,9 +501,56 @@ font-size: 1.4rem;
       </div>
     </div>
 
-<div class="thirdDiv">
+
+
+    <div class="userthirdDiv">
+<h1 id="userheading">Tasks</h1>
+<div class="usertable-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>S.N</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Employee Username</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Updated At</th>
+                </tr>
+            </thead>
+            <tbody id="userTaskTableBody">
+                <!-- Sample Rows -->
+                <tr>
+                    <td>1</td>
+                    <td>Website Redesign</td>
+                    <td>Update homepage layout</td>
+                    <td>johndoe</td>
+                    <td>2025-04-10</td>
+                    <td>2025-04-20</td>
+                    <td>Ongoing</td>
+                    <td>High</td>
+                    <td>2025-04-21 14:30</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>API Fix</td>
+                    <td>Resolve login issues</td>
+                    <td>janedoe</td>
+                    <td>2025-04-15</td>
+                    <td>2025-04-18</td>
+                    <td>Completed</td>
+                    <td>Medium</td>
+                    <td>2025-04-19 10:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>
+
+  </div>
 
   </div>
 </body>
