@@ -19,6 +19,7 @@
             font-family: 'Baloo 2', cursive;
             color: #333;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -29,6 +30,7 @@
             text-align: center;
             color: #10b981;
             margin-bottom: 30px;
+            margin-top: 40px;
         }
 
         #createWorkspace {
@@ -111,7 +113,7 @@
             flex-wrap: wrap;
             gap: 30px;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 10px;
             max-height: 500px; /* Adjust the height according to your needs */
             overflow-y: auto; /* Makes it scrollable */
             padding-right: 20px; /* Optional: Prevents content from being hidden behind scrollbar */
@@ -223,8 +225,9 @@
  
     </div>
 
-    <div class="workspaceIndex">
-   
+     <h1>Workspaces</h1>  
+     <div class="workspaceIndex">
+
         <div class="projectRow">
             <ul>
                 <li><strong>Designing</strong></li>
@@ -286,6 +289,55 @@
                 <li><button class="statusBtn">Open</button></li>
             </ul>
         </div>
+        <div class="projectRow">
+            <ul>
+                <li><strong>Frontend</strong></li>
+                <li><button class="statusBtn">Open</button></li>
+            </ul>
+        </div>
+        <div class="projectRow">
+            <ul>
+                <li><strong>Frontend</strong></li>
+                <li><button class="statusBtn">Open</button></li>
+            </ul>
+        </div>
+        <div class="projectRow">
+            <ul>
+                <li><strong>Frontend</strong></li>
+                <li><button class="statusBtn">Open</button></li>
+            </ul>
+        </div>
+        <div class="projectRow">
+            <ul>
+                <li><strong>Frontend</strong></li>
+                <li><button class="statusBtn">Open</button></li>
+            </ul>
+        </div>
+        <div class="projectRow">
+            <ul>
+                <li><strong>Frontend</strong></li>
+                <li><button class="statusBtn">Open</button></li>
+            </ul>
+        </div>
+        <div class="projectRow">
+            <ul>
+                <li><strong>Frontend</strong></li>
+                <li><button class="statusBtn">Open</button></li>
+            </ul>
+        </div>
+        <div class="projectRow">
+            <ul>
+                <li><strong>Frontend</strong></li>
+                <li><button class="statusBtn">Open</button></li>
+            </ul>
+        </div>
+        <div class="projectRow">
+            <ul>
+                <li><strong>Frontend</strong></li>
+                <li><button class="statusBtn">Open</button></li>
+            </ul>
+        </div>
+        
         <!-- Add more project rows as needed -->
     </div>
 
