@@ -7,8 +7,12 @@ import Projects from './components/Projects';
 import Tasks from './components/Tasks';
 import Workspaces from './components/Workspaces';
 import ProjectDash from './components/projectDash';
-
-
+import ProjectCreateForm from './components/ProjectCreateForm';
+import CreateWorkspace from './components/CreateWorkspace';
+import TaskForm from './components/TaskForm';
+import Comment from './components/Comment';
+import Members from './components/Members';
+import workspaceDash from './components/WorkspaceDash';
 const App = () => {
     return (
         <BrowserRouter>
@@ -18,6 +22,13 @@ const App = () => {
       <Route path="/react/projectManager/tasks" element={<Tasks />} />
       <Route path="/react/projectManager/attendances" element={<Attendances />} />
       <Route path="/react/projectManager/projectDash" element={<ProjectDash />} />
+      <Route path="/react/projectManager/projectCreateForm" element={<ProjectCreateForm />} />
+      <Route path="/react/projectManager/workspaceCreateForm" element={<CreateWorkspace />} />
+      <Route path="/react/projectManager/TaskCreateForm" element={<TaskForm />} />
+      <Route path="/react/projectManager/comments" element={<Comment />} />
+      <Route path="/react/projectManager/members" element={<Members />} />
+      <Route path="/react/projectManager/workspaceDash" element={<workspaceDash />} />
+      
 
           </Routes>
         </BrowserRouter>

@@ -50,3 +50,4 @@ Route::view('/design/workspaceIndex','design/workspaceIndex')->name('workspaceIn
 Route::view('/design/taskIndex','design/taskIndex')->name('taskIndexDesign');
 
 Route::view('/commentBoard','design/comment');
+Route::view('/members','design/members');

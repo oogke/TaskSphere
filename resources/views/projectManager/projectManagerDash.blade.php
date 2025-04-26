@@ -13,10 +13,10 @@
       padding: 0;
     }
 
-    body {
+    body{
       font-family: Arial, sans-serif;
       display: flex;
-      height: 100vh;
+      /* height: 100vh; */
     }
 
     .sidebar {
@@ -92,6 +92,18 @@
   <a href="#" onclick="navigateTo('/react/projectManager/tasks')">Tasks</a>
   <a href="#" onclick="navigateTo('/react/projectManager/attendances')">Attendance</a>
   <a href="#" onclick="navigateTo('/react/projectManager/projectDash')">Project Dashboard</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/projectCreateForm')">Project Create Form</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/workspaceCreateForm')">Workspace Create Form</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/TaskCreateForm')">Task Create Form</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/comments')">Comments</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/members')">Members</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/workspaceDash')">Workspace Dash</a>
+
+
+
+  
+
+
     <a href="#">Notices</a>
     <a href="#">Settings</a>
     <a href="#">Logout</a>
