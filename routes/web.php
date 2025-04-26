@@ -51,3 +51,6 @@ Route::view('/design/taskIndex','design/taskIndex')->name('taskIndexDesign');
 
 Route::view('/commentBoard','design/comment');
 Route::view('/members','design/members');
+Route::view('/notices','design/notices');
+Route::view('/noticeCreate','design/createNotice');
+Route::view('/attendanceIndex','design/AttendanceIndex');

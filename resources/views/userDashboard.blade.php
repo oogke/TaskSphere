@@ -96,10 +96,6 @@
         left: 10px;
         z-index: 1100;
       }
-
-      #main {
-        margin-left: 0;
-      }
     }
   </style>
 </head>
@@ -115,16 +111,12 @@
     <a href="#">Settings</a>
     <a href="#">Logout</a>
   </div>
-
   <div id="main">
 
   </div>
 
   <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('active');
-    }
+    
 
     function navigateTo(path) {
       history.pushState({}, '', path);

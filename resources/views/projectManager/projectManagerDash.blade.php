@@ -65,7 +65,7 @@
     }
 
     @media (max-width: 768px) {
-      .sidebar {
+      .sidebar{
         position: absolute;
         left: -250px;
         top: 0;
