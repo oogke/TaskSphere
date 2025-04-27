@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends BaseController
 {
+    public function index()
+    {
+        $users = User::all();
+        return $this->sendResponse($users,"All users");
+
+    }
 public function EmployeeRegisterData(Request $request)
 {
     $userApplication = userVerifQueue::all();

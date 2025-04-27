@@ -89,3 +89,4 @@ Route::get('/userDash' ,[UserController::class,'userDash'])->name('userDash');
 Route::get('/projectManagerDash' ,[ProjectManagerController::class,'projectManagerDash'])->name('projectManagerDash');
 Route::get('/adminDash' ,[AdminController::class,'adminDash'])->name('adminDash');
 
+Route::get('/allUsers',[EmployeeController::class,'index'])->name('Allusers');

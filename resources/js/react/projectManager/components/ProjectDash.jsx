@@ -13,7 +13,7 @@ function ProjectDash() {
     // const projectId= selectedProjectId; 
    const CreateWorkspace=()=>
    {
-    console.log("Create Workspace Button Clicked");
+    
     navigate('/react/projectManager/workspaceCreateForm');
    }
     return (

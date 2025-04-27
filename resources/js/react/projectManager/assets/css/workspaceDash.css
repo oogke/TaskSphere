@@ -22,8 +22,10 @@
 .DashMain
 {
     width: 100%;
-    border: 1px solid black;
+box-shadow: 0 2px 8px rgb(0,0,0,0.5);
 height: 86%;
 overflow-y: auto;
 margin-top: 50px;
+padding: 50px;
+
 }

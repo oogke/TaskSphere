@@ -1,39 +1,51 @@
 import React, { useState } from "react";
-import useFetch  from "../../hooks/UseFetch";
+import useFetch from "../../hooks/UseFetch";
 import '../assets/css/workspaceDash.css';
-import { useNavigate } from "react-router-dom";
+import Comment from "./Comment";
+import Member from "./Members";
+import WorkspaceTask from "./WorkspaceTask";
+import { useLocation } from "react-router-dom";
 
-function WorkspaceDash()
-{
-    const {data,loading,error}= useFetch("/api/projectIndex");
-    const [activeTab,setActiveTab]=useState(null);
-    const navigate=useNavigate();
-    const renderComment=()=>
-    {
-        setActiveTab("commentSpan")
-        navigate("/react/projectManager/comments");
+
+// Create simple small components
+
+
+function WorkspaceDash() {
+    const [activeTab, setActiveTab] = useState(null);
+    const location= useLocation();
+    const { selectedWorkspaceId } = location.state;
+   console.log(selectedWorkspaceId);
+
+    const renderComment = () => {
+        setActiveTab("commentSpan");
     }
-    const rendertask=()=>
-        {
-            setActiveTab("taskSpan")
-            navigate("");
-        }
-        const renderMember=()=>
-            {
-                setActiveTab("memberSpan")
-                navigate("/react/projectManager/members");
-            }
-    return(
-        <>
-        <div className="headBar">
-  <span className={activeTab==="commentSpan"?"active":""} onClick={renderComment}>Comment</span>
-  <span className={activeTab==="taskSpan"?"active":""} onClick={rendertask}>Tasks</span>
-  <span className={activeTab==="memberSpan"?"active":""} onClick={renderMember}>Members</span>
-</div>
-<div className="DashMain">
+    const renderTask = () => {
+        setActiveTab("taskSpan");
+    }
+    const renderMember = () => {
+        setActiveTab("memberSpan");
+    }
 
-</div>
+    // function to choose which content to show
+    const renderContent = () => {
+        if (activeTab === "commentSpan") return <Comment />;
+        if (activeTab === "taskSpan") return <WorkspaceTask />;
+        if (activeTab === "memberSpan") return <Member />;
+        return <Comment /> 
+    }
+
+    return (
+        <>
+            <div className="headBar">
+                <span className={activeTab === "commentSpan" ? "active" : ""} onClick={renderComment}>Comment</span>
+                <span className={activeTab === "taskSpan" ? "active" : ""} onClick={renderTask}>Tasks</span>
+                <span className={activeTab === "memberSpan" ? "active" : ""} onClick={renderMember}>Members</span>
+            </div>
+            <div className="DashMain">
+                {renderContent()}
+            </div>
         </>
-    )
+    );
 }
+
 export default WorkspaceDash;

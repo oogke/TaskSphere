@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
 import '../assets/css/workspaces.css';
+import { useState } from "react";
 
 
 function Workspaces() {
     const {data, loading, error } = useFetch("/api/workspaceIndex");
-    console.log(data);
+   const [workspaceId,setWorkspaceId]=useState(null);
 const navigate= useNavigate();
-    const WorkspaceDash=()=>
+    const WorkspaceDash=(id)=>
     {
-        navigate('/react/projectManager/workspaceDash');
+        setWorkspaceId(id);
+        navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
     }
     return (
         <>
@@ -20,7 +22,7 @@ const navigate= useNavigate();
                         <div key={index} className="workspaceCard">
                             <ul>
                                 <li>{workspace?.name}</li>
-                                <li><button className="workspaceBtn" onClick={WorkspaceDash}>Open</button></li>
+                                <li><button className="workspaceBtn" onClick={() => WorkspaceDash(workspace.id)}>Open</button></li>
                             </ul>
                         </div>
                     );

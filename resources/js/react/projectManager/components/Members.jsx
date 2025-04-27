@@ -4,58 +4,38 @@ import useFetch from "../../hooks/UseFetch";
 
 function Members()
 {
-       const { data, loading, error } = useFetch("/api/projectIndex/7");
+       const { data, loading, error } = useFetch("/api/allUsers");
         console.log(data);
     return(
         <>
-<h1 id="heading">Employees</h1>
-<div class="projectRow">
+<h1 id="Employeeheading">Employees</h1>
+{/* <div className="employeeRow">
 <ul>
   <li>1</li>
   <li>Ram Krishna Shrestha</li>
   <li>Project Manager</li>
 </ul>
-</div>
-<div class="projectRow">
-<ul>
-  <li>2</li>
-  <li>Balaram Bhatta</li>
-  <li>Admin</li>
- 
-</ul>
-</div>
-<div class="projectRow">
-<ul>
-  <li>3</li>
-  <li>Salik Ram Karki</li>
-  <li>Frontend Developer</li>
+</div> */}
 
-</ul>
-</div>
-<div class="projectRow">
-<ul>
-  <li>4</li>
-  <li>Manita Adhikari</li>
-  <li>Manager</li>
+{
 
-</ul>
-</div>
-<div class="projectRow">
-<ul>
-  <li>5</li>
-  <li>Smarika Twaina</li>
-  <li>Backend Developer</li>
+data?.data?.length>0 && data.data.map((Employee,index)=>
+{
+  return(
+    <div className="employeeRow">
+    <ul>
+      <li>{index+1}</li>
+      <li>{Employee.fname +" "+Employee.lname}</li>
+      <li>{Employee.role}</li>
+    </ul>
+    </div> 
+  )
+})
+}
 
-</ul>
-</div>
-<div class="projectRow">
-<ul>
-  <li>6</li>
-  <li>Dikshya Dahal</li>
-  <li>Designer</li>
 
-</ul>
-</div>
+
+
 
 
         </>
