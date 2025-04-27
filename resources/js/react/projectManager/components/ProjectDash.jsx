@@ -1,18 +1,26 @@
 import React from 'react';
 import '../assets/css/projectDash.css';
 import useFetch from "../../hooks/UseFetch";
-import { useLocation } from "react-router-dom";
+import { useNavigate,useLocation } from 'react-router-dom';
 
 
-function ProjectDash() {
-    const location= useLocation();
+function ProjectDash() {  
+     const location= useLocation();
     const { selectedProjectId } = location.state; 
-    const { data, loading, error } = useFetch(`/api/projectShow/${selectedProjectId}`);
+    const {data, loading, error } = useFetch(`/api/projectShow/${selectedProjectId}`);
+    const {data: workspace, loading1 ,error2}= useFetch(`/api/workspaceExtract/${selectedProjectId}`);
+ const navigate=useNavigate();
+    // const projectId= selectedProjectId; 
+   const CreateWorkspace=()=>
+   {
+    console.log("Create Workspace Button Clicked");
+    navigate('/react/projectManager/workspaceCreateForm');
+   }
     return (
     <>
       <div className="project-dash-wrapper">
             <h1>{data?.data?.name}</h1>
-            <button id="createWorkspace">Create Workspace</button>
+            <button id="createWorkspace" onClick={CreateWorkspace}>Create Workspace</button>
 
             <div className="projectIntro">
                 <h2>Project Details</h2>
@@ -35,118 +43,21 @@ function ProjectDash() {
             </div>
 
      <h1>Workspaces</h1>  
-     <div className="projectDashWorkspaceIndex">
-        
-     <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Designing</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Designing</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Designing</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Designing</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Designing</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
+<div className="projectDashWorkspaceIndex">
+    {workspace?.length > 0 ? (
+        workspace.map((workspace, index) => (
+            <div key={index} className="ProjectWorkspaceData">
+                <ul>
+                    <li><strong>{workspace?.name}</strong></li>
+                    <li><button className="statusBtn">Open</button></li>
+                </ul>
+            </div>
+        ))
+    ) : (
+        <p>No workspaces available.</p>
+    )}
+</div>
 
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Project Management</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Backend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-          <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-        <div className="ProjectWorkspaceData">
-            <ul>
-                <li><strong>Frontend</strong></li>
-                <li><button className="statusBtn">Open</button></li>
-            </ul>
-        </div>
-     </div>
      </div> 
     </>
   );

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Workspace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use View;
@@ -13,6 +14,11 @@ use View;
 class ProjectController extends BaseController
 {
 
+    public function workspaceExtract(string $id)
+    {
+        $workspaces= Workspace::where('projectId',$id)->get();
+        return $this->sendResponse($workspaces,"Workspaces");
+    }
     public function projectDashView()
     {
         return view('project-manager.projects.project-dash');

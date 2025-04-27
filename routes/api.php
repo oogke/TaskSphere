@@ -60,6 +60,8 @@ Route::get('/taskView' ,[TaskController::class,'taskView'])->name('taskView');
 Route::get('/workspaceDash/{id}' ,[WorkspaceController::class,'workspaceDash'])->name('workspaceDash');
 Route::get('/projectDash/{id}' ,[ProjectController::class,'projectDash'])->name('projectDash');
 Route::get('/taskDash/{id}' ,[TaskController::class,'taskDash'])->name('taskDash');
+// workspaceExtract
+Route::get('/workspaceExtract/{id}' , [ProjectController::class,'workspaceExtract'])->name('workspaceExtract');
 
 
 Route::get('/projectCreateView',[ProjectController::class,'projectCreateView'])->name('projectCreateView');
