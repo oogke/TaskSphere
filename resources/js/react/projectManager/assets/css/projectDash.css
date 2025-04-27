@@ -83,7 +83,7 @@
     padding: 10px 20px;
 }
 
-.projectRow {
+.ProjectWorkspaceData {
     background-color: #1e293b;
     border-radius: 15px;
     width: 280px;
@@ -94,17 +94,17 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.projectRow:hover {
+.ProjectWorkspaceData:hover {
     transform: translateY(-10px);
     box-shadow: 0 6px 12px rgba(0, 255, 170, 0.3);
 }
 
-.projectRow ul {
+.ProjectWorkspaceData ul {
     list-style: none;
     padding: 0;
 }
 
-.projectRow ul li {
+.ProjectWorkspaceData ul li {
     margin: 10px 0;
     font-size: 1.2rem;
 }
@@ -130,7 +130,7 @@
         align-items: center;
     }
 
-    .projectRow {
+    .ProjectWorkspaceData {
         width: 90%;
     }
 }

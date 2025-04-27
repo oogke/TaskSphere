@@ -41,6 +41,12 @@ class ProjectController extends BaseController
         return view('/projectManager/projects/projectDash', compact('project'));
     }
 
+
+    public function projectFetch(string $id)
+    {
+        $project= Project::where('id',$id)->first();
+        return $this->sendResponse($project,"Project you have choosed");
+    }
     public function projectView()
     {
         $projects = Project::all();
