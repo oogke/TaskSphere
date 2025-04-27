@@ -1,0 +1,29 @@
+.headBar
+{
+  width: 500px;
+  display: flex ;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  margin-top: 20px;
+  
+  
+}
+.headBar span{
+  color: black;
+  font-family: 'Baloo 2', cursive;
+  cursor: pointer;
+}
+
+.headBar span.active {
+    border-bottom: 2px solid gray; /* Change the color as needed */
+}
+.DashMain
+{
+    width: 100%;
+    border: 1px solid black;
+height: 86%;
+overflow-y: auto;
+margin-top: 50px;
+}
