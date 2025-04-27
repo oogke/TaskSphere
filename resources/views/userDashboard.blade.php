@@ -8,20 +8,17 @@
   <title>User Dashboard</title>
   
   <style>
-    * {
+   * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html, body {
-      height: 100vh;
-      overflow: hidden;
+    body{
       font-family: Arial, sans-serif;
-    }
-
-    body {
       display: flex;
+      height: 100vh;
+      flex-direction: row;
     }
 
     .sidebar {
@@ -32,11 +29,6 @@
       flex-direction: column;
       padding: 20px;
       transition: all 0.3s ease;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      overflow-y: auto;
     }
 
     .sidebar h2 {
@@ -60,12 +52,11 @@
     }
 
     #main {
-      margin-left: 250px;
-      height: 100vh;
-      overflow-y: auto;
+      flex: 1;
       padding: 20px;
       background-color: #f1f5f9;
-      flex: 1;
+      overflow-y: auto;
+    
     }
 
     .toggle-btn {
@@ -76,27 +67,8 @@
       cursor: pointer;
     }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        position: absolute;
-        left: -250px;
-        top: 0;
-        height: 100%;
-        z-index: 1000;
-      }
 
-      .sidebar.active {
-        left: 0;
-      }
-
-      .toggle-btn {
-        display: block;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        z-index: 1100;
-      }
-    }
+   
   </style>
 </head>
 <body>

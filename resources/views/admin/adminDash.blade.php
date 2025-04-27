@@ -13,10 +13,11 @@
       padding: 0;
     }
 
-    body {
+    body{
       font-family: Arial, sans-serif;
       display: flex;
       height: 100vh;
+      flex-direction: row;
     }
 
     .sidebar {
@@ -53,6 +54,8 @@
       flex: 1;
       padding: 20px;
       background-color: #f1f5f9;
+      overflow-y: auto;
+    
     }
 
     .toggle-btn {
@@ -63,32 +66,12 @@
       cursor: pointer;
     }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        position: absolute;
-        left: -250px;
-        top: 0;
-        height: 100%;
-        z-index: 1000;
-      }
-
-      .sidebar.active {
-        left: 0;
-      }
-
-      .toggle-btn {
-        display: block;
-      }
-    }
   </style>
 </head>
 <body>
 
   <div class="sidebar" id="sidebar">
     <h2>Tasksphere</h2> 
-    <a href="#" onclick="navigateTo('/react/admin/projects')">Projects</a>
-  <a href="#" onclick="navigateTo('/react/admin/workspaces')">Workspaces</a>
-  <a href="#" onclick="navigateTo('/react/admin/tasks')">Tasks</a>
   <a href="#" onclick="navigateTo('/react/admin/attendances')">Attendance</a>
   <a href="#" onclick="navigateTo('/react/admin/comments')">Comment</a>
   <a href="#" onclick="navigateTo('/react/admin/createNotices')">Create Notices</a>

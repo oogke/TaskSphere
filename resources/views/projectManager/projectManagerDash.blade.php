@@ -16,7 +16,8 @@
     body{
       font-family: Arial, sans-serif;
       display: flex;
-      /* height: 100vh; */
+      height: 100vh;
+      flex-direction: row;
     }
 
     .sidebar {
@@ -27,6 +28,8 @@
       flex-direction: column;
       padding: 20px;
       transition: all 0.3s ease;
+      overflow-y: auto;
+      height: 100%;
     }
 
     .sidebar h2 {
@@ -54,32 +57,8 @@
       padding: 20px;
       background-color: #f1f5f9;
       overflow-y: auto;
-    }
-
-    .toggle-btn {
-      display: none;
-      background-color: #1e293b;
-      color: white;
-      padding: 10px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .sidebar{
-        position: absolute;
-        left: -250px;
-        top: 0;
-        height: 100%;
-        z-index: 1000;
-      }
-
-      .sidebar.active {
-        left: 0;
-      }
-
-      .toggle-btn {
-        display: block;
-      }
+      height: 100%;
+    
     }
   </style>
 </head>

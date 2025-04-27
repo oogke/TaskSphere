@@ -6,7 +6,7 @@ import Attendances from './components/Attendances';
 import Projects from './components/Projects';
 import Tasks from './components/Tasks';
 import Workspaces from './components/Workspaces';
-import ProjectDash from './components/projectDash';
+import ProjectDash from './components/ProjectDash';
 import ProjectCreateForm from './components/ProjectCreateForm';
 import CreateWorkspace from './components/CreateWorkspace';
 import TaskForm from './components/TaskForm';

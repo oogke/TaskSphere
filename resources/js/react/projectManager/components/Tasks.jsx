@@ -4,6 +4,7 @@ import '../assets/css/tasks.css'
 function Tasks()
 {
 const {data, loading, error} = useFetch("/api/taskIndex");
+console.log(data);
 return (
 
     <>

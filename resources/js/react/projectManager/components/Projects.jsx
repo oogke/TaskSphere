@@ -3,6 +3,7 @@ import '../assets/css/projects.css';
 
 function Projects() {
     const { data, loading, error } = useFetch("/api/projectIndex");
+    console.log(data);
 
     return (
         <>
