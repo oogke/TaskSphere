@@ -16,7 +16,7 @@
     html, body {
       height: 100vh;
       overflow: hidden;
-      font-family: Arial, sans-serif;
+      font-family: 'Baloo 2', cursive;
     }
 
     body {

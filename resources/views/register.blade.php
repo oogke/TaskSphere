@@ -8,7 +8,7 @@
   <title>Register</title>
   <style>
     body {
-      background-color: #f1f5f9;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
       font-family: 'Arial', sans-serif;
     }
 
@@ -143,7 +143,7 @@
     <input type="email" placeholder="Email" id="email" name="email" required>
     <input type="password" placeholder="Password" id="password" name="password" required>
     <button class="registerBtn" name="register" id="register-btn" data-bs-toggle="modal" data-bs-target="#codemodal">Register</button>
-    <p id="forgot-btn">Already have an Account? <a href="#">click here</a></p>
+    <p id="forgot-btn">Already have an Account? <a href="{{ route('loginView') }}">click here</a></p>
   </div>
 
   <!-- Modal for verification -->

@@ -91,7 +91,7 @@
         <input type="text" placeholder="E-mail or Username" name="email" required id="email">
         <input type="password" placeholder="Password" name="password" required id="password">
         <button class="loginBtn" name="login" id="login">Login</button>
-        <p id="forgot-btn">Register Account? <a href="#">click here</a></p>
+        <p id="forgot-btn">Register Account? <a href="{{ route('registerView') }}">click here</a></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

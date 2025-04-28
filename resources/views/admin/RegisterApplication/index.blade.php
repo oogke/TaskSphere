@@ -8,180 +8,131 @@
     <title>Employee Register Application</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/c5a4938a4c.js" crossorigin="anonymous"></script>
     <style>
-        table,
-        th,
-        td {
-            border: 3px solid black;
-            border-collapse: collapse;
-
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    body {
+            background-color: #eef2f7;
+            font-family: 'Baloo 2';
+          
         }
 
-        .adapplication {
-            width: 100%;
-
+        .container {
+            margin-top: 60px;
         }
 
-        .adapplication-head {
+        .table-container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+       #adapplication-head{
             text-align: center;
-            font-size: 29px;
-
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 2.8rem;
+            color: #1f2937;
+            margin-top: 30px;
+            font-family: 'Baloo 2', cursive;
         }
 
-        #adapplication-table {
-            width: 100%;
-
-        }
-
-        #adapplication-table table {
-            width: 100%;
-
-        }
-
-        #adapplication-table table th {
-            font-size: 18px;
-        }
-
-        #adapplication-table table tr {
-            height: 100px;
-
-        }
-
-        #adapplication-table table tr td {
-            text-align: center;
-            font-size: 19px;
-
-        }
-
-        #accept-btn {
-            width: 80px;
-            height: 35px;
-
-            margin-top: 50%;
-            margin-left: 10px;
-            background-color: Green;
-            color: Black;
-
-        }
-
-        #reject-btn {
-            width: 80px;
-            height: 35px;
-            margin-top: 50%;
-            margin-left: 10px;
-            background-color: Red;
-        }
-
-        #response-col {
-            padding: 15px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-        }
-
-        #adapplication-head {
-            text-align: center;
-            font-size: 27px;
-            font-family: cursive;
-        }
-
-        #offuserpopup {
-            width: 300px;
-            height: 190px;
-            border: 1px solid black;
+        table {
+            width: 96%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
             margin: auto;
-            flex-direction: column;
-            margin-top: 100px;
-            z-index: 1;
-            display: none;
-            padding: 10px 10px 20px 10px;
-            position: fixed;
-            background-color: white;
-            left: 450px;
-            top: 100px;
         }
 
-        .reset-heading {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
+        thead th {
+            background-color: black;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 12px;
+            /* border-radius: 8px 8px 0 0; */
+            text-align: center;
+            font-family: 'Baloo','cursive';
         }
 
-        #offuserpopup .reset-btn {
-            position: relative;
-            right: 0;
-
+        tbody td {
+            background-color: #ffffff;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #374151;
+            border-top: 1px solid #dee2e6;
         }
 
-        #offuserpopup p {
-            font-size: 17px;
-            padding: 35px 5px 15px 5px;
-
+        tbody tr:hover td {
+            background-color: #f3f4f6;
         }
 
-        #offuserpopup .sub-btn {
-            width: 150px;
-            height: 50px;
-            background-color: blue;
-            color: white;
-            border: 1px solid blue;
-            border-radius: 5px;
-            position: relative;
-            left: 53px;
+        .btn-custom-success {
+            background-color: #10b981;
+            border: none;
+            color: #ffffff;
+            padding: 8px 16px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background-color 0.3s;
         }
 
-        .buttons {
-            display: flex;
-            flex-direction: row;
+        .btn-custom-success:hover {
+            background-color: #059669;
         }
 
-        #offuserpopup1 {
-            width: 300px;
-            height: 190px;
-            border: 1px solid black;
-            margin: auto;
-            flex-direction: column;
-            margin-top: 100px;
-            z-index: 1;
-            display: none;
-            padding: 10px 10px 20px 10px;
-            position: fixed;
-            background-color: white;
-            left: 450px;
-            top: 100px;
-
+        .btn-custom-danger {
+            background-color: #ef4444;
+            border: none;
+            color: #ffffff;
+            padding: 8px 16px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background-color 0.3s;
         }
 
-        #offuserpopup1 .reset-btn {
-            position: relative;
-            right: 0;
-
+        .btn-custom-danger:hover {
+            background-color: #dc2626;
+        }
+#scode
+{
+    margin: 0 20px 10px 0 ;
+}
+        /* Modal */
+        /* .modal-content {
+            border-radius: 12px;
+            padding: 20px;
         }
 
-        #offuserpopup1 form p {
-            font-size: 17px;
-            padding: 35px 5px 15px 5px;
-
+        .modal-header {
+            border-bottom: none;
         }
 
-        #offuserpopup1 .sub-btn {
-            width: 150px;
-            height: 50px;
-            background-color: blue;
-            color: white;
-            border: 1px solid blue;
-            border-radius: 5px;
-            position: relative;
-            left: 53px;
+        .modal-footer {
+            border-top: none;
+        }
+
+        .modal-body input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            width: 100%;
+        } */
+
+        .scodeEnter, .acceptConfirmBtn, .rejectConfirmBtn {
+            width: 100%;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -233,33 +184,30 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="singlePostLabel">Enter the secret code</h5>
+                                    <h5 class="modal-title" id="singlePostLabel">Enter the secret code and role</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <input type="Password" id="scode" placeholder="secret code">
+                                    <input type="text" id="role" placeholder="Role">
                                     <input type="hidden" name="applicationId" id="applicationIdInput">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success scodeEnter">okay</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                        id="dismissModal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- secret code Modal -->
+                   
 
 
-                    <!-- confirm reject -->
+                  
                     <div class="modal fade" id="rejectModal" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
-
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <div class="modal-header">                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -268,8 +216,6 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">close</button>
                                     <button type="button" class="btn btn-primary rejectConfirmBtn">Reject</button>
                                 </div>
                             </div>
@@ -294,8 +240,6 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">close</button>
                                     <button type="button" class="btn btn-primary acceptConfirmBtn"
                                         data-bs-toggle="modal" data-bs-target="#scodeModal"
                                         data-bs-dismiss="modal">Accept</button>
@@ -303,7 +247,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--confirm accept -->
+                    
                 </tbody>
 
 
@@ -344,10 +288,12 @@
         table.addEventListener("click", (e) => {
             if (e.target.classList.contains("scodeEnter")) {
                 const secretCode = document.getElementById("scode").value;
+                const role = document.getElementById("role").value;
                 const applicationID = document.getElementById("applicationIdInput").value;
 
                 const formData = new FormData();
                 formData.append("scode", secretCode);
+                formData.append("role", role);
                 formData.append("applicationId", applicationID);
                 console.log(formData);
                 fetch('/api/passScode', {

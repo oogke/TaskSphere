@@ -35,6 +35,7 @@ public function ScodeOperation(Request $request)
         $request->all(),
         [
             'scode' => 'required',
+            'role'=>'required'
         ]
     );
     if ($validateData->fails()) {
@@ -42,6 +43,7 @@ public function ScodeOperation(Request $request)
     }
     $applicationId=$request->input('applicationId');
     $scode=$request->input('scode');
+    $role=$request->input('role');
   $userApplication= userVerifQueue::where('id',$applicationId)->first();
 
   $user = User::create([
@@ -50,7 +52,8 @@ public function ScodeOperation(Request $request)
     'email'=>$userApplication['email'],
     'phone'=>$userApplication['phone'],
     'password'=>$userApplication['password'],
-    'scode'=> $scode
+    'scode'=> $scode,
+    'role'=>$role
   ]);
   return $this->sendResponse($user, 'user registered successfully');
 
