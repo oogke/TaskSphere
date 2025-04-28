@@ -5,7 +5,6 @@ import useFetch from "../../hooks/UseFetch";
 function Members()
 {
        const { data, loading, error } = useFetch("/api/allUsers");
-        console.log(data);
     return(
         <>
 <h1 id="Employeeheading">Employees</h1>
@@ -22,7 +21,7 @@ function Members()
 data?.data?.length>0 && data.data.map((Employee,index)=>
 {
   return(
-    <div className="employeeRow">
+    <div className="employeeRow" key={index}>
     <ul>
       <li>{index+1}</li>
       <li>{Employee.fname +" "+Employee.lname}</li>

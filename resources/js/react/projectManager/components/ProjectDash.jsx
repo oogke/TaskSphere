@@ -1,55 +1,104 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../assets/css/projectDash.css';
-import useFetch from "../../hooks/UseFetch";
 import { useNavigate,useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
 
 function ProjectDash() {  
-     const location= useLocation();
+    
+    // const { data, loading: projectLoading, error: projectError } = useFetch(`/api/projectShow/${selectedProjectId}`);
+    //  const {data: workspaceData, loading: workspaceLoading, error: workspaceError }= useFetch(`/api/workspaceExtract/${selectedProjectId}`);
+    
+    
+    const location= useLocation();
     const { selectedProjectId } = location.state; 
-    const {data, loading, error } = useFetch(`/api/projectShow/${selectedProjectId}`);
-    const {data: workspace, loading1 ,error2}= useFetch(`/api/workspaceExtract/${selectedProjectId}`);
- const navigate=useNavigate();
-    // const projectId= selectedProjectId; 
+    const navigate=useNavigate();
+    
+    const [projectData, setProjectData] = useState(null);
+    const [workspaceData, setWorkspaceData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [workspaceId,setWorkspaceId]=useState(null);
+   
+        const WorkspaceDash=(id)=>
+        {
+            setWorkspaceId(id);
+            navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+        }
+    useEffect(() => {
+        // Fetch project details
+        const fetchProjectData = async () => {
+          try {
+            const response = await fetch(`/api/projectShow/${selectedProjectId}`);
+            if (!response.ok) throw new Error('Failed to fetch project data');
+            const data = await response.json();
+            console.log(data);
+            setProjectData(data.data); // assuming data.data is the required info
+          } catch (err) {
+            setError(err.message);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        // Fetch workspaces
+        const fetchWorkspaceData = async () => {
+            try {
+              const response = await fetch(`/api/workspaceExtract/${selectedProjectId}`);
+              if (!response.ok) throw new Error('Failed to fetch workspaces');
+              const data = await response.json();
+              console.log(data); // Check that data.data contains the array
+              setWorkspaceData(data.data); // Set the array from the `data` property
+            } catch (err) {
+              setError(err.message);
+            } finally {
+              setLoading(false);
+            }
+          };
+    
+        // Call fetch functions together
+        fetchProjectData();
+        fetchWorkspaceData();
+      }, [selectedProjectId]);
+    
    const CreateWorkspace=()=>
    {
-    
     navigate('/react/projectManager/workspaceCreateForm');
    }
     return (
     <>
       <div className="project-dash-wrapper">
-            <h1>{data?.data?.name}</h1>
+            <h1>{projectData?.name}</h1>
             <button id="createWorkspace" onClick={CreateWorkspace}>Create Workspace</button>
 
             <div className="projectIntro">
                 <h2>Project Details</h2>
                 <div className="details">
-                    <div><span>Name:</span><p>{data?.data?.name}</p></div>
-                    <div><span>Description:</span><p>{data?.data?.description}</p></div>
-                    <div><span>Start Date:</span><p>{data?.data?.sdate}</p></div>
-                    <div><span>End Date:</span><p>{data?.data?.edate}</p></div>
+                    <div><span>Name:</span><p>{projectData?.name}</p></div>
+                    <div><span>Description:</span><p>{projectData?.description}</p></div>
+                    <div><span>Start Date:</span><p>{projectData?.sdate}</p></div>
+                    <div><span>End Date:</span><p>{projectData?.edate}</p></div>
                     <div><span>Members:</span> 
                     <div>
-    {data?.data?.members?.includes('[') && (JSON.parse(data?.data?.members)?.map((member, index) => (
+    {projectData?.members?.includes('[') && (JSON.parse(projectData?.members)?.map((member, index) => (
       <p key={index}>{member}</p>
 )))}
   </div>
   </div>
-                    <div><span>Leader:</span><p>{data?.data?.leader}</p></div>
-                    <div><span>Workspace Count:</span><p>{data?.data?.workspaceCount}</p></div>
-                    <div><span>Status:</span><p>{data?.data?.status}</p></div>
+                    <div><span>Leader:</span><p>{projectData?.leader}</p></div>
+                    <div><span>Workspace Count:</span><p>{projectData?.workspaceCount}</p></div>
+                    <div><span>Status:</span><p>{projectData?.status}</p></div>
                 </div>
             </div>
 
      <h1>Workspaces</h1>  
 <div className="projectDashWorkspaceIndex">
-    {workspace?.length > 0 ? (
-        workspace.map((workspace, index) => (
+    {workspaceData?.length > 0 ? (
+        workspaceData.map((workspace, index) => (
             <div key={index} className="ProjectWorkspaceData">
                 <ul>
                     <li><strong>{workspace?.name}</strong></li>
-                    <li><button className="statusBtn">Open</button></li>
+                    <li><button className="statusBtn" onClick={() => WorkspaceDash(workspace.id)}>Open</button></li>
                 </ul>
             </div>
         ))

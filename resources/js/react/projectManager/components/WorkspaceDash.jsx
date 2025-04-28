@@ -13,9 +13,7 @@ import { useLocation } from "react-router-dom";
 function WorkspaceDash() {
     const [activeTab, setActiveTab] = useState(null);
     const location= useLocation();
-    const { selectedWorkspaceId } = location.state;
-   console.log(selectedWorkspaceId);
-
+    const { workspaceId } = location.state;
     const renderComment = () => {
         setActiveTab("commentSpan");
     }
@@ -28,12 +26,11 @@ function WorkspaceDash() {
 
     // function to choose which content to show
     const renderContent = () => {
-        if (activeTab === "commentSpan") return <Comment />;
-        if (activeTab === "taskSpan") return <WorkspaceTask />;
-        if (activeTab === "memberSpan") return <Member />;
-        return <Comment /> 
+        if (activeTab === "commentSpan") return <Comment id={workspaceId}/>;
+        if (activeTab === "taskSpan") return <WorkspaceTask id={workspaceId}/>;
+        if (activeTab === "memberSpan") return <Member id={workspaceId}/>;
+        return <Comment id={workspaceId}/> 
     }
-
     return (
         <>
             <div className="headBar">

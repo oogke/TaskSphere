@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Workspace;
 use Illuminate\Http\Request;
@@ -11,7 +12,16 @@ use Illuminate\Support\Facades\Validator;
 
 class WorkspaceController extends BaseController
 {
-public function workspaceDash()
+
+public function workspaceTask(string $id)
+{
+$tasks= Task::where('workspaceId', $id)->get();
+return $this->sendResponse($tasks,"All the workspace Task");
+
+
+}
+
+    public function workspaceDash()
 {
     return view('project-manager.projects.workspaces.workspace-dash');
 }

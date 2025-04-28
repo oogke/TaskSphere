@@ -3,9 +3,9 @@ import '../assets/css/comment.css';
 import useFetch from "../../hooks/UseFetch";
 
 
-function Comment() {
-         const { data, loading, error } = useFetch("/api/projectIndex/7");
-          console.log(data);
+function Comment({id}) {
+        console.log(id);  
+        const { data, loading, error } = useFetch("/api/projectIndex/7");
   return (
     <>
       <div className="commentTopBar">

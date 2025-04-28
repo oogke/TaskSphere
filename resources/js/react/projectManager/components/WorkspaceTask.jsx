@@ -1,12 +1,17 @@
 import React from "react";
 import '../assets/css/workspaceTask.css'
-function WorkspaceTask()
+import useFetch from "../../hooks/UseFetch";
+import { useLocation } from "react-router-dom";
+function WorkspaceTask({id})
 {
+    const location= useLocation();
+    const {workspaceId}= location.state;
+    const {data,loading,error}=useFetch(`/api/workspaceTask/${workspaceId}`);
     return(
         <>
-        <div class="pmthirdDiv">
+        <div className="pmthirdDiv">
 <h1 id="pmheading">Tasks</h1>
-<div class="pmtable-container">
+<div className="pmtable-container">
         <table>
             <thead>
                 <tr>
@@ -22,28 +27,23 @@ function WorkspaceTask()
                 </tr>
             </thead>
             <tbody id="pmTaskTableBody">
-                <tr>
-                    <td>1</td>
-                    <td>Website Redesign</td>
-                    <td>Update homepage layout</td>
-                    <td>johndoe</td>
-                    <td>2025-04-10</td>
-                    <td>2025-04-20</td>
-                    <td>Ongoing</td>
-                    <td>High</td>
-                    <td>2025-04-21 14:30</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>API Fix</td>
-                    <td>Resolve login issues</td>
-                    <td>janedoe</td>
-                    <td>2025-04-15</td>
-                    <td>2025-04-18</td>
-                    <td>Completed</td>
-                    <td>Medium</td>
-                    <td>2025-04-19 10:00</td>
-                </tr>
+                {data?.data?.length>0 && data?.data?.map((task,index)=>
+                {
+                    return(
+                       <tr key={index}>
+                    <td>{index+1}</td>
+                    <td>{task.name}</td>
+                    <td>{task.description}</td>
+                    <td>{task.employee}</td>
+                    <td>{task.sdate}</td>
+                    <td>{task.edate}</td>
+                    <td>{task.status}</td>
+                    <td>{task.priority}</td>
+                    <td>{task.created_at}</td>
+                </tr>  
+                    );
+                })}
+               
             </tbody>
         </table>
     </div>
