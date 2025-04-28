@@ -6,6 +6,9 @@ import { useState } from 'react';
 
 function ProjectDash() {  
     
+    // const { data, loading: projectLoading, error: projectError } = useFetch(`/api/projectShow/${selectedProjectId}`);
+    //  const {data: workspaceData, loading: workspaceLoading, error: workspaceError }= useFetch(`/api/workspaceExtract/${selectedProjectId}`);
+    
     
     const location= useLocation();
     const { selectedProjectId } = location.state; 
@@ -20,7 +23,7 @@ function ProjectDash() {
         const WorkspaceDash=(id)=>
         {
             setWorkspaceId(id);
-            navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+            navigate('/react/user/workspaceDash',{state:{workspaceId :id}});
         }
     useEffect(() => {
         // Fetch project details
@@ -58,16 +61,10 @@ function ProjectDash() {
         fetchWorkspaceData();
       }, [selectedProjectId]);
     
-   const CreateWorkspace=()=>
-   {
-    navigate('/react/projectManager/workspaceCreateForm');
-   }
     return (
     <>
       <div className="project-dash-wrapper">
             <h1>{projectData?.name}</h1>
-            <button id="createWorkspace" onClick={CreateWorkspace}>Create Workspace</button>
-
             <div className="projectIntro">
                 <h2>Project Details</h2>
                 <div className="details">

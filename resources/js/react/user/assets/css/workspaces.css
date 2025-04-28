@@ -17,7 +17,7 @@
     color: #0f172a; /* deep navy */
   }
   
-  .workspaceIndex {
+  .workspacesIndex {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
@@ -26,7 +26,7 @@
     padding: 20px;
   }
   
-  .workspaceCard {
+  .workspacesCard {
     background-color: #1e293b; /* slate-800 */
     border-radius: 20px;
     padding: 25px;
@@ -35,12 +35,12 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
- .workspaceCard:hover {
+ .workspacesCard:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(16, 185, 129, 0.3);
   }
   
-  .workspaceCard ul {
+  .workspacesCard ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -52,13 +52,13 @@
     align-items: center;
   }
   
-  .workspaceCard ul li {
+  .workspacesCard ul li {
     font-size: 1.1rem;
     margin: 6px 0;
     color: #e2e8f0;
   }
   
-  .workspaceBtn {
+  .workspacesBtn {
     width: 80px;
     height: 35px;
     color: white;
@@ -72,7 +72,7 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   }
   
-  .workspaceBtn:hover {
+  .workspacesBtn:hover {
     background-color: #22c55e;
   }
   

@@ -1,7 +1,11 @@
 import React from "react";
 import '../assets/css/comment.css'; 
+import useFetch from "../../hooks/UseFetch";
 
-function Comment() {
+
+function Comment({id}) {
+        console.log(id);  
+        const { data, loading, error } = useFetch("/api/projectIndex/7");
   return (
     <>
       <div className="commentTopBar">

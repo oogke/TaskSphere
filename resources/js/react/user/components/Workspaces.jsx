@@ -1,83 +1,32 @@
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
 import '../assets/css/workspaces.css';
+import { useState } from "react";
+
 
 function Workspaces() {
-    const { data, loading, error } = useFetch("/api/workspaceIndex");
-
+    const {data, loading, error } = useFetch("/api/workspaceIndex");
+   const [workspaceId,setWorkspaceId]=useState(null);
+const navigate= useNavigate();
+    const WorkspaceDash=(id)=>
+    {
+        setWorkspaceId(id);
+        navigate('/react/user/workspaceDash',{state:{workspaceId :id}});
+    }
     return (
         <>
-            <h1 id="workspaceHeading">Workspaces</h1>
-
-            <div className="workspaceIndex">
-                <div className="workspaceCard">
-                    <ul>
-                        <li>TaskSphere</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>SwiftStay</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>Ownah</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>Mental Health Support System</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>Soul</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>Soul API</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>Soul API</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>Soul API</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>Soul API</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
-
-                <div className="workspaceCard">
-                    <ul>
-                        <li>Soul API</li>
-                        <li><button className="workspaceBtn">Open</button></li>
-                    </ul>
-                </div>
+ <h1 id="workspaceHeading">Workspaces</h1> 
+            <div className="workspacesIndex">
+                {data?.data?.length > 0 && data?.data?.map((workspace, index) => {
+                    return (  // Add return here
+                        <div key={index} className="workspacesCard">
+                            <ul>
+                                <li>{workspace?.name}</li>
+                                <li><button className="workspacesBtn" onClick={() => WorkspaceDash(workspace.id)}>Open</button></li>
+                            </ul>
+                        </div>
+                    );
+                })}
             </div>
         </>
     );

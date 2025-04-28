@@ -7,7 +7,9 @@ import Projects from './components/Projects';
 import Tasks from './components/Tasks';
 import Workspaces from './components/Workspaces';
 import UserDash from './components/UserDash';
-
+import ProjectDash from './components/ProjectDash';
+import WorkspaceDash from './components/WorkspaceDash';
+import Comment from './components/Comment';
 const App = () => {
     return (
         <BrowserRouter>
@@ -17,6 +19,9 @@ const App = () => {
       <Route path="/react/user/tasks" element={<Tasks />} />
       <Route path="/react/user/attendances" element={<Attendances />} />
       <Route path="/react/user/userdash" element={<UserDash />} />
+      <Route path="/react/user/projectDash" element={<ProjectDash />} />
+      <Route path="/react/user/comments" element={<Comment />} />
+      <Route path="/react/user/workspaceDash" element={<WorkspaceDash />} />
           </Routes>
         </BrowserRouter>
       );

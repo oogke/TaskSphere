@@ -28,8 +28,6 @@ const App = () => {
       <Route path="/react/projectManager/comments" element={<Comment />} />
       <Route path="/react/projectManager/members" element={<Members />} />
       <Route path="/react/projectManager/workspaceDash" element={<WorkspaceDash />} />
-      
-
           </Routes>
         </BrowserRouter>
       );
