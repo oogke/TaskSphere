@@ -57,9 +57,9 @@ Route::get('/projectView' ,[ProjectController::class,'projectView'])->name('proj
 Route::get('/taskView' ,[TaskController::class,'taskView'])->name('taskView');
 
 
-Route::get('/workspaceDash/{id}' ,[WorkspaceController::class,'workspaceDash'])->name('workspaceDash');
-Route::get('/projectDash/{id}' ,[ProjectController::class,'projectDash'])->name('projectDash');
-Route::get('/taskDash/{id}' ,[TaskController::class,'taskDash'])->name('taskDash');
+// Route::get('/workspaceDash/{id}' ,[WorkspaceController::class,'workspaceDash'])->name('workspaceDash');
+// Route::get('/projectDash/{id}' ,[ProjectController::class,'projectDash'])->name('projectDash');
+// Route::get('/taskDash/{id}' ,[TaskController::class,'taskDash'])->name('taskDash');
 // workspaceExtract
 Route::get('/workspaceExtract/{id}' , [ProjectController::class,'workspaceExtract'])->name('workspaceExtract');
 
@@ -73,17 +73,17 @@ Route::get('/workspaceUpdateView',[WorkspaceController::class,'workspaceUpdateVi
 Route::get('/taskUpdateView',[TaskController::class,'taskUpdateView'])->name('taskUpdateView');
 
 
-Route::get('/userDash/{id}' ,[UserController::class,'update'])->name('userDash');
-Route::get('/projectManagerDash/{id}' ,[ProjectManagerController::class,'update'])->name('projectManagerDash');
-Route::get('/adminDash/{id}' ,[AdminController::class,'update'])->name('adminDash');
+Route::get('/userDash/{id}' ,[UserController::class,'update'])->name('userDashUpdate');
+Route::get('/projectManagerDash/{id}' ,[ProjectManagerController::class,'update'])->name('projectManagerDashUpdate');
+Route::get('/adminDash/{id}' ,[AdminController::class,'update'])->name('adminDashUpdate');
 
-Route::get('/userDash' ,[UserController::class,'show'])->name('userDash');
-Route::get('/projectManagerDash' ,[ProjectManagerController::class,'show'])->name('projectManagerDash');
-Route::get('/adminDash' ,[AdminController::class,'show'])->name('adminDash');
+Route::get('/userDashShow' ,[UserController::class,'show'])->name('userDashShow');
+Route::get('/projectManagerDashShow' ,[ProjectManagerController::class,'show'])->name('projectManagerDashShow');
+Route::get('/adminDashShow' ,[AdminController::class,'show'])->name('adminDashShow');
 
-Route::get('/userDash' ,[UserController::class,'destroy'])->name('userDash');
-Route::get('/projectManagerDash' ,[ProjectManagerController::class,'destroy'])->name('projectManagerDash');
-Route::get('/adminDash' ,[AdminController::class,'update'])->name('destroy');
+Route::get('/userDashDestroy' ,[UserController::class,'destroy'])->name('userDashDestroy');
+Route::get('/projectManagerDashDestroy' ,[ProjectManagerController::class,'destroy'])->name('projectManagerDashDestroy');
+Route::get('/adminDashDestroy' ,[AdminController::class,'update'])->name('destroyDestroy');
 
 Route::get('/userDash' ,[UserController::class,'userDash'])->name('userDash');
 Route::get('/projectManagerDash' ,[ProjectManagerController::class,'projectManagerDash'])->name('projectManagerDash');

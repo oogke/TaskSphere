@@ -19,6 +19,7 @@
       display: flex;
       height: 100vh;
       flex-direction: row;
+      padding: 0 !important;
     }
 
     .sidebar {

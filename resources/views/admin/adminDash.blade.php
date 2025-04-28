@@ -18,6 +18,7 @@
       display: flex;
       height: 100vh;
       flex-direction: row;
+      padding: 0 !important;
     }
 
     .sidebar {
@@ -80,13 +81,6 @@
     <a href="#">Settings</a>
     <a href="#">Logout</a>
   </div>
-  <!-- <Route path="/react/admin/projects" element={<Projects />} />
-      <Route path="/react/admin/workspaces" element={<Workspaces />} />
-      <Route path="/react/admin/tasks" element={<Tasks />} />
-      <Route path="/react/admin/attendances" element={<Attendances />} />
-      <Route path="/react/admin/comments" element={<Comment />} />
-      <Route path="/react/admin/createNotices" element={<CreateNotices />} />
-      <Route path="/react/admin/notices" element={<Notice />} /> -->
   <div id="main">
    
    

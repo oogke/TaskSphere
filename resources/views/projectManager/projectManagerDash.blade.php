@@ -18,6 +18,7 @@
       display: flex;
       height: 100vh;
       flex-direction: row;
+      padding: 0 !important;
     }
 
     .sidebar {
@@ -58,7 +59,6 @@
       background-color: #f1f5f9;
       overflow-y: auto;
       height: 100%;
-    
     }
   </style>
 </head>
