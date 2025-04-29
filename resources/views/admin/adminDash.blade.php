@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/c5a4938a4c.js" crossorigin="anonymous"></script>
   <title>Admin Dashboard</title>
@@ -58,20 +59,13 @@
     
     }
 
-    .toggle-btn {
-      display: none;
-      background-color: #1e293b;
-      color: white;
-      padding: 10px;
-      cursor: pointer;
-    }
-
   </style>
 </head>
 <body>
 
   <div class="sidebar" id="sidebar">
     <h2>Tasksphere</h2> 
+  <a href="#" onclick="navigateTo('/react/admin/attendances')">Dashboard</a>
   <a href="#" onclick="navigateTo('/react/admin/attendances')">Attendance</a>
   <a href="#" onclick="navigateTo('/react/admin/comments')">Comment</a>
   <a href="#" onclick="navigateTo('/react/admin/createNotices')">Create Notices</a>

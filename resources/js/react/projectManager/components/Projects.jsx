@@ -13,9 +13,15 @@ function Projects() {
         setSelectedProjectId(id);
         navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
       };
+      const goToProjectForm=()=>
+      {
+        navigate('/react/projectManager/projectCreateForm');
+
+      }
     return (
         <>
             <h1 id="projectHeading">Projects</h1>
+            <button className="createProject" onClick={goToProjectForm} >Create Project</button>
             <div className="topBar">
                 <i className="fa-solid fa-filter btn btn-link" id="filter"></i>
             </div>

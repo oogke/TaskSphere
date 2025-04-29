@@ -108,27 +108,7 @@
 {
     margin: 0 20px 10px 0 ;
 }
-        /* Modal */
-        /* .modal-content {
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .modal-header {
-            border-bottom: none;
-        }
-
-        .modal-footer {
-            border-top: none;
-        }
-
-        .modal-body input {
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
-            width: 100%;
-        } */
+      
 
         .scodeEnter, .acceptConfirmBtn, .rejectConfirmBtn {
             width: 100%;

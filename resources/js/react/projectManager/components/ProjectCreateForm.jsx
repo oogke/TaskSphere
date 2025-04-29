@@ -20,13 +20,14 @@ export default function ProjectCreateForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // Later, send this to your backend
+    console.log(formData); 
   };
 
   return (
     <div className="form-container">
       <h2 className="form-title">Create New Project</h2>
       <form onSubmit={handleSubmit} className="form-content">
+        @csrf
         <div className="form-group">
           <label className="form-label">Project Name</label>
           <input
