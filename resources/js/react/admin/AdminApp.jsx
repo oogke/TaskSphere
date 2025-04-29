@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import Attendances from './components/Attendances';
 import Notice from './components/Notice';
 import CreateNotices from './components/CreateNotices';
 import Comment from './components/Comment';
 import Employees from './components/Employees';
 import RegisterApplication from './components/RegisterApplication';
+
+
 const App = () => {
     return (
         <BrowserRouter>

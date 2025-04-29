@@ -1,32 +1,28 @@
 import { useState } from "react";
 
-export default function useDelete(url) {
+export default function useDelete() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
-    let isMounted = true;
-    fetch(url, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (isMounted) {
-          setData(data);
-        }
-      })
-      .catch((error) => {
-        if (isMounted) {
-          setError(error);
-        }
-      })
-      .finally(() => {
-        if (isMounted) {
-          setLoading(false);
-        }
+  const DeleteData = async (url) => {
+    setLoading(true);
+    try {
+      const res = await fetch(url, {
+        method: "DELETE",
       });
-    return () => {
-      isMounted = false;
-    };
-  return { loading, error, data };
+      const data = await res.json();
+      setData(data);
+      return data;
+    } catch (error) {
+      console.error("Error:", error);
+      setError(error);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+
+  return { DeleteData, loading, error, data };
 }

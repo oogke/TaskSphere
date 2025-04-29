@@ -1,36 +1,34 @@
 import { useState } from "react";
 
-export default function useDelete(url,input) {
-  const [loading, setLoading] = useState(true);
+export default function usePost() {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
-    let isMounted = true;
-    fetch(url, {
-      method: "DELETE",
-      header:{
-        'Content-Type':'application/json'
+  const postData = (url, input) => {
+    setLoading(true);
+    setError(null);
+
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      body:input
+      body: JSON.stringify(input)
     })
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then((data) => {
-        if (isMounted) {
-          setData(data);
-        }
+        setData(data);     
+        return data;        
       })
       .catch((error) => {
-        if (isMounted) {
-          setError(error);
-        }
+        setError(error);
+        throw error;       
       })
       .finally(() => {
-        if (isMounted) {
-          setLoading(false);
-        }
+        setLoading(false);
       });
-    return () => {
-      isMounted = false;
-    };
-  return { loading, error, data };
+  };
+
+  return { postData, loading, error, data };
 }

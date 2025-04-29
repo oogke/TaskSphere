@@ -21,11 +21,12 @@ Route::post('/emailverify', [AuthController::class,'emailVerify'])->name('regist
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('/RegisterApplication',[EmployeeController::class,'EmployeeRegisterData'])->name('RegisterApplication');
 Route::post('/passScode',[EmployeeController::class,'ScodeOperation'])->name('PassScode');
-Route::post('/removeData',[EmployeeController::class,'removeData'])->name('removeData');
+Route::delete( '/removeData/{applicationId}',[EmployeeController::class,'removeData'])->name('removeData');
 Route::post('/rejection',[EmployeeController::class,'rejection'])->name('rejection');
 
 Route::get("/userIndex",[UserController::class,'index'])->name("getUserData");
 Route::get('/employeedata',[EmployeeController::class,'EmployeeData'])->name('EmployeeData');
+Route::get('/allApplication',[EmployeeController::class,'registerApplication'])->name('All regsiter Applications');
 
 Route::get('/taskIndex',[TaskController::class,'index'])->name('taskIndex');
 Route::get('/workspaceIndex',[WorkspaceController::class,'index'])->name('workspaceIndex');

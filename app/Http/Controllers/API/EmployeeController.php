@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
 use App\Models\userVerifQueue;
 use Illuminate\Http\Request;
@@ -10,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends BaseController
 {
+    public function registerApplication()
+    {
+        $userApplication = userVerifQueue::all();
+        return $this->sendResponse($userApplication,"All Register Application");
+
+    }
     public function index()
     {
         $users = User::all();
@@ -45,7 +50,6 @@ public function ScodeOperation(Request $request)
     $scode=$request->input('scode');
     $role=$request->input('role');
   $userApplication= userVerifQueue::where('id',$applicationId)->first();
-
   $user = User::create([
     'fname'=>$userApplication['fname'],
     'lname'=>$userApplication['lname'],
@@ -56,16 +60,18 @@ public function ScodeOperation(Request $request)
     'role'=>$role
   ]);
   return $this->sendResponse($user, 'user registered successfully');
-
 }
 
-public function removeData(Request $request)
+public function removeData($applicationId)
 {
-    $applicationId= $request->input('applicationId');
+    
+
     $user= userVerifQueue::where("id",$applicationId)->delete();
+    
     if($user)
+    
     {
-        return $this->sendResponse([], 'user deleted Successfully');
+        return $this->sendResponse($user, 'user deleted Successfully');
     }
 }
 public function rejection(Request $request)
