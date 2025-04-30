@@ -69,7 +69,7 @@ return View('projectManager.projects.workspaces.updateWorkspace',compact('worksp
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date', 
-            'leader' => 'required|array',
+            'leader' => 'required',
             'employee' => 'required|array'
            
         ]);

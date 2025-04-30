@@ -16,8 +16,13 @@ export default function usePost() {
       },
       body: JSON.stringify(input)
     })
-      .then((response) => response.json())
+      .then((response) =>
+        {
+          console.log(response);
+      return response.json()   
+        } )
       .then((data) => {
+        console.log(data);
         setData(data);     
         return data;        
       })

@@ -78,6 +78,7 @@
   <a href="#" onclick="navigateTo('/react/projectManager/comments')">Comments</a>
   <a href="#" onclick="navigateTo('/react/projectManager/members')">Members</a>
   <a href="#" onclick="navigateTo('/react/projectManager/workspaceDash')">Workspace Dash</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/profile')">Profile</a>
     <a href="#">Notices</a>
     <a href="#">Settings</a>
     <a href="#">Logout</a>

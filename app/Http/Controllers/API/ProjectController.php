@@ -77,15 +77,14 @@ class ProjectController extends BaseController
             'description' => 'required|string',
             'sdate' => 'required|date',
             'edate' => 'required|date',
-            'leader' => 'required|array',
+            'leader' => 'required',
             'employee' => 'required|array'
 
         ]);
         if ($validate->fails()) {
             return $this->sendError("Validation Error", $validate->errors()->all(), 402);
         }
-
-
+        
         $employee = json_encode($request->employee);
         $leader = json_encode($request->leader);
         $project = Project::create([

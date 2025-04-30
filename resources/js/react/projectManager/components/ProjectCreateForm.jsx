@@ -1,33 +1,44 @@
 import { useState } from "react";
-import "../assets/css/ProjectCreateForm.css"; 
+import "../assets/css/ProjectCreateForm.css";
+import usePost from "../../hooks/usePost";
+import useFetch from "../../hooks/UseFetch";
 
 export default function ProjectCreateForm() {
+  const { postData } = usePost();
+  const { data: employees, loading: loading1, error: error1 } = useFetch("/api/allUsers");
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     sdate: "",
     edate: "",
-    members: "",
-    leader: "",
-    workspaceCount: "",
-    status: "",
+    employee: [], 
+    leader: ""
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, selectedOptions } = e.target;
+
+    if (name === "employee") {
+      const selectedValues = Array.from(selectedOptions, (opt) => opt.value);
+      setFormData((prev) => ({ ...prev, employee: selectedValues }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); 
+    const result = await postData("/api/projectCreate", formData);
+  
+    if (result?.status === true) {
+      alert("project is created");
+    }
   };
 
   return (
     <div className="form-container">
       <h2 className="form-title">Create New Project</h2>
       <form onSubmit={handleSubmit} className="form-content">
-        @csrf
         <div className="form-group">
           <label className="form-label">Project Name</label>
           <input
@@ -76,57 +87,39 @@ export default function ProjectCreateForm() {
         </div>
 
         <div className="form-group">
-          <label className="form-label">Members (comma-separated)</label>
-          <input
-            type="text"
-            name="members"
-            placeholder='e.g. "Liam, Olivia, Ethan"'
-            className="form-input"
-            value={formData.members}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
           <label className="form-label">Leader</label>
-          <input
-            type="text"
+          <select
             name="leader"
             className="form-input"
             value={formData.leader}
             onChange={handleChange}
             required
-          />
+          >
+            {employees?.data?.length > 0 &&
+              employees.data.map((employee, index) => (
+                <option value={employee.id} key={index}>
+                  {employee.fname+" "+employee.lname}
+                </option>
+              ))}
+          </select>
         </div>
 
         <div className="form-group">
-          <label className="form-label">Workspace Count</label>
-          <input
-            type="number"
-            name="workspaceCount"
-            min="1"
-            className="form-input"
-            value={formData.workspaceCount}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="form-label">Status</label>
+          <label className="form-label">Employee</label>
           <select
-            name="status"
+            name="employee"
             className="form-input"
-            value={formData.status}
+            value={formData.employee}
             onChange={handleChange}
+            multiple
             required
           >
-            <option value="">Select Status</option>
-            <option value="on hold">On Hold</option>
-            <option value="in progress">In Progress</option>
-            <option value="completed">Completed</option>
-            <option value="not started">Not Started</option>
+            {employees?.data?.length > 0 &&
+              employees.data.map((employee, index) => (
+                <option value={employee.id} key={index}>
+                  {employee.fname+" "+employee.lname}
+                </option>
+              ))}
           </select>
         </div>
 

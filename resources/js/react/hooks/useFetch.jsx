@@ -20,7 +20,9 @@ fetch(url)
 })
 .then((json)=>
 {
-    if(isMounted)setData(json)
+    if(isMounted){
+        console.log(json);
+        setData(json)}
 }).catch(error=>
 {
     if(isMounted)setError(error)

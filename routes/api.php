@@ -91,4 +91,5 @@ Route::get('/projectManagerDash' ,[ProjectManagerController::class,'projectManag
 Route::get('/adminDash' ,[AdminController::class,'adminDash'])->name('adminDash');
 
 Route::get('/allUsers',[EmployeeController::class,'index'])->name('Allusers');
+Route::get('/specificUser/{id}',[EmployeeController::class,'show'])->name('specificUser');
 Route::get('/workspaceTask/{id}',[WorkspaceController::class,'workspaceTask'])->name("workspaceTask");

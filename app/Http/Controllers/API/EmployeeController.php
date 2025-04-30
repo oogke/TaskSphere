@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends BaseController
 {
+
+    public function show(string $id)
+    {
+        $user=User::where("id",$id)->first();
+        return $this->sendResponse($user,"The specific User");
+    }
     public function registerApplication()
     {
         $userApplication = userVerifQueue::all();
