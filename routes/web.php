@@ -48,6 +48,7 @@ Route::view('/design/userDash','design/userDashDesign')->name('userDashDesign');
 Route::view('/design/projectIndex','design/projectIndex')->name('projectIndexDesign');
 Route::view('/design/workspaceIndex','design/workspaceIndex')->name('workspaceIndexDesign');
 Route::view('/design/taskIndex','design/taskIndex')->name('taskIndexDesign');
+Route::view('/design/attendance','design/attendance')->name('attendance');
 
 Route::view('/commentBoard','design/comment');
 Route::view('/members','design/members');
