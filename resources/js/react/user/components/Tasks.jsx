@@ -28,32 +28,36 @@ return (
                     <th>Status</th>
                     <th>Priority</th>
                     <th>Updated At</th>
+                    <th>Response</th>
                 </tr>
             </thead>
             <tbody id="TaskTableBody">
                
-                <tr>
-                    <td>1</td>
-                    <td>Website Redesign</td>
-                    <td>Update homepage layout</td>
-                    <td>johndoe</td>
-                    <td>2025-04-10</td>
-                    <td>2025-04-20</td>
-                    <td>Ongoing</td>
-                    <td>High</td>
-                    <td>2025-04-21 14:30</td>
+               {data?.data?.length>0 && data?.data?.map((task,index)=>
+               {
+                return(
+ <tr>
+                    <td>{index+1}</td>
+                    <td>{task.name}</td>
+                    <td>{task.description}</td>
+                    <td>{task.employee}</td>
+                    <td>{task.sdate}</td>
+                    <td>{task.edate}</td>
+                    <td>{task.status}</td>
+                    <td>{task.priority}</td>
+                    <td>{task.updated_at}</td>
+                    <td className="ResponseTd">
+                        <button className="TaskResponseBtn UpdateBtn">Update</button>
+                        <button className="TaskResponseBtn DeleteBtn">Delete</button>
+                    </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>API Fix</td>
-                    <td>Resolve login issues</td>
-                    <td>janedoe</td>
-                    <td>2025-04-15</td>
-                    <td>2025-04-18</td>
-                    <td>Completed</td>
-                    <td>Medium</td>
-                    <td>2025-04-19 10:00</td>
-                </tr>
+
+                )
+               })
+
+               }
+               
+          
             </tbody>
         </table>
     </div>

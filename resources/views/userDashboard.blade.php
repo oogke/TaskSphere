@@ -81,6 +81,7 @@
     <a href="#" onclick="navigateTo('/react/user/workspaces')">Workspaces</a>
     <a href="#" onclick="navigateTo('/react/user/tasks')">Tasks</a>
     <a href="#" onclick="navigateTo('/react/user/attendances')">Attendance</a>
+    <a href="#" onclick="navigateTo('/react/user/comments')">Discussion Forum</a>
     <a href="#">Notices</a>
     <a href="#">Settings</a>
     <a href="#">Logout</a>

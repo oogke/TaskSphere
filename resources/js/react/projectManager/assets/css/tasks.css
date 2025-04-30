@@ -47,10 +47,8 @@ table {
 }
 
 thead {
-    position: sticky;
-    top: 0;
+    /* position: sticky; */
     background-color: #1e293b;
-    z-index: 1;
 }
 
 th, td {
@@ -64,7 +62,7 @@ th {
 }
 
 tbody tr:hover {
-    background-color: #334155;
+    background-color: #707884;
 }
 
 @media screen and (max-width: 768px) {
@@ -81,3 +79,31 @@ tbody tr:hover {
         font-size: 1.5rem;
     }
 }
+.TaskResponseBtn
+{
+    width: 70px;
+    height: 40px;
+    color: white;
+    border: 1px solid black;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.TaskResponseBtn:hover{
+    background-color: #707884;
+}
+.UpdateBtn
+{
+    background-color: #1e293b;
+}
+.DeleteBtn
+{
+    background-color: #1e293b
+}
+/* .ResponseTd
+{
+    height: initial;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+} */

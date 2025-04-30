@@ -65,9 +65,9 @@
 
   <div class="sidebar" id="sidebar">
     <h2>Tasksphere</h2> 
-  <a href="#" onclick="navigateTo('/react/admin/attendances')">Dashboard</a>
+  <a href="#" onclick="navigateTo('/react/admin/ProjectDash')">Dashboard</a>
   <a href="#" onclick="navigateTo('/react/admin/attendances')">Attendance</a>
-  <a href="#" onclick="navigateTo('/react/admin/comments')">Comment</a>
+  <a href="#" onclick="navigateTo('/react/admin/comments')">Discussion Forum</a>
   <a href="#" onclick="navigateTo('/react/admin/createNotices')">Create Notices</a>
   <a href="#" onclick="navigateTo('/react/admin/notices')">Notices</a>
   <a href="#" onclick="navigateTo('/react/admin/employees')">Employees</a>

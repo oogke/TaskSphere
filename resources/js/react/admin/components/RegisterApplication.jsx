@@ -24,6 +24,7 @@ const { DeleteData,  loading:loading2, error:error2 ,data: deleteResult} = useDe
 const HandleReject = (id) => {
   setSelectedAppId(id);
   setShowRejectModal(true); 
+  
 }
 const handleSubmit=async (e)=>
 {

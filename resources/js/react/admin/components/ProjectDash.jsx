@@ -5,8 +5,6 @@ import { useState } from 'react';
 
 
 function ProjectDash() {  
-    
-    
     const location= useLocation();
     const { selectedProjectId } = location.state; 
     const navigate=useNavigate();
