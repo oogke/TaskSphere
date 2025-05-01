@@ -3,8 +3,8 @@ import "../assets/css/taskForm.css";
 import useFetch from "../../hooks/UseFetch";
 
 function TaskForm() {
-  const {data:workspaces,loading:loadingWorkspace,error:errorWorkspace}=useFetch("/api/projectIndex");
-  const {data:projects,loading:loadingProject,error:errorProject}=useFetch("/api/workspaceIndex");
+  const {data:workspaces,loading:loadingWorkspace,error:errorWorkspace}=useFetch("/api/workspaceIndex");
+  const {data:projects,loading:loadingProject,error:errorProject}=useFetch("/api/projectIndex");
   const { data: employees, loading: loading1, error: error1 } = useFetch("/api/allUsers");
   const [formData, setFormData] = useState({
     name: "",

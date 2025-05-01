@@ -120,10 +120,13 @@
                if(data.status == true) {
                     const token = data.token;
                     localStorage.setItem('token', token);
-                    if (localStorage.getItem('token')) {
-                        localStorage.setItem('isLoggedIn', 'true');
-                        window.location.href = "/";
-                    }
+                    if (data.role === "admin") {
+            window.location.href = "/api/adminDash";
+        } else if (data.role === "Project Manager") {
+            window.location.href = "/api/projectManagerDash";
+        } else {
+            window.location.href = "/api/userDash";
+        }
                } else {
                     alert(data.message);
                }

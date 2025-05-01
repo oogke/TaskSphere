@@ -16,7 +16,7 @@ const [formData,setFormData]=useState({
     edate:"",
     status:"Not started",
     priority:"",
-    workspaceId:"public"
+    workspaceId:id
 });
 const navigate= useNavigate();
 const handleInputChange=(e)=>

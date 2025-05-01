@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class WorkspaceController extends BaseController
 {
 
+
+    public function OneWorkspace(string $id)
+    {
+        $workspace= Workspace::where('workspaceId',$id)->first();
+        return $this->sendResponse($workspace," one Workspace");
+    }
 public function workspaceTask(string $id)
 {
 $tasks= Task::where('workspaceId', $id)->get();

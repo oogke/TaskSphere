@@ -2,18 +2,22 @@ import React from "react";
 import '../assets/css/workspaceTask.css'
 import useFetch from "../../hooks/UseFetch";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 function WorkspaceTask({id})
 {
     const location= useLocation();
     const {workspaceId}= location.state;
     const {data,loading,error}=useFetch(`/api/workspaceTask/${workspaceId}`);
+    const navigate=useNavigate();
+    const assignTask=(workspaceId)=>
+    {
+        navigate("/react/projectManager/workspaceTaskForm",{state:{id:workspaceId}});
+    }
     return(
         <>
   <h1 id="pmheading">Tasks</h1>
-    <button className="assignTaskWorkspace">Assign Task</button> 
-
-
-     
+    <button className="assignTaskWorkspace" onClick={assignTask}>Assign Task</button> 
         <div className="pmthirdDiv">
         <table>
             <thead>

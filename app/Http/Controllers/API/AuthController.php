@@ -69,7 +69,6 @@ return $this->sendResponse($verifcode,"The email hasbeen sent");
         if ($validateData->fails()) {
             return $this->sendError('Validation Error', $validateData->errors()->all(), 307);
         }
-
             $authuser = User::where('email', $request->email)->first();
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

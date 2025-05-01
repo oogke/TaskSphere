@@ -44,6 +44,7 @@ Route::post('/projectUpdate/{id}',[ProjectController::class,'update'])->name('pr
 Route::post('/companyUpdate',[CompanyController::class,'update'])->name('companyUpdate');
 
 Route::post('/taskShow/{id}',[TaskController::class,'show'])->name('taskShow');
+Route::post('/OneWorkspace/{id}',[TaskController::class,'OneWorkspace'])->name('OneWorkspace');
 Route::post('/workspaceShow/{id}',[WorkspaceController::class,'show'])->name('workspaceShow');
 Route::get('/projectShow/{id}',[ProjectController::class,'projectFetch'])->name('projectShow');
 

@@ -9,8 +9,6 @@ function RegisterApplication() {
     const [selectedAppId, setSelectedAppId] = useState(null);
     const [secretCode, setSecretCode] = useState('');
 const [role, setRole] = useState('');
-const [showAcceptModal, setShowAcceptModal] = useState(false);
-const [showRejectModal, setShowRejectModal] = useState(false);
 const { postData,  loading:loading1, error:error1 ,data: postResult} = usePost();
 const { DeleteData,  loading:loading2, error:error2 ,data: deleteResult} = useDelete();
 
@@ -18,13 +16,21 @@ const { DeleteData,  loading:loading2, error:error2 ,data: deleteResult} = useDe
 
  const HandleAccept = (id) => {
   setSelectedAppId(id);
-  setShowAcceptModal(true); 
 }
 
-const HandleReject = (id) => {
-  setSelectedAppId(id);
-  setShowRejectModal(true); 
-  
+const HandleReject = async(id) => {
+  const result = await DeleteData(`/api/removeData/${id}`);
+  console.log(result);
+  if(result?.status===true)
+    {
+        alert("Application Rejected");
+        window.location.reload();
+       
+    }
+        
+     else {
+        alert("Failed to reject the application. Please try again.");
+    }
 }
 const handleSubmit=async (e)=>
 {
@@ -82,7 +88,7 @@ try {
                                 <li>{Employee.email}</li>
                                 <li>
                                     <button className="responseBtn AcceptBtn" onClick={() => HandleAccept(Employee.id)} data-bs-toggle="modal" data-bs-target="#acceptModal">Accept</button>
-                                    <button className="responseBtn RejectBtn" onClick={() => HandleReject(Employee.id)} data-bs-toggle="modal" data-bs-target="#rejectModal">Reject</button>
+                                    <button className="responseBtn RejectBtn" onClick={() => setSelectedAppId(Employee.id)} data-bs-toggle="modal" data-bs-target="#rejectModal">Reject</button>
                                 </li>
                             </ul>
                         </div>
@@ -150,7 +156,7 @@ try {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary rejectConfirmBtn" data-bs-dismiss="modal">Reject</button>
+                                <button type="button" className="btn btn-primary rejectConfirmBtn" data-bs-dismiss="modal" onClick={()=>HandleReject(selectedAppId)}>Reject</button>
                             </div>
                         </div>
                     </div>
