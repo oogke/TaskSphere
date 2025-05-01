@@ -1,17 +1,16 @@
 .pmthirdDiv
 {
-  
   box-shadow: 0 4px 4px 4px rgba(0,0,0,0.1);
       border-radius: 10px;
-      padding: 20px;
-      height: fit-content;
+      padding: 10px;
+      height: 100%;
+width: 100%;
+overflow: auto;
 }
 #pmTaskTableBody tr{
   background-color: white;
 }
-#pmTaskTableBody tr:hover{
-  background-color: #334155;
-}
+
 .ProjectOpenBtn button{
   width: 100px;
     height: 40px;
@@ -36,21 +35,6 @@
     cursor: pointer;
     transition: color 0.3s, transform 0.3s;
 }
-
-#filter:hover {
-    color: #94a3b8;
-    transform: scale(1.2);
-}
-
-.pmtable-container {
-    max-height: 70vh;
-    overflow-y: auto;
-    border: 1px solid #334155;
-    border-radius: 10px;
-    background-color: #0f172a;
-    padding: 10px;
-}
-
 .pmtable-container table {
     width: 100%;
     border-collapse: collapse;
@@ -88,3 +72,29 @@ th {
         font-size: 1.5rem;
     }
 }
+.assignTaskWorkspace
+{
+    width: 160px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #1e293b;
+    color: white;
+    position: absolute;
+    right: 70px;
+
+}
+.assignTaskWorkspace:hover{
+    background-color: white;
+    color: black;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+    border: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 1rem;
+  }
+  

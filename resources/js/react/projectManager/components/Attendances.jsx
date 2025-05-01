@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../assets/css/Attendance.css';
 
 const Attendance = () => {
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(true);
+  const [showUpdateModal, setShowUpdateModal] = useState(true);
+  const [showDeleteConfirmModal, setConfirmModal] = useState(true);
   const [attendanceList, setAttendanceList] = useState([
     { id: 1, employee: 'Jane Doe', date: '2025-04-30', status: 'Present' },
   ]);
@@ -88,8 +89,25 @@ const Attendance = () => {
             <span className="close" onClick={() => setShowAddModal(false)}>&times;</span>
             <h3>Add Attendance</h3>
             <form onSubmit={handleAdd}>
-              <label>Employee</label>
-              <input name="employee" value={formData.employee} onChange={handleInputChange} required />
+              
+          <label className="form-label">Employee</label>
+          <select
+            name="employee"
+            className="form-input"
+            value={formData.employee}
+            onChange={handleChange}
+            multiple
+            required
+          >
+            {employees?.data?.length > 0 &&
+              employees.data.map((employee, index) => (
+                <option value={employee.id} key={index}>
+                  {employee.fname+" "+employee.lname}
+                </option>
+              ))}
+          </select>
+     
+
 
               <label>Date</label>
               <input type="date" name="date" value={formData.date} onChange={handleInputChange} required />
@@ -148,6 +166,22 @@ const Attendance = () => {
           </div>
         </div>
       )}
+
+{/* 
+      {
+        showDeleteConfirmModal && (
+          <div className="modal">
+            <div className="modal-content">
+            <span className="close" onClick={() => setConfirmModal(false)}>&times;</span>
+            <h3>Are you sure?</h3>
+            <div className="answerBtns">
+            <button>Yes</button> 
+            <button>no</button>
+            </div>
+            </div>
+          </div>
+        )
+      } */}
     </div>
   );
 };

@@ -60,10 +60,10 @@ th, td {
 th {
     color: #cbd5e1;
 }
-
+/* 
 tbody tr:hover {
     background-color: #707884;
-}
+} */
 
 @media screen and (max-width: 768px) {
     #heading {
@@ -107,3 +107,19 @@ tbody tr:hover {
     flex-direction: row;
     gap: 10px;
 } */
+
+
+.assignTask
+{
+    width: 160px;
+    height: 50px;
+    background-color:#1e293b;
+    position: absolute;
+    right: 70px;
+  border: none;
+    color: white;
+    border-radius: 20px;
+    font-size: 20px;
+ 
+}
+

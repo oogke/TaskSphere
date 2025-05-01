@@ -1,28 +1,38 @@
 import React, { useState } from "react";
 import "../assets/css/taskForm.css"; 
+import useFetch from "../../hooks/UseFetch";
 
 function TaskForm() {
-  const [taskData, setTaskData] = useState({
+  const {data:workspaces,loading:loadingWorkspace,error:errorWorkspace}=useFetch("/api/projectIndex");
+  const {data:projects,loading:loadingProject,error:errorProject}=useFetch("/api/workspaceIndex");
+  const { data: employees, loading: loading1, error: error1 } = useFetch("/api/allUsers");
+  const [formData, setFormData] = useState({
     name: "",
     description: "",
     sdate: "",
     edate: "",
-    employee: "",
-    priority: "medium",
-    status: "not started",
+    employee: [],
+    priority: "",
+    status: "Not started",
     workspaceId: "",
     projectId: "",
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setTaskData({ ...taskData, [name]: value });
+    const { name, value, selectedOptions } = e.target;
+
+    if (name === "employee") {
+      const selectedValues = Array.from(selectedOptions, (opt) => opt.value);
+      setFormData((prev) => ({ ...prev, employee: selectedValues }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", taskData);
-    // 🚀 Here you will send `taskData` to your backend API.
+    console.log("Form Submitted:", formData);
+
   };
 
   return (
@@ -35,7 +45,7 @@ function TaskForm() {
           <input
             type="text"
             name="name"
-            value={taskData.name}
+            value={formData.name}
             onChange={handleChange}
             required
           />
@@ -45,12 +55,21 @@ function TaskForm() {
           <label>Priority</label>
           <select
             name="priority"
-            value={taskData.priority}
+            value={formData.priority}
             onChange={handleChange}
           >
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
+            <option disabled value="">-- Select priority number --</option>
+            <option value="10">10</option>
+            <option value="9">9</option>
+            <option value="8">8</option>
+            <option value="7">7</option>
+            <option value="6">6</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          
           </select>
         </div>
 
@@ -59,7 +78,7 @@ function TaskForm() {
           <input
             type="date"
             name="sdate"
-            value={taskData.sdate}
+            value={formData.sdate}
             onChange={handleChange}
           />
         </div>
@@ -69,47 +88,71 @@ function TaskForm() {
           <input
             type="date"
             name="edate"
-            value={taskData.edate}
+            value={formData.edate}
             onChange={handleChange}
           />
         </div>
 
         <div className="form-group">
-          <label>Workspace ID</label>
-          <input
-            type="number"
-            name="workspaceId"
-            value={taskData.workspaceId}
+          <label htmlFor="Workspace">Employee</label>
+          <select
+             name="workspaceId" id="Workspace" 
+            value={formData.workspaceId}
             onChange={handleChange}
-          />
+            required
+          >
+            <option disabled value="">-- Select Workspace --</option>
+            {workspaces?.data?.length > 0 &&
+              workspaces.data.map((workspace, index) => (
+                <option value={workspace.id} key={index}>
+                  {workspace.name}
+                </option>
+              ))}
+          </select>
         </div>
 
         <div className="form-group">
-          <label>Project ID</label>
-          <input
-            type="number"
-            name="projectId"
-            value={taskData.projectId}
+        <label htmlFor="ProjectId">Employee</label>
+          <select
+             name="projectId" id="ProjectId" 
+             value={formData.projectId}
             onChange={handleChange}
-          />
+            required
+          >
+            <option disabled value="">-- Select Project --</option>
+            {projects?.data?.length > 0 &&
+              projects.data.map((project, index) => (
+                <option value={project.id} key={index}>
+                  {project.name}
+                </option>
+              ))}
+          </select>
         </div>
 
         <div className="form-group full-width">
-          <label>Employee IDs (Comma separated)</label>
-          <input
-            type="text"
-            name="employee"
-            value={taskData.employee}
+        <label htmlFor="employee">Employee</label>
+          <select
+            name="employee" id="employee" 
+            className="form-input"
+            value={formData.employee}
             onChange={handleChange}
-            placeholder="Example: 22,28,29"
-          />
+            multiple
+            required
+          >
+            {employees?.data?.length > 0 &&
+              employees.data.map((employee, index) => (
+                <option value={employee.id} key={index}>
+                  {employee.fname+" "+employee.lname}
+                </option>
+              ))}
+          </select>
         </div>
 
         <div className="form-group full-width">
           <label>Description</label>
           <textarea
             name="description"
-            value={taskData.description}
+            value={formData.description}
             onChange={handleChange}
             rows="3"
           />
@@ -119,7 +162,7 @@ function TaskForm() {
           <label>Status</label>
           <select
             name="status"
-            value={taskData.status}
+            value={formData.status}
             onChange={handleChange}
           >
             <option value="not started">Not Started</option>

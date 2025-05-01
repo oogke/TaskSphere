@@ -9,9 +9,12 @@ function WorkspaceTask({id})
     const {data,loading,error}=useFetch(`/api/workspaceTask/${workspaceId}`);
     return(
         <>
+  <h1 id="pmheading">Tasks</h1>
+    <button className="assignTaskWorkspace">Assign Task</button> 
+
+
+     
         <div className="pmthirdDiv">
-<h1 id="pmheading">Tasks</h1>
-<div className="pmtable-container">
         <table>
             <thead>
                 <tr>
@@ -48,7 +51,7 @@ function WorkspaceTask({id})
         </table>
     </div>
 
-</div>
+
         </>
     )
 }
