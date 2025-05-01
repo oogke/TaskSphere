@@ -10,6 +10,37 @@ use Illuminate\Support\Facades\Validator;
 class EmployeeController extends BaseController
 {
 
+    public function deleteUserData(string $id)
+    {
+        $employeeId= $id;
+        $user=User::where("id",$employeeId)->delete();
+        $msg="Data is deleted";
+        if(!$user)
+        {
+             return $this->sendError("cannot delete data",404);
+        }
+        return $this->sendResponse($msg, "Data is Deleted Successfully") ;
+    }
+
+    public function update(Request $request, string $id)
+    {
+     $employeeId= $id;
+     $scode= $request->input("scode");
+     $role=$request->input('role');
+     $user = User::find($employeeId);
+     if (!$user) {
+         return response()->json(['status' => false, 'message' => 'User not found'], 404);
+     }
+     
+     $user->update([
+         'scode' => $scode,
+         'role' => $role
+     ]);
+      
+     return $this->sendResponse($user,"Data is updated successfully");
+    }
+
+
     public function show(string $id)
     {
         $user=User::where("id",$id)->first();

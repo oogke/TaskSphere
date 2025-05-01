@@ -11,7 +11,8 @@ export default function useDelete(url,input) {
       header:
       {
         'Content-Type':'applcation/json'
-      },body:input
+      },
+      body:input
     })
       .then((res) => res.json())
       .then((data) => {

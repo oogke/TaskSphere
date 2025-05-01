@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
-import usePost from "../../hooks/usePost";
+import usePost from "../../hooks/UsePost";
 
 const CreateWorkspace = () => {
     const { postData } = usePost();
@@ -20,7 +20,7 @@ const CreateWorkspace = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value, selectedOptions } = e.target;
+    const { name, value, selectedOptions} = e.target;
 
     if (name === "employee") {
       const selectedValues = Array.from(selectedOptions, (opt) => opt.value);

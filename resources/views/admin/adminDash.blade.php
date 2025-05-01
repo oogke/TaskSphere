@@ -56,7 +56,7 @@
       padding: 20px;
       background-color: #f1f5f9;
       overflow-y: auto;
-    
+    width: 100%;
     }
 
   </style>

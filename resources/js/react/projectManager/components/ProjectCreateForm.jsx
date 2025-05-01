@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../assets/css/ProjectCreateForm.css";
-import usePost from "../../hooks/usePost";
+import usePost from "../../hooks/UsePost";
 import useFetch from "../../hooks/UseFetch";
 
 export default function ProjectCreateForm() {

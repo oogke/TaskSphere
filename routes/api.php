@@ -22,7 +22,9 @@ Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('/RegisterApplication',[EmployeeController::class,'EmployeeRegisterData'])->name('RegisterApplication');
 Route::post('/passScode',[EmployeeController::class,'ScodeOperation'])->name('PassScode');
 Route::delete( '/removeData/{applicationId}',[EmployeeController::class,'removeData'])->name('removeData');
+Route::delete( '/deleteUserData/{applicationId}',[EmployeeController::class,'deleteUserData'])->name('deleteUserData');
 Route::post('/rejection',[EmployeeController::class,'rejection'])->name('rejection');
+Route::post('/userUpdateAdmin/{id}',[EmployeeController::class,'update'])->name('userUpdateAdmin');
 
 Route::get("/userIndex",[UserController::class,'index'])->name("getUserData");
 Route::get('/employeedata',[EmployeeController::class,'EmployeeData'])->name('EmployeeData');
