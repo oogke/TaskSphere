@@ -72,6 +72,7 @@
   <a href="#" onclick="navigateTo('/react/admin/notices')">Notices</a>
   <a href="#" onclick="navigateTo('/react/admin/employees')">Employees</a>
   <a href="#" onclick="navigateTo('/react/admin/registerApplication')">Register Application</a>
+  <a href="#" onclick="navigateTo('/react/admin/sendEmail')">send Email</a>
     <a href="#">Notices</a>
     <a href="#">Settings</a>
     <a href="#">Logout</a>

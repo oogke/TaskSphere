@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CompanyController;
+use App\Http\Controllers\API\EmailController;
 use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\ProjectManagerController;
@@ -61,10 +62,7 @@ Route::get('/projectView' ,[ProjectController::class,'projectView'])->name('proj
 Route::get('/taskView' ,[TaskController::class,'taskView'])->name('taskView');
 
 
-// Route::get('/workspaceDash/{id}' ,[WorkspaceController::class,'workspaceDash'])->name('workspaceDash');
-// Route::get('/projectDash/{id}' ,[ProjectController::class,'projectDash'])->name('projectDash');
-// Route::get('/taskDash/{id}' ,[TaskController::class,'taskDash'])->name('taskDash');
-// workspaceExtract
+
 Route::get('/workspaceExtract/{id}' , [ProjectController::class,'workspaceExtract'])->name('workspaceExtract');
 
 
@@ -96,3 +94,5 @@ Route::get('/adminDash' ,[AdminController::class,'adminDash'])->name('adminDash'
 Route::get('/allUsers',[EmployeeController::class,'index'])->name('Allusers');
 Route::get('/specificUser/{id}',[EmployeeController::class,'show'])->name('specificUser');
 Route::get('/workspaceTask/{id}',[WorkspaceController::class,'workspaceTask'])->name("workspaceTask");
+
+Route::post('/sendEmail',[EmailController::class,'sendEmail'])->name('sendEmail');

@@ -8,6 +8,7 @@ import Comment from './components/Comment';
 import Employees from './components/Employees';
 import RegisterApplication from './components/RegisterApplication';
 import ProjectDash from './components/ProjectDash';
+import SendEmail from './components/SendEmail';
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
       <Route path="/react/admin/employees" element={<Employees />} />
       <Route path="/react/admin/registerApplication" element={<RegisterApplication />} />
       <Route path="/react/admin/ProjectDash" element={<ProjectDash />} />
+      <Route path="/react/admin/sendEmail" element={<SendEmail />} />
           </Routes>
         </BrowserRouter>
       );
