@@ -142,3 +142,45 @@ update
             $table->string('workspaceCount')->nullable()->change();
             $table->string('leader')->nullable()->change();
         });
+
+
+
+             Schema::table('users', function (Blueprint $table) {
+            $table->string('role')->nullable()->change();
+        });
+
+
+          Schema::create('attendances', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('userId');   // foreign key to users/employees
+            $table->string('attendance');           // e.g., Present, Absent
+            $table->date('date');                   // which day attendance is for
+            $table->timestamps();
+        });
+
+         Schema::create('todos', function (Blueprint $table) {
+            $table->id();
+        $table->string('todo');                   
+        $table->unsignedBigInteger('employeeId'); 
+        $table->timestamps();  
+        });
+
+
+
+           Schema::create('notices', function (Blueprint $table) {
+            $table->id();  
+        $table->string('noticeHead');      
+        $table->text('noticeDescription');       
+        $table->string('image')->nullable();     
+        $table->timestamp('created_at')->useCurrent();
+        });
+
+
+           Schema::create('forums', function (Blueprint $table) {
+            $table->id();
+            $table->string('profile')->nullable();
+            $table->string('fullname');
+            $table->string('role');
+            $table->text('comment');
+            $table->timestamps(); 
+        });

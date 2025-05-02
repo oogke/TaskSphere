@@ -5,6 +5,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CompanyController;
 use App\Http\Controllers\API\EmailController;
 use App\Http\Controllers\API\EmployeeController;
+use App\Http\Controllers\API\NoticeController;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\ProjectManagerController;
 use App\Http\Controllers\API\TaskController;
@@ -96,3 +97,8 @@ Route::get('/specificUser/{id}',[EmployeeController::class,'show'])->name('speci
 Route::get('/workspaceTask/{id}',[WorkspaceController::class,'workspaceTask'])->name("workspaceTask");
 
 Route::post('/sendEmail',[EmailController::class,'sendEmail'])->name('sendEmail');
+
+
+
+Route::get('/singleNotice/{Id}',[NoticeController::class,'singleNotice'])->name('singleNotice');
+Route::get('/ allNotices',[NoticeController::class,' allNotices'])->name(' allNotices');
