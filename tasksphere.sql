@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 23, 2025 at 01:18 PM
+-- Generation Time: May 03, 2025 at 02:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `tasksphere`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendances`
+--
+
+CREATE TABLE `attendances` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `userId` bigint(20) UNSIGNED NOT NULL,
+  `attendance` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -100,6 +115,22 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `forums`
+--
+
+CREATE TABLE `forums` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `profile` varchar(255) DEFAULT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `comment` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jobs`
 --
 
@@ -170,7 +201,27 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2025_02_13_004304_create_workspaces_table', 7),
 (20, '2025_02_13_075715_update_workspaces_table', 8),
 (21, '2025_02_13_075735_update_tasks_table', 8),
-(22, '2025_02_13_075748_update_projects_table', 8);
+(22, '2025_02_13_075748_update_projects_table', 8),
+(23, '2025_04_30_143401_create_notices_table', 9),
+(24, '2025_04_30_143401_create_todos_table', 9),
+(25, '2025_04_30_143613_create_attendances_table', 9),
+(26, '2025_05_01_053459_update_default_role_in_users_table', 10),
+(27, '2025_05_02_081242_create_forums_table', 11),
+(28, '2025_05_03_120032_add_column_name_to_todos_table', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notices`
+--
+
+CREATE TABLE `notices` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `noticeHead` varchar(255) NOT NULL,
+  `noticeDescription` text NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -215,7 +266,22 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (5, 'App\\Models\\User', 19, 'api_token', '96f6d4c4efd07677d43cdfa6f8713192ea1d47c04b04909f0d927c617ff1250f', '[\"*\"]', NULL, NULL, '2025-01-29 22:39:10', '2025-01-29 22:39:10'),
 (6, 'App\\Models\\User', 21, 'api_token', '1999852c774e8a4d4ce9d6da87ab22010bea7ca2d7ac038bf54c0e351f635172', '[\"*\"]', NULL, NULL, '2025-01-30 23:23:08', '2025-01-30 23:23:08'),
 (7, 'App\\Models\\User', 21, 'api_token', 'f12224e7b8a1990662157249627a94e6cf5fdf87257e4b69ff7c3f1564b0b9a5', '[\"*\"]', NULL, NULL, '2025-02-12 20:36:52', '2025-02-12 20:36:52'),
-(8, 'App\\Models\\User', 32, 'api_token', 'b3b6f99741e107152afa7f536a147444b69a4f3444bdcfb017bb5d1a8fc2056a', '[\"*\"]', NULL, NULL, '2025-02-22 23:24:10', '2025-02-22 23:24:10');
+(8, 'App\\Models\\User', 32, 'api_token', 'b3b6f99741e107152afa7f536a147444b69a4f3444bdcfb017bb5d1a8fc2056a', '[\"*\"]', NULL, NULL, '2025-02-22 23:24:10', '2025-02-22 23:24:10'),
+(9, 'App\\Models\\User', 38, 'api_token', '1cfc4f99da5388eb77dd2593557c1dc5d129f4ebcbd4da4e11a2f332e8d39b57', '[\"*\"]', NULL, NULL, '2025-02-23 20:33:21', '2025-02-23 20:33:21'),
+(10, 'App\\Models\\User', 38, 'api_token', '0fafc589998703dd1450d92a5a40327fcb2324dc199fd9e8a0fb9547a43a451c', '[\"*\"]', NULL, NULL, '2025-04-18 21:24:08', '2025-04-18 21:24:08'),
+(11, 'App\\Models\\User', 38, 'api_token', '8fee669821c1bad9a3a883075007e2d9d26fa73fc80a8630b3eecc528ef2368c', '[\"*\"]', NULL, NULL, '2025-04-18 21:26:23', '2025-04-18 21:26:23'),
+(12, 'App\\Models\\User', 38, 'api_token', '8b9886898b0d2e45bb50a6111c02d8a13edc257f995f27975abfd59284346b9e', '[\"*\"]', NULL, NULL, '2025-04-18 21:27:56', '2025-04-18 21:27:56'),
+(13, 'App\\Models\\User', 38, 'api_token', '6aff3d194eace076b634142f9bcd0a71184352cd1b57f844e83cde0b5229601c', '[\"*\"]', NULL, NULL, '2025-04-18 21:28:29', '2025-04-18 21:28:29'),
+(14, 'App\\Models\\User', 38, 'api_token', 'e17c9f2dc612820828f1500cd840ed66d3bacbbd6a8148b0405153887e0eb153', '[\"*\"]', NULL, NULL, '2025-04-18 21:29:20', '2025-04-18 21:29:20'),
+(15, 'App\\Models\\User', 38, 'api_token', '9dabb4bc685182f5aaa94cf035b3ac4903547783bbdcd4097af556993142ccd7', '[\"*\"]', NULL, NULL, '2025-04-18 21:30:13', '2025-04-18 21:30:13'),
+(16, 'App\\Models\\User', 38, 'api_token', '40ee881018a23b74239f4c4867c5bcf4eb817a4f5e0ec4bcaa80441d87e1451b', '[\"*\"]', NULL, NULL, '2025-04-18 21:36:55', '2025-04-18 21:36:55'),
+(17, 'App\\Models\\User', 39, 'api_token', '88b3154f3e91c569b7cfaffaa63b390b7a7ef5f210b7258f2ac5ffebbfb720b1', '[\"*\"]', NULL, NULL, '2025-04-27 20:53:26', '2025-04-27 20:53:26'),
+(18, 'App\\Models\\User', 92, 'api_token', '7e163d29a2d96ee83c8a86c328118941b3a51c0671c45676cb7b97f7b6b03572', '[\"*\"]', NULL, NULL, '2025-04-30 23:44:19', '2025-04-30 23:44:19'),
+(19, 'App\\Models\\User', 91, 'api_token', '9fced07aa336c73d3d550e9ec640902850d6c0ff7922cb7ff13e877401ca1fad', '[\"*\"]', NULL, NULL, '2025-04-30 23:45:30', '2025-04-30 23:45:30'),
+(20, 'App\\Models\\User', 98, 'api_token', '8aad7c0183b8b85149b2e52c8470469374b2d9f9b3ecc5d6826c6fd2be96cf88', '[\"*\"]', NULL, NULL, '2025-05-03 03:36:43', '2025-05-03 03:36:43'),
+(21, 'App\\Models\\User', 98, 'api_token', 'bc85b22909f2b6f1d2b47d1c8ca69f1d6981d66a6e380c6de0c2476691b16ab7', '[\"*\"]', NULL, NULL, '2025-05-03 03:37:40', '2025-05-03 03:37:40'),
+(22, 'App\\Models\\User', 98, 'api_token', '662acdd5940087e36853b1f8fe47489ea5a6c3dcbef7dfa99a3b50c0641cec11', '[\"*\"]', NULL, NULL, '2025-05-03 03:38:25', '2025-05-03 03:38:25'),
+(23, 'App\\Models\\User', 98, 'api_token', '93094573df7025ea07256da4017aadbc7e134521631658651b167d1111fb08c2', '[\"*\"]', NULL, NULL, '2025-05-03 03:39:09', '2025-05-03 03:39:09');
 
 -- --------------------------------------------------------
 
@@ -242,16 +308,19 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `name`, `description`, `sdate`, `edate`, `members`, `leader`, `workspaceCount`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Website Redesign', 'Redesign the company website for better UX', '2025-02-01', '2025-03-15', '[\"John\", \"Emily\", \"David\"]', 'John', '5', 'in progress', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
-(2, 'Mobile App Development', 'Develop a cross-platform mobile application', '2025-01-10', '2025-05-20', '[\"Alice\", \"Bob\", \"Charlie\"]', 'Alice', '8', 'not started', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
-(3, 'AI Chatbot', 'Build an AI-powered chatbot for customer support', '2025-03-01', '2025-06-30', '[\"Mike\", \"Sophia\", \"Daniel\"]', 'Mike', '3', 'in progress', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
 (4, 'E-commerce Platform', 'Create an online marketplace for local vendors', '2025-02-15', '2025-08-01', '[\"Liam\", \"Olivia\", \"Ethan\"]', 'Liam', '10', 'on hold', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
 (5, 'CRM System', 'Implement a new customer relationship management system', '2025-04-05', '2025-09-10', '[\"Emma\", \"Noah\", \"Ava\"]', 'Emma', '4', 'not started', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
 (6, 'Data Analytics Dashboard', 'Develop a real-time analytics dashboard', '2025-01-20', '2025-04-15', '[\"Oliver\", \"Isabella\", \"Lucas\"]', 'Oliver', '6', 'completed', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
 (7, 'Cloud Migration', 'Migrate company infrastructure to cloud', '2025-05-01', '2025-12-01', '[\"Mason\", \"Mia\", \"Elijah\"]', 'Mason', '7', 'in progress', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
 (8, 'Cybersecurity Audit', 'Conduct a full security assessment', '2025-02-10', '2025-06-30', '[\"Amelia\", \"James\", \"Alexander\"]', 'Amelia', '3', 'on hold', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
 (9, 'SEO Optimization', 'Improve website SEO for better search rankings', '2025-01-05', '2025-02-25', '[\"Benjamin\", \"Charlotte\", \"Henry\"]', 'Benjamin', '2', 'completed', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
-(10, 'Inventory Management System', 'Automate inventory tracking for warehouses', '2025-06-01', '2025-11-01', '[\"Evelyn\", \"William\", \"Sophia\"]', 'Evelyn', '5', 'not started', '2025-02-14 01:25:23', '2025-02-14 01:25:23');
+(10, 'Inventory Management System', 'Automate inventory tracking for warehouses', '2025-06-01', '2025-11-01', '[\"Evelyn\", \"William\", \"Sophia\"]', 'Evelyn', '5', 'not started', '2025-02-14 01:25:23', '2025-02-14 01:25:23'),
+(11, 'Melanie Hester', 'Pariatur Neque maxi', '2001-05-21', '2010-04-29', '[\"22\",\"23\",\"24\",\"25\",\"26\",\"28\",\"31\"]', '[\"23\",\"24\",\"26\",\"29\"]', NULL, 'not started', '2025-02-23 10:34:26', '2025-02-23 10:34:26'),
+(13, 'Indira Vargas', 'Commodi adipisicing', '2001-07-31', '2015-03-24', '[\"35\"]', '[\"34\",\"35\",\"37\"]', NULL, 'not started', '2025-02-23 20:05:21', '2025-02-23 20:05:21'),
+(14, 'Talon Potter', 'Assumenda qui harum', '2022-10-20', '1999-01-07', '[\"87\",\"89\",\"90\"]', '\"Delectus aut necess\"', NULL, 'not started', '2025-04-30 04:50:37', '2025-04-30 04:50:37'),
+(16, 'Sasha Lyons', 'Mollitia voluptas at', '2000-08-28', '2004-03-07', '[\"87\",\"89\",\"90\"]', '\"84\"', NULL, 'not started', '2025-04-30 04:54:15', '2025-04-30 04:54:15'),
+(17, 'Jocelyn Trujillo', 'Facilis dolore paria', '1981-08-15', '1990-11-13', '[\"86\",\"87\",\"88\",\"90\"]', '\"87\"', NULL, 'not started', '2025-04-30 05:09:01', '2025-04-30 05:09:01'),
+(18, 'Dacey Moon', 'Sint sit necessita', '2022-07-05', '1974-01-09', '[\"85\",\"86\",\"87\",\"88\",\"89\"]', '\"89\"', NULL, 'not started', '2025-04-30 05:10:33', '2025-04-30 05:10:33');
 
 -- --------------------------------------------------------
 
@@ -273,7 +342,12 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('LPx7grEewZstsVy5YS0KSFx66Y60xRTWZRZUSOad', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:135.0) Gecko/20100101 Firefox/135.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaFAzU3dTVXUyeVgzcUJ1d3B3MVYwWXpvUVZZQ3kzb2hZY3pvRXU1NCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1740287350);
+('iWB02fuhZhD3iMM0bKgV9kgGABzGUM43mjd5PxWu', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:138.0) Gecko/20100101 Firefox/138.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRGNpUFpodk9UdUlhbGkxR2FHeEhMblluQ044YXVnYVJjNmJOTFVZSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMi9yZWFjdC9hZG1pbi9lbXBsb3llZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1746139816),
+('kHJpQ0Eq49nAAlCB02R9wr6QkHc2dp1FLzxXU7eb', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:138.0) Gecko/20100101 Firefox/138.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiT1VxaXJVSEZwc1Z3M1huUmZWVTQyT21vNEdLSEw4Z2h5RnB5MVRKdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZWdpc3RlclZpZXciO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1746263834),
+('oqLZIP7xYWsbUg7GUciYPN0bTvom6OTG5dLX0q6a', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:138.0) Gecko/20100101 Firefox/138.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQ21RNzFnMkxCWjdPSHo5VmRQSkhpSWY5Q0FIamdzNXkwZHJtTkxvaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZWFjdC9wcm9qZWN0TWFuYWdlci9pbnN0YWxsSG9vay5qcy5tYXAiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1746248676),
+('safWIcxJPkrubNdxlsrxPeJhsOYwEeTUcYE3YTGY', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:138.0) Gecko/20100101 Firefox/138.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUzlQTXJVcUQ4NFdPN1MzVHJJSDdaam9YN2wzSGNYdlFIajEyQ2ZaWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZWFjdC9hZG1pbi9jcmVhdGVOb3RpY2VzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1746173084),
+('uuuBBgPU8iCtAaDeJ6KpYXq7O82TIptWgI38q6xD', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:138.0) Gecko/20100101 Firefox/138.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNmxuWmtXZ3pXMW9QM0M2Sm9hTHQwNzE4QnJoS0VOc2xSNnhBV0pWUyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZWFjdC9wcm9qZWN0TWFuYWdlci9wcm9qZWN0TWFuYWdlckRhc2giO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1746273038),
+('xHiPjVHj8rz0RDnTkCCMGI3wQX7r6AZJS1oCrGli', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:138.0) Gecko/20100101 Firefox/138.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMUVqZUxaRTgwN0E0dmJuSzNuRUQ4WG52V2xNdzlsSmgwNnhRWVVMUCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kZXNpZ24vdXNlckRhc2giO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1746202893);
 
 -- --------------------------------------------------------
 
@@ -301,12 +375,27 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `name`, `description`, `sdate`, `edate`, `employee`, `priority`, `status`, `workspaceId`, `projectId`, `created_at`, `updated_at`) VALUES
-(2, 'Task Beta', 'UI/UX design for the app.', '2025-03-01', '2025-03-15', '{\"employee1\": \"Alice\", \"employee2\": \"Bob\"}', 'Medium', 'not started', 'W002', 'P002', '2025-02-22 06:57:42', '2025-02-22 06:57:42'),
-(3, 'Task Gamma', 'Research and data collection on AI.', '2025-04-01', '2025-04-20', '{\"employee1\": \"David\", \"employee2\": \"Emma\"}', 'Low', 'not started', 'W003', 'P003', '2025-02-22 06:57:42', '2025-02-22 06:57:42'),
-(4, 'Task Delta', 'Redesign website layout.', '2025-02-10', '2025-03-01', '{\"employee1\": \"George\", \"employee2\": \"Hannah\"}', 'High', 'not started', 'W004', 'P004', '2025-02-22 06:57:42', '2025-02-22 06:57:42'),
-(5, 'Task Epsilon', 'Marketing analysis report preparation.', '2025-05-01', '2025-05-15', '{\"employee1\": \"Jack\", \"employee2\": \"Kathy\"}', 'Medium', 'not started', 'W005', 'P005', '2025-02-22 06:57:42', '2025-02-22 06:57:42'),
-(6, 'Task Zeta', 'Setup cloud infrastructure.', '2025-02-15', '2025-03-10', '{\"employee1\": \"Mike\", \"employee2\": \"Nina\"}', 'High', 'not started', 'W006', 'P006', '2025-02-22 06:57:42', '2025-02-22 06:57:42'),
-(7, 'Task Theta', 'Security testing for the infrastructure.', '2025-03-20', '2025-04-10', '{\"employee1\": \"Paul\", \"employee2\": \"Quincy\"}', 'Medium', 'not started', 'W007', 'P007', '2025-02-22 06:57:42', '2025-02-22 06:57:42');
+(32, 'Liberty Morales', 'Vero velit ut fuga', '2002-04-20', '2017-08-01', '[\"22\",\"28\",\"29\",\"31\",\"32\"]', 'high', 'not started', '3', '7', '2025-02-23 10:18:00', '2025-02-23 10:18:00'),
+(33, 'Donovan Parks', 'Doloribus in nisi el', '2012-04-29', '2003-03-04', '[\"22\",\"23\",\"26\",\"27\",\"31\",\"32\",\"elderberry\"]', 'medium', 'not started', '3\r\n', '7', '2025-02-23 10:18:07', '2025-02-23 10:18:07'),
+(34, 'Flynn Fowler', 'Excepturi dicta moll', '2002-04-17', '1990-02-28', '[\"24\",\"29\",\"30\",\"elderberry\"]', 'medium', 'not started', '3', '7', '2025-02-23 10:18:15', '2025-02-23 10:18:15'),
+(35, 'Imelda Powell', 'Accusamus incidunt', '1983-03-24', '1987-03-30', '[\"22\",\"24\",\"25\",\"27\",\"28\",\"29\",\"30\",\"31\",\"32\"]', 'high', 'not started', '3', '7', '2025-02-23 10:18:20', '2025-02-23 10:18:20'),
+(36, 'Shaeleigh Pollard', 'Ut cumque fugiat con', '2006-01-25', '1978-08-19', '[\"33\",\"34\"]', 'medium', 'not started', '7', '7', '2025-02-23 20:05:41', '2025-02-23 20:05:41'),
+(37, 'Mia Hoffman', 'Molestiae quibusdam', '2021-04-25', '2014-07-10', '[\"36\",\"38\"]', 'medium', 'not started', '7', '7', '2025-02-23 20:33:43', '2025-02-23 20:33:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `todos`
+--
+
+CREATE TABLE `todos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `todo` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `employeeId` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -329,7 +418,7 @@ CREATE TABLE `users` (
   `citizenCardBack` varchar(400) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `role` varchar(255) NOT NULL DEFAULT 'employee'
+  `role` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -337,18 +426,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `profile`, `fname`, `lname`, `address`, `phone`, `gender`, `scode`, `email`, `password`, `citizenCardFront`, `citizenCardBack`, `created_at`, `updated_at`, `role`) VALUES
-(21, NULL, 'Archana', 'Timilsinna', NULL, '9898879', NULL, '8888', 'archanatimilsina88@gmail.com', '$2y$12$bxrwA2rAWuJCl7Amx.wPYOvDEhZI1uswbc4PjqOz4E/KXpvjZLBmK', NULL, NULL, '2025-01-30 23:22:29', '2025-01-30 23:22:29', 'employee'),
-(22, NULL, 'User1', 'Test1', 'Address 1', '9876543201', 'Female', 'SCODE-0001', 'user1@example.com', '$2b$12$M9ZoaGxLVUtwEvz7Bj7ke.WwuVsevpSghwkYJPg56hRm9RMxnP3jG', NULL, NULL, NULL, NULL, 'employee'),
-(23, NULL, 'User2', 'Test2', 'Address 2', '9876543202', 'Male', 'SCODE-0002', 'user2@example.com', '$2b$12$vznAT/KMaDrlGXEGHKtNKONlXUd//JSHdwzrFkp1ViKV1siMlfRrK', NULL, NULL, NULL, NULL, 'employee'),
-(24, NULL, 'User3', 'Test3', 'Address 3', '9876543203', 'Female', 'SCODE-0003', 'user3@example.com', '$2b$12$65E8mxDRP9QEt0pgZcSSP.CMRmqRt5/aN1K6Z9MMGPaTOYa38PuT.', NULL, NULL, NULL, NULL, 'employee'),
-(25, NULL, 'User4', 'Test4', 'Address 4', '9876543204', 'Male', 'SCODE-0004', 'user4@example.com', '$2b$12$J8L7Sg7kG6FZuwghmUEDZ.pKB65XU5JpBNH5jivdDovvRCpHJMKtq', NULL, NULL, NULL, NULL, 'employee'),
-(26, NULL, 'User5', 'Test5', 'Address 5', '9876543205', 'Female', 'SCODE-0005', 'user5@example.com', '$2b$12$An4W9NhHcN2yJhI8Fp1DLOmL/Z3UFA5cTnncdKBzBBv06r1P9oC0m', NULL, NULL, NULL, NULL, 'employee'),
-(27, NULL, 'User6', 'Test6', 'Address 6', '9876543206', 'Male', 'SCODE-0006', 'user6@example.com', '$2b$12$zPIyzN7zYz1fAGCWYOlFXuMv7Dd7mV54uMPGT70pKX8EaHdJPLISq', NULL, NULL, NULL, NULL, 'employee'),
-(28, NULL, 'User7', 'Test7', 'Address 7', '9876543207', 'Female', 'SCODE-0007', 'user7@example.com', '$2b$12$8y.kB8ZwHD51O1FmWqZIZuJTOhx77Av8T/6plfPhn65iXOPbfN3Ti', NULL, NULL, NULL, NULL, 'employee'),
-(29, NULL, 'User8', 'Test8', 'Address 8', '9876543208', 'Male', 'SCODE-0008', 'user8@example.com', '$2b$12$XOdj55HovhD91e6WyEoEbuEqhdmSwOfpPMJWQuSOucDPrB6VcoQyC', NULL, NULL, NULL, NULL, 'employee'),
-(30, NULL, 'User9', 'Test9', 'Address 9', '9876543209', 'Female', 'SCODE-0009', 'user9@example.com', '$2b$12$ZJ42vXq.ejGzYOslpV68c.8Qs7aKH4P34n5M.5/WCMH2rJmYoPHy6', NULL, NULL, NULL, NULL, 'employee'),
-(31, NULL, 'User10', 'Test10', 'Address 10', '9876543210', 'Male', 'SCODE-0010', 'user10@example.com', '$2b$12$UdttfsrZd8Kcd9eXfHjVfOLw2dWE/hF/KtO5lRdaFqRcebd1ExECm', NULL, NULL, NULL, NULL, 'employee'),
-(32, NULL, 'Dikshya', 'Shrestha', NULL, '9876554433', NULL, '8888', 'dikshyashrestha679@gmail.com', '$2y$12$Pn40lxXQKbsyiE0jfaSnx.jUKc32Tt3ikaMAFR2vYKu9ehRuGSZmq', NULL, NULL, '2025-02-22 23:23:03', '2025-02-22 23:23:03', 'employee');
+(96, NULL, 'Oogke', 'Timilsina', NULL, '9861433446', NULL, '8888', 'archu@gmail.com', '$2y$12$ILwScrNg1amFm0.uDPeYw.jS3XjP4YNXNj8WmDvnZI7/BUPh5Yyci', NULL, NULL, '2025-04-30 23:58:57', '2025-04-30 23:58:57', NULL),
+(97, NULL, 'Archana', 'Timilsina', NULL, '9861433446', NULL, '8888', 'archanatimilsina88@gmail.com', '$2y$12$2VFmd9Vhuo.Znca/4JLlR.VJZXhU01LjvDamrEbTDJf7KaQ37GLBW', NULL, NULL, '2025-05-03 03:22:24', '2025-05-03 03:22:24', 'admin'),
+(98, NULL, 'Archana', 'Timilsina', NULL, '9861433446', NULL, '1111', 'actlikeanut@gmail.com', '$2y$12$hqYwhpstJpuclfpciJwlXOtpGr4AAQupcbh..lr1xtNl/AZeqcHUq', NULL, NULL, '2025-05-03 03:34:26', '2025-05-03 03:34:26', 'Project Manager');
 
 -- --------------------------------------------------------
 
@@ -366,17 +446,6 @@ CREATE TABLE `user_verif_queues` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `user_verif_queues`
---
-
-INSERT INTO `user_verif_queues` (`id`, `fname`, `lname`, `phone`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(11, 'John', 'Doe', '9876543211', 'john.doe@example.com', '$2b$12$abc123abc123abc123abc123abc123abc123abc123abc123abc123', NULL, NULL),
-(12, 'Jane', 'Smith', '9876543212', 'jane.smith@example.com', '$2b$12$def456def456def456def456def456def456def456def456def456', NULL, NULL),
-(13, 'Alice', 'Johnson', '9876543213', 'alice.johnson@example.com', '$2b$12$ghi789ghi789ghi789ghi789ghi789ghi789ghi789ghi789ghi789', NULL, NULL),
-(14, 'Bob', 'Williams', '9876543214', 'bob.williams@example.com', '$2b$12$jkl012jkl012jkl012jkl012jkl012jkl012jkl012jkl012jkl012', NULL, NULL),
-(15, 'Charlie', 'Brown', '9876543215', 'charlie.brown@example.com', '$2b$12$mno345mno345mno345mno345mno345mno345mno345mno345mno345', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -403,20 +472,23 @@ CREATE TABLE `workspaces` (
 --
 
 INSERT INTO `workspaces` (`id`, `name`, `description`, `sdate`, `edate`, `members`, `leader`, `status`, `projectId`, `created_at`, `updated_at`) VALUES
-(1, 'Project Alpha', 'This is the first project.', '2025-02-01', '2025-06-01', '{\"member1\": \"John\", \"member2\": \"Jane\"}', 'John Doe', 'not started', 'P001', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(2, 'Project Beta', 'A project for developing a new app.', '2025-03-01', '2025-07-01', '{\"member1\": \"Alice\", \"member2\": \"Bob\", \"member3\": \"Charlie\"}', 'Alice Brown', 'not started', 'P002', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(3, 'Project Gamma', 'A research project in AI.', '2025-04-01', '2025-10-01', '{\"member1\": \"David\", \"member2\": \"Emma\"}', 'David Smith', 'not started', 'P003', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(4, 'Project Delta', 'Website redesign project.', '2025-02-10', '2025-08-10', '{\"member1\": \"George\", \"member2\": \"Hannah\", \"member3\": \"Isla\"}', 'George Lee', 'not started', 'P004', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(5, 'Project Epsilon', 'Data analysis project for marketing.', '2025-05-01', '2025-09-01', '{\"member1\": \"Jack\", \"member2\": \"Kathy\"}', 'Kathy Evans', 'not started', 'P005', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(6, 'Project Zeta', 'Development of a new e-commerce platform.', '2025-02-15', '2025-07-15', '{\"member1\": \"Mike\", \"member2\": \"Nina\", \"member3\": \"Oscar\"}', 'Mike Johnson', 'not started', 'P006', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(7, 'Project Theta', 'Cloud infrastructure setup project.', '2025-03-20', '2025-09-20', '{\"member1\": \"Paul\", \"member2\": \"Quincy\"}', 'Paul Harris', 'not started', 'P007', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(8, 'Project Iota', 'New software development for enterprise solutions.', '2025-04-15', '2025-10-15', '{\"member1\": \"Rachel\", \"member2\": \"Steve\", \"member3\": \"Tom\"}', 'Rachel Adams', 'not started', 'P008', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(9, 'Project Kappa', 'Implementation of cybersecurity measures.', '2025-06-01', '2025-12-01', '{\"member1\": \"Ursula\", \"member2\": \"Victor\"}', 'Victor Black', 'not started', 'P009', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
-(10, 'Project Lambda', 'Customer support platform upgrade.', '2025-07-01', '2025-12-01', '{\"member1\": \"Walter\", \"member2\": \"Xena\", \"member3\": \"Yara\"}', 'Walter King', 'not started', 'P010', '2025-02-22 06:56:33', '2025-02-22 06:56:33');
+(3, 'Project Gamma', 'A research project in AI.', '2025-04-01', '2025-10-01', '{\"member1\": \"David\", \"member2\": \"Emma\"}', 'David Smith', 'not started', '4', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
+(4, 'Project Delta', 'Website redesign project.', '2025-02-10', '2025-08-10', '{\"member1\": \"George\", \"member2\": \"Hannah\", \"member3\": \"Isla\"}', 'George Lee', 'not started', '4', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
+(5, 'Project Epsilon', 'Data analysis project for marketing.', '2025-05-01', '2025-09-01', '{\"member1\": \"Jack\", \"member2\": \"Kathy\"}', 'Kathy Evans', 'not started', '4', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
+(6, 'Project Zeta', 'Development of a new e-commerce platform.', '2025-02-15', '2025-07-15', '{\"member1\": \"Mike\", \"member2\": \"Nina\", \"member3\": \"Oscar\"}', 'Mike Johnson', 'not started', '4', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
+(7, 'Project Theta', 'Cloud infrastructure setup project.', '2025-03-20', '2025-09-20', '{\"member1\": \"Paul\", \"member2\": \"Quincy\"}', 'Paul Harris', 'not started', '4', '2025-02-22 06:56:33', '2025-02-22 06:56:33'),
+(12, 'Edward Yates', 'Sint velit sint cumq', '1984-01-12', '1988-08-22', '[\"85\",\"86\",\"88\",\"90\"]', '\"90\"', 'not started', NULL, '2025-04-30 05:11:59', '2025-04-30 05:11:59'),
+(13, 'Beatrice Edwards', 'Qui tenetur rerum qu', '1984-09-25', '1996-09-12', '[\"96\"]', '\"94\"', 'not started', NULL, '2025-05-01 15:44:56', '2025-05-01 15:44:56');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `attendances`
+--
+ALTER TABLE `attendances`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cache`
@@ -446,6 +518,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `forums`
+--
+ALTER TABLE `forums`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -462,6 +540,12 @@ ALTER TABLE `job_batches`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notices`
+--
+ALTER TABLE `notices`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -499,6 +583,12 @@ ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `todos`
+--
+ALTER TABLE `todos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -523,6 +613,12 @@ ALTER TABLE `workspaces`
 --
 
 --
+-- AUTO_INCREMENT for table `attendances`
+--
+ALTER TABLE `attendances`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
@@ -535,6 +631,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `forums`
+--
+ALTER TABLE `forums`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -544,43 +646,55 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `notices`
+--
+ALTER TABLE `notices`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `todos`
+--
+ALTER TABLE `todos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `user_verif_queues`
 --
 ALTER TABLE `user_verif_queues`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `workspaces`
 --
 ALTER TABLE `workspaces`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
