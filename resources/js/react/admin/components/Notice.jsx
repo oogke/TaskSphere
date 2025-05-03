@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/css/notices.css';
 import { useNavigate } from 'react-router-dom';
+import useFetch from "../../hooks/UseFetch";
 
 const Notice = () => {
     const navigate=useNavigate();

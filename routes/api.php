@@ -102,3 +102,6 @@ Route::post('/sendEmail',[EmailController::class,'sendEmail'])->name('sendEmail'
 
 Route::get('/singleNotice/{Id}',[NoticeController::class,'singleNotice'])->name('singleNotice');
 Route::get('/ allNotices',[NoticeController::class,' allNotices'])->name(' allNotices');
+
+
+Route::get('/projectManagerDashView/{id}',[ProjectManagerController::class,'projectManagerDashView'])->name('projectManagerDashView');

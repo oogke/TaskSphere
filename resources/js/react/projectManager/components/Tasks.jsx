@@ -37,7 +37,7 @@ const handleUpdate=(e)=>
 }
 const assignTask=()=>
 {
-    navigate("/react/projectManager/TaskCreateForm");
+    navigate("/react/projectManager/",);
 }
 return (
 

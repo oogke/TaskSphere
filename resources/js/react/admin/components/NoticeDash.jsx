@@ -1,7 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
-import '..assets/css/noticeDash.css';
+import '../assets/css/noticeDash.css';
+
 
 function NoticeDash() {
   const location = useLocation();

@@ -107,7 +107,7 @@ function WorkspaceTaskForm() {
           >
             {employees?.data?.length > 0 &&
               employees.data.map((employee, index) => (
-                <option value={employee.id} key={index}>
+                <option value={employee.fname} key={index}>
                   {employee.fname+" "+employee.lname}
                 </option>
               ))}

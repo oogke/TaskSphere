@@ -10,7 +10,6 @@ import RegisterApplication from './components/RegisterApplication';
 import ProjectDash from './components/ProjectDash';
 import SendEmail from './components/SendEmail';
 import NoticeDash from './components/NoticeDash';
-import CreateNotices from './components/CreateNotices';
 const App = () => {
     return (
         <BrowserRouter>

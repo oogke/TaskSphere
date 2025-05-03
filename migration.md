@@ -184,3 +184,5 @@ update
             $table->text('comment');
             $table->timestamps(); 
         });
+
+          $table->string('status')->default('pending')->after('todo'); 
