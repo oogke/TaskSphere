@@ -90,6 +90,7 @@
         <h2>Login</h2>
         <input type="text" placeholder="E-mail or Username" name="email" required id="email">
         <input type="password" placeholder="Password" name="password" required id="password">
+        <input type="password" placeholder="Secret Code" name="scode" required id="scode">
         <button class="loginBtn" name="login" id="login">Login</button>
         <p id="forgot-btn">Register Account? <a href="{{ route('registerView') }}">click here</a></p>
     </div>
@@ -103,9 +104,12 @@
             event.preventDefault();
             const emailValue = document.getElementById('email').value;
             const passwordValue = document.getElementById('password').value;
+            const scodeValue = document.getElementById('scode').value;
+
             const loginData = {
                 email: emailValue,
-                password: passwordValue
+                password: passwordValue,
+                scode:scodeValue
             };
             
             fetch('/api/login', {
@@ -117,12 +121,13 @@
             }).then(response => {
                 return response.json();
             }).then(data => {
-               if(data.status == true) {
+                console.log(data);
+               if(data.status === true) {
                     const token = data.token;
                     localStorage.setItem('token', token);
-                    if (data.role === "admin") {
+                    if (data.data.role === "admin") {
             window.location.href = "/api/adminDash";
-        } else if (data.role === "Project Manager") {
+        } else if (data.data.role === "Project Manager") {
             window.location.href = "/api/projectManagerDash";
         } else {
             window.location.href = "/api/userDash";

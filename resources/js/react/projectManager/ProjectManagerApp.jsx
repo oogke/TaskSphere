@@ -15,6 +15,7 @@ import Members from './components/Members';
 import WorkspaceDash from './components/WorkspaceDash';
 import Profile from './components/Profile';
 import WorkspaceTaskForm from './components/WorkspaceTaskForm';
+import ProjectManagerDash from './components/ProjectManagerDash';
 const App = () => {
     return (
         <BrowserRouter>
@@ -32,6 +33,7 @@ const App = () => {
       <Route path="/react/projectManager/members" element={<Members />} />
       <Route path="/react/projectManager/workspaceDash" element={<WorkspaceDash />} />
       <Route path="/react/projectManager/profile" element={<Profile />} />
+      <Route path="/react/projectManager/projectManagerDash" element={<ProjectManagerDash />} />
           </Routes>
         </BrowserRouter>
       );

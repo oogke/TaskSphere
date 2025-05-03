@@ -63,7 +63,8 @@ return $this->sendResponse($verifcode,"The email hasbeen sent");
             $request->all(),
             [
                 'email' => 'required|email',
-                'password' => 'required|min:6'
+                'password' => 'required|min:6',
+                'scode'=>'required'
             ]
         );
         if ($validateData->fails()) {
@@ -71,7 +72,7 @@ return $this->sendResponse($verifcode,"The email hasbeen sent");
         }
             $authuser = User::where('email', $request->email)->first();
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'scode'=>$request->scode])) {
             // if ($authuser && Hash::check($request->password, $authuser->password)) {         
                    return response()->json(
                 [

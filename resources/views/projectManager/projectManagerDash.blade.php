@@ -71,7 +71,7 @@
   <a href="#" onclick="navigateTo('/react/projectManager/workspaces')">Workspaces</a>
   <a href="#" onclick="navigateTo('/react/projectManager/tasks')">Tasks</a>
   <a href="#" onclick="navigateTo('/react/projectManager/attendances')">Attendance</a>
-  <a href="#" onclick="navigateTo('/react/projectManager/projectDash')">Project Dashboard</a>
+  <a href="#" onclick="navigateTo('/react/projectManager/projectManagerDash')">Project Manager Dashboard</a>
   <a href="#" onclick="navigateTo('/react/projectManager/projectCreateForm')">Project Create Form</a>
   <a href="#" onclick="navigateTo('/react/projectManager/workspaceCreateForm')">Workspace Create Form</a>
   <a href="#" onclick="navigateTo('/react/projectManager/TaskCreateForm')">Task Create Form</a>

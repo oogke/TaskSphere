@@ -4,7 +4,7 @@ function UserDash()
 {
 return (
     <>
-     <h3 class="workspaceHead">Workspaces</h3>
+    <h3 class="workspaceHead">Workspaces</h3>
     <div class="workspaceIndex">
       <div class="projectRow"><ul><li><strong>Designing</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
       <div class="projectRow"><ul><li><strong>Designing</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
@@ -127,6 +127,55 @@ return (
 </div>
       </div>
     </div>
+
+
+
+    <div class="userthirdDiv">
+<h1 id="userheading">Tasks</h1>
+<div class="usertable-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>S.N</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Employee Username</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Updated At</th>
+                </tr>
+            </thead>
+            <tbody id="userTaskTableBody">
+                <tr>
+                    <td>1</td>
+                    <td>Website Redesign</td>
+                    <td>Update homepage layout</td>
+                    <td>johndoe</td>
+                    <td>2025-04-10</td>
+                    <td>2025-04-20</td>
+                    <td>Ongoing</td>
+                    <td>High</td>
+                    <td>2025-04-21 14:30</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>API Fix</td>
+                    <td>Resolve login issues</td>
+                    <td>janedoe</td>
+                    <td>2025-04-15</td>
+                    <td>2025-04-18</td>
+                    <td>Completed</td>
+                    <td>Medium</td>
+                    <td>2025-04-19 10:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 
     </>
 );
