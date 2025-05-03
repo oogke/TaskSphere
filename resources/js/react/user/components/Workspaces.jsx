@@ -11,18 +11,18 @@ const navigate= useNavigate();
     const WorkspaceDash=(id)=>
     {
         setWorkspaceId(id);
-        navigate('/react/user/workspaceDash',{state:{workspaceId :id}});
+        navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
     }
     return (
         <>
  <h1 id="workspaceHeading">Workspaces</h1> 
-            <div className="workspacesIndex">
+            <div className="workspaceIndex">
                 {data?.data?.length > 0 && data?.data?.map((workspace, index) => {
                     return (  // Add return here
-                        <div key={index} className="workspacesCard">
+                        <div key={index} className="workspaceCard">
                             <ul>
                                 <li>{workspace?.name}</li>
-                                <li><button className="workspacesBtn" onClick={() => WorkspaceDash(workspace.id)}>Open</button></li>
+                                <li><button className="workspaceBtn" onClick={() => WorkspaceDash(workspace.id)}>Open</button></li>
                             </ul>
                         </div>
                     );

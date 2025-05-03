@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
-import usePost from "../../hooks/UsePost";
+import usePost from "../../hooks/usePost";
 
 const CreateWorkspace = () => {
     const { postData } = usePost();

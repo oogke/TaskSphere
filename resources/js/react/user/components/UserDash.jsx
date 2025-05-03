@@ -1,141 +1,181 @@
-import React from "react";
-import '../assets/css/userdash.css';
-function UserDash()
+import React, { useState, useEffect } from "react";
+import "../assets/css/userDash.css";
+
+import { useNavigate } from "react-router-dom";
+import usePost from "../../hooks/usePost";
+
+export default function UserDash() {
+ const { postData } = usePost();
+  const [data, setData] = useState(null); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); 
+  const [showDash, setShowDash] = useState(true);
+  const [selectedWorkspace,setselectedWorkspace] =useState(null);
+  const [selectedTodo,setselectedTodo]=useState(null);
+  const [selectedProject,setselectedProject]=useState(null);
+  const employeeId = 1; 
+  const navigate=useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/projectManagerDashView/${employeeId}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const result = await response.json();
+        setData(result);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [employeeId]); 
+
+const OpenWorkspace=(id)=>
 {
-return (
-    <>
-    <h3 class="workspaceHead">Workspaces</h3>
-    <div class="workspaceIndex">
-      <div class="projectRow"><ul><li><strong>Designing</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Designing</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Designing</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Designing</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Designing</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Project Management</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Backend</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Frontend</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Frontend</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-      <div class="projectRow"><ul><li><strong>Frontend</strong></li><li><button class="statusBtn">Open</button></li></ul></div>
-    </div>
+  setselectedWorkspace(id);
+  navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+}
+const OpenProject=(id)=>
+{
+  setselectedProject(id);
+  navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
+}
+const ChangeTodoStatus=async(id,status,employeeId)=>
+{
+  setselectedTodo(id);
 
-    <div class="secondDiv">
-      <div class="todo">
-        <div class="todoBar">
-       <h1 class="todoHead">
-  Todo
-</h1>   
-  <i class="fa-solid fa-plus btn btn-link" id="filter"></i>
-        </div>
+  const updatedStatus = status === "pending" ? "completed" : "pending";
 
-<div class="todoBody">
-  <div class="todolist">
-  <div class="todoItem">
-    <span class="todoSerial">1</span>
-    <span class="todoName">Complete dashboard</span>
-    <span class="todoStatus pending">Pending</span>
-  </div>
-</div>
-<div class="todolist">
-<div class="todoItem">
-    <span class="todoSerial">2</span>
-    <span class="todoName">Check Attendance</span>
-    <span class="todoStatus pending">Pending</span>
-  </div>
-</div>
-<div class="todolist">
-<div class="todoItem">
-    <span class="todoSerial">3</span>
-    <span class="todoName">Design admin panel</span>
-    <span class="todoStatus done">Done</span>
-  </div>
-</div>
-<div class="todolist">
-<div class="todoItem">
-    <span class="todoSerial">4</span>
-    <span class="todoName">Complete list</span>
-    <span class="todoStatus done">Done</span>
-  </div>
-</div>
-<div class="todolist">
-<div class="todoItem">
-    <span class="todoSerial">5</span>
-    <span class="todoName">Finish Design</span>
-    <span class="todoStatus pending">Pending</span>
-  </div>
-</div>
-<div class="todolist">
-<div class="todoItem">
-    <span class="todoSerial">6</span>
-    <span class="todoName">API Handle</span>
-    <span class="todoStatus done">Done</span>
-  </div>
-</div>
-</div>
+  const input = {
+    id: id,
+    status: updatedStatus,
+    employeeId: employeeId,
+  };
 
-      </div>
-      <div class="notification">
-      <div class="notificationBar">
-       <h1 class="notificationHead">
-  Notification
-</h1>   
-  
-        </div>
-        <div class="notificationBody">
-  <div class="notificationlist">
-  <div class="notificationItem">
-    <span class="notificationIcon">  <i class="fa-solid fa-envelope btn btn-link" id="envelope"></i>    </span>
-    <span class="notificationTitle">Task is Assigned</span>
-    <span class="notificationTime">10 min ago</span>
-  </div>
-</div>
-<div class="notificationlist">
-<div class="notificationItem">
-    <span class="notificationIcon">  <i class="fa-solid fa-envelope btn btn-link" id="envelope"></i>    </span>
-    <span class="notificationTitle">Have you checked your notice?</span>
-    <span class="notificationTime">15 min ago</span>
-  </div>
-  </div>
-  <div class="notificationlist">
-  <div class="notificationItem">
-    <span class="notificationIcon">  <i class="fa-solid fa-envelope btn btn-link" id="envelope"></i>    </span>
-    <span class="notificationTitle">Have you checked your Attendance?</span>
-    <span class="notificationTime">30 min ago</span>
-  </div>
-  </div>
-  <div class="notificationlist">
-  <div class="notificationItem">
-    <span class="notificationIcon">  <i class="fa-solid fa-envelope btn btn-link" id="envelope"></i>    </span>
-    <span class="notificationTitle">You have 20 minutes to check attendance</span>
-    <span class="notificationTime">1 hr ago</span>
-  </div>
-  </div>
-  <div class="notificationlist">
-  <div class="notificationItem">
-    <span class="notificationIcon">  <i class="fa-solid fa-envelope btn btn-link" id="envelope"></i>    </span>
-    <span class="notificationTitle">Update ypur password</span>
-    <span class="notificationTime">1 day ago</span>
-  </div>
-  </div> 
-   <div class="notificationlist">
-   <div class="notificationItem">
-    <span class="notificationIcon">  <i class="fa-solid fa-envelope btn btn-link" id="envelope"></i>    </span>
-    <span class="notificationTitle">Task is assigned</span>
-    <span class="notificationTime">1 day ago</span>
-  </div>
-  </div>
+  const result = await postData("/api/changeTodoStatus", input);
+}
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-</div>
-      </div>
-    </div>
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return (
+    <div>
+      {showDash && (
+        <>
+
+
+<h3 className="ReportHead">Report</h3>
+          <div className="ReportIndex">
+              <div  className="reportRow">
+                <ul>
+                  <li><strong>Project Count:</strong></li>
+                  <li>
+                   {data.data.projectCount}
+                  </li>
+                </ul>
+              </div>
+
+              <div  className="reportRow">
+                <ul>
+                  <li><strong>Workspaces Count:</strong></li>
+                  <li>
+                {data.data.workspaceCount}
+                  </li>
+                </ul>
+              </div>
+
+              <div  className="reportRow">
+                <ul>
+                  <li><strong>Tasks Count:</strong></li>
+                  <li>
+               {data.data.taskCount}
+                  </li>
+                </ul>
+              </div>
+
+              <div  className="reportRow">
+                <ul>
+                  <li><strong>Employee Count:</strong></li>
+                  <li>
+                    {data.data.employeeCount}
+                  </li>
+                </ul>
+              </div>
+
+          </div>
 
 
 
-    <div class="userthirdDiv">
-<h1 id="userheading">Tasks</h1>
-<div class="usertable-container">
-        <table>
-            <thead>
-                <tr>
+
+          <h3 className="workspaceHead">Workspaces</h3>
+          <div className="workspaceIndex">
+            {data.data.workspaces.map((workspace, index) => (
+              <div key={index} className="projectRow">
+                <ul>
+                  <li><strong>{workspace.name}</strong></li>
+                  <li><button className="statusBtn" onClick={()=>OpenWorkspace(workspace.id)}>Open</button></li>
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="secondDiv">
+            <div className="todo">
+              <div className="todoBar">
+                <h1 className="todoHead">Todo</h1>
+                <i className="fa-solid fa-plus btn btn-link" id="filter"></i>
+              </div>
+
+              <div className="todoBody">
+              
+                {data.data.todo.map((todo, index) => (
+                  <div key={index} className="todolist">
+                    <div className="todoItem">
+                      <span className="todoSerial">{index+1}</span>
+                      <span className="todoName">{todo.todo}</span>
+                      <span className={`todoStatus ${todo.status.toLowerCase()}`} onDoubleClick={()=>ChangeTodoStatus(todo.id,todo.status,todo.employeeId)}>
+                        {todo.status}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="project">
+              <div className="projectBar">
+                <h1 className="projectHead">Projects</h1>
+              </div>
+              <div className="projectBody">
+                {data.data.projects.map((project, index) => (
+                  <div key={index} className="projectlist">
+                    <div className="projectItem">
+                      <span className="projectSNO">{index + 1}</span>
+                      <span className="projectTitle">{project.name}</span>
+                      <span className="ProjectOpenBtn">
+                        <button onClick={()=>OpenProject(project.id)}>Open</button>
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="pmthirdDiv">
+            <h1 id="pmheading">Tasks</h1>
+            <div className="pmtable-container">
+              <table>
+                <thead>
+                  <tr>
                     <th>S.N</th>
                     <th>Name</th>
                     <th>Description</th>
@@ -144,40 +184,29 @@ return (
                     <th>End Date</th>
                     <th>Status</th>
                     <th>Priority</th>
-                    <th>Updated At</th>
-                </tr>
-            </thead>
-            <tbody id="userTaskTableBody">
-                <tr>
-                    <td>1</td>
-                    <td>Website Redesign</td>
-                    <td>Update homepage layout</td>
-                    <td>johndoe</td>
-                    <td>2025-04-10</td>
-                    <td>2025-04-20</td>
-                    <td>Ongoing</td>
-                    <td>High</td>
-                    <td>2025-04-21 14:30</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>API Fix</td>
-                    <td>Resolve login issues</td>
-                    <td>janedoe</td>
-                    <td>2025-04-15</td>
-                    <td>2025-04-18</td>
-                    <td>Completed</td>
-                    <td>Medium</td>
-                    <td>2025-04-19 10:00</td>
-                </tr>
-            </tbody>
-        </table>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.data.tasks.map((task, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{task.name}</td>
+                      <td>{task.description}</td>
+                      <td>
+                        {task.employee}
+                      </td>
+                      <td>{task.sdate}</td>
+                      <td>{task.edate}</td>
+                      <td>{task.status}</td>
+                      <td>{task.priority}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
+      )}
     </div>
-
-</div>
-
-
-    </>
-);
+  );
 }
-export default UserDash;

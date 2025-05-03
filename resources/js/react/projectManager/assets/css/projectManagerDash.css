@@ -288,3 +288,46 @@ width: 100px;
   font-size: 1rem;
   transition: background-color 0.3s;
 }
+
+
+.ReportIndex {
+  display: flex;
+  flex-wrap: nowrap; /* ✨ Change: No wrap */
+  gap: 30px;
+  overflow-x: auto; /* ✨ Enable horizontal scroll */
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.reportRow {
+  min-width: 280px; /* ✨ Ensure width for horizontal scroll */
+  background-color: #1e293b;
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0; /* ✨ Prevent shrinking on scroll */
+}
+
+.reportRow:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 255, 170, 0.3);
+}
+
+.reportRow ul {
+  list-style: none;
+  padding: 0;
+}
+
+.reportRow ul li {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.ReportHead
+{
+  font-size: 1.4rem;
+  font-family: 'Baloo 2';
+}

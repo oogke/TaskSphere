@@ -1,6 +1,3 @@
-
-
-/* 🔄 Horizontal Scrollbar Styling */
 .workspaceIndex {
   display: flex;
   flex-wrap: nowrap; /* ✨ Change: No wrap */
@@ -74,7 +71,6 @@ font-size: 1.4rem;
   width: 45%;
   height: 500px;
 position: relative;
-
   box-shadow: 0 4px 4px 4px rgba(0,0,0,0.1);
   border-radius: 10px;
   padding: 20px;
@@ -88,7 +84,7 @@ overflow-y: auto;
 position: absolute;
 margin: auto;
 }
-.notificationBody
+.projectBody
 {
 width: 92%;
 height: 80%;
@@ -96,7 +92,7 @@ overflow-y: auto;
 position: absolute;
 margin: auto;
 }
-.notification
+.project
 {
   width: 45%;
   height: 500px;
@@ -105,7 +101,7 @@ position: relative;
   border-radius: 10px;
   padding: 20px;
 }
-.notificationHead
+.projectHead
 {
   font-family: 'Baloo 2', cursive;
 
@@ -121,7 +117,7 @@ position: relative;
   margin-top: 10px;
   
 }
-.notificationlist
+.projectlist
 {
   width: 98%;
   margin: auto;
@@ -139,7 +135,7 @@ position: relative;
   justify-content: space-between;
   border-bottom: 1px solid gray;
 }
-.notificationBar
+.projectBar
 {
   display: flex;
   flex-direction: row;
@@ -155,7 +151,7 @@ padding: 0 20px;
 color: white;
 font-family: 'Arial', sans-serif;
 }
-.notificationItem {
+.projectItem {
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -165,20 +161,14 @@ color: white;
 font-family: 'Arial', sans-serif;
 font-size: 1rem;
 }
-.notificationlist:hover{
+.projectlist:hover{
 transform: translateY(-2px);
 }
 .todolist:hover{
 transform: translateY(-2px);
 
 }
-.notificationTitle {
-flex: 1;
-margin-left: 10px;
-}
-.notificationTime{
-font-size: 0.8rem;
-}
+
 
 .todoSerial {
 width: 30px;
@@ -195,12 +185,144 @@ font-size: 0.9rem;
 font-weight: bold;
 }
 .todoStatus.pending {
-background-color: #facc15; /* yellow */
+background-color: red; /* yellow */
 color: black;
 }
+.todoStatus.completed {
+  background-color: #10b981;
+color: black;
+}
+#pmheading {
+        font-size: 2.5rem;
+        color: black;
+       border-bottom: 1px solid gray;
+       margin-bottom: 20px;
+    }
 
-.todoStatus.done {
-background-color: #10b981; /* green */
+    #filter {
+        font-size: 1.8rem;
+        color: #f1f5f9;
+        cursor: pointer;
+        transition: color 0.3s, transform 0.3s;
+    }
+
+    #filter:hover {
+        color: #94a3b8;
+        transform: scale(1.2);
+    }
+
+    .pmtable-container {
+        max-height: 70vh;
+        overflow-y: auto;
+        border: 1px solid #334155;
+        border-radius: 10px;
+        background-color: #0f172a;
+        padding: 10px;
+    }
+
+    .pmtable-container table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .pmtable-container table thead {
+        position: sticky;
+        top: 0;
+        background-color: #1e293b;
+        z-index: 1;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #334155;
+      color: white;
+    }
+
+    th {
+        color: #cbd5e1;
+    }
+
+
+    @media screen and (max-width: 768px) {
+        #heading {
+            font-size: 2rem;
+        }
+
+        th, td {
+            font-size: 0.9rem;
+            padding: 8px 10px;
+
+        }
+
+        #filter {
+            font-size: 1.5rem;
+        }
+    }
+.pmthirdDiv
+{
+
+box-shadow: 0 4px 4px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 20px;
+  height: fit-content;
+}
+#pmTaskTableBody tr{
+background-color: white;
+}
+#pmTaskTableBody tr:hover{
+background-color: #334155;
+}
+.ProjectOpenBtn button{
+width: 100px;
+height: 40px;
 color: white;
+background-color: #10b981;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+font-size: 1rem;
+transition: background-color 0.3s;
 }
 
+
+.ReportIndex {
+display: flex;
+flex-wrap: nowrap; /* ✨ Change: No wrap */
+gap: 30px;
+overflow-x: auto; /* ✨ Enable horizontal scroll */
+padding: 20px;
+}
+
+.reportRow {
+min-width: 280px; /* ✨ Ensure width for horizontal scroll */
+background-color: #1e293b;
+border-radius: 15px;
+padding: 20px;
+color: white;
+text-align: center;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+flex-shrink: 0; 
+}
+
+.reportRow:hover {
+transform: translateY(-10px);
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reportRow ul {
+list-style: none;
+padding: 0;
+}
+
+.reportRow ul li {
+margin: 10px 0;
+font-size: 1.2rem;
+}
+
+.ReportHead
+{
+font-size: 1.4rem;
+font-family: 'Baloo 2';
+}

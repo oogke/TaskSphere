@@ -9,6 +9,7 @@ use App\Http\Controllers\API\NoticeController;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\ProjectManagerController;
 use App\Http\Controllers\API\TaskController;
+use App\Http\Controllers\API\TodoController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\WorkspaceController;
 use Illuminate\Http\Request;
@@ -105,3 +106,4 @@ Route::get('/ allNotices',[NoticeController::class,' allNotices'])->name(' allNo
 
 
 Route::get('/projectManagerDashView/{id}',[ProjectManagerController::class,'projectManagerDashView'])->name('projectManagerDashView');
+Route::post('/changeTodoStatus',[TodoController::class,'changeTodoStatus'])->name('changeTodoStatus');

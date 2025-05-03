@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../assets/css/projectManagerDash.css";
 import useFetch from "../../hooks/UseFetch";
+import { useNavigate } from "react-router-dom";
+import usePost from "../../hooks/usePost";
 
 export default function ProjectManagerDash() {
+ const { postData } = usePost();
   const [data, setData] = useState(null); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); 
@@ -11,10 +14,8 @@ export default function ProjectManagerDash() {
   const [selectedTodo,setselectedTodo]=useState(null);
   const [selectedProject,setselectedProject]=useState(null);
   const employeeId = 1; 
-  // const { data: employees, loading: employeeLoading, error: errorLoading } = useFetch("/api/allUsers");
-  // console.log(employees);
+  const navigate=useNavigate();
 
-  // Fetch data when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,17 +37,26 @@ export default function ProjectManagerDash() {
 const OpenWorkspace=(id)=>
 {
   setselectedWorkspace(id);
-  
+  navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
 }
 const OpenProject=(id)=>
 {
   setselectedProject(id);
-
+  navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
 }
-const ChangeTodoStatus=(id,status)=>
+const ChangeTodoStatus=async(id,status,employeeId)=>
 {
   setselectedTodo(id);
- 
+
+  const updatedStatus = status === "pending" ? "completed" : "pending";
+
+  const input = {
+    id: id,
+    status: updatedStatus,
+    employeeId: employeeId,
+  };
+
+  const result = await postData("/api/changeTodoStatus", input);
 }
   if (loading) {
     return <div>Loading...</div>;
@@ -60,6 +70,51 @@ const ChangeTodoStatus=(id,status)=>
     <div>
       {showDash && (
         <>
+
+
+<h3 className="ReportHead">Report</h3>
+          <div className="ReportIndex">
+              <div  className="reportRow">
+                <ul>
+                  <li><strong>Project Count:</strong></li>
+                  <li>
+                   {data.data.projectCount}
+                  </li>
+                </ul>
+              </div>
+
+              <div  className="reportRow">
+                <ul>
+                  <li><strong>Workspaces Count:</strong></li>
+                  <li>
+                {data.data.workspaceCount}
+                  </li>
+                </ul>
+              </div>
+
+              <div  className="reportRow">
+                <ul>
+                  <li><strong>Tasks Count:</strong></li>
+                  <li>
+               {data.data.taskCount}
+                  </li>
+                </ul>
+              </div>
+
+              <div  className="reportRow">
+                <ul>
+                  <li><strong>Employee Count:</strong></li>
+                  <li>
+                    {data.data.employeeCount}
+                  </li>
+                </ul>
+              </div>
+
+          </div>
+
+
+
+
           <h3 className="workspaceHead">Workspaces</h3>
           <div className="workspaceIndex">
             {data.data.workspaces.map((workspace, index) => (
@@ -80,12 +135,13 @@ const ChangeTodoStatus=(id,status)=>
               </div>
 
               <div className="todoBody">
+              
                 {data.data.todo.map((todo, index) => (
                   <div key={index} className="todolist">
                     <div className="todoItem">
                       <span className="todoSerial">{index+1}</span>
                       <span className="todoName">{todo.todo}</span>
-                      <span className={`todoStatus ${todo.status.toLowerCase()}`} onDoubleClick={()=>ChangeTodoStatus(todo.id,todo.status)}>
+                      <span className={`todoStatus ${todo.status.toLowerCase()}`} onDoubleClick={()=>ChangeTodoStatus(todo.id,todo.status,todo.employeeId)}>
                         {todo.status}
                       </span>
                     </div>
