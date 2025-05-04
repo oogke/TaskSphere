@@ -11,7 +11,7 @@ const Notice = () => {
 
   const handleViewClick = async(id) => {
     setSelectedNotice(id);
-  navigate("/react/admin/noticeDash",{state:{noticeId:id}});
+  navigate("/noticeDash",{state:{noticeId:id}});
   };
 
   return (

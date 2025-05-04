@@ -14,7 +14,7 @@ export default function LayoutAdmin() {
         <Link to="employees">Employees</Link>
         <Link to="registerApplication">Register Application</Link>
         <Link to="sendEmail">Send Email</Link>
-        <Link to="#">Logout</Link>
+        <Link to="adminLogout">Logout</Link>
       </div>
       <div id="main">
         <Outlet />
