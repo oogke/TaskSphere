@@ -15,56 +15,33 @@
     }
 
     body {
-      padding: 0 !important;
-      margin: 0;
-      display: flex;
-      flex-direction: row;
-      height: fit-content;
-    }
+  padding: 0 !important;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  height: 100vh; 
+}
 
-    .sidebar {
-      width: 250px;
-      background-color: #1e293b;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      transition: all 0.3s ease;
-    }
-
-    .sidebar h2 {
-      margin-bottom: 30px;
-      font-size: 24px;
-      text-align: center;
-    }
-
-    .sidebar a {
-      padding: 12px 20px;
-      margin: 5px 0;
-      color: white;
-      text-decoration: none;
-      display: block;
-      border-radius: 5px;
-      transition: background 0.2s ease;
-    }
-
-    .sidebar a:hover {
-      background-color: #334155;
-    }
-
-    /* #main {
-      flex: 1;
-      padding: 20px;
-      background-color: #f1f5f9;
-      overflow-y: auto;
-      width: 100%;
-    } */
-
+#root {
+  width: 100%;
+  height: 100%; 
+  display: flex; 
+  flex-direction: row; 
+}
+  
   </style>
 </head>
-<body  id="root">
 
+<body>
+  <div id="root">
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
   @viteReactRefresh
   @vite('resources/js/react/projectManager/ProjectManagerApp.jsx')
 </body>
+
 </html>

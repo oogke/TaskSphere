@@ -19,15 +19,11 @@ function WorkspaceDash() {
     const renderTask = () => {
         setActiveTab("taskSpan");
     }
-    const renderMember = () => {
-        setActiveTab("memberSpan");
-    }
 
     // function to choose which content to show
     const renderContent = () => {
         if (activeTab === "commentSpan") return <Comment id={workspaceId}/>;
         if (activeTab === "taskSpan") return <WorkspaceTask id={workspaceId}/>;
-        if (activeTab === "memberSpan") return <Member id={workspaceId}/>;
         return <Comment id={workspaceId}/> 
     }
     return (
@@ -35,7 +31,6 @@ function WorkspaceDash() {
             <div className="headBar">
                 <span className={activeTab === "commentSpan" ? "active" : ""} onClick={renderComment}>Comment</span>
                 <span className={activeTab === "taskSpan" ? "active" : ""} onClick={renderTask}>Tasks</span>
-                <span className={activeTab === "memberSpan" ? "active" : ""} onClick={renderMember}>Members</span>
             </div>
             <div className="DashMain">
                 {renderContent()}

@@ -1,11 +1,12 @@
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-.header-bar {
+/* Header bar styling */
+.userWorkspacePublicHeaderBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,73 +15,67 @@
     border-bottom: 2px solid #334155;
 }
 
-#taskHeading {
+#userWorkspacePublicTaskHeading {
     font-size: 2.5rem;
     color: black;
-   
 }
 
-#filter {
+#userWorkspacePublicFilter {
     font-size: 1.8rem;
     color: #f1f5f9;
     cursor: pointer;
     transition: color 0.3s, transform 0.3s;
 }
 
-#filter:hover {
-    color: #94a3b8;
+#userWorkspacePublicFilter:hover {
+    color: black;
     transform: scale(1.2);
 }
 
-.table-container {
+/* Table container */
+.userWorkspacePublicTableContainer {
     max-height: 70vh;
     overflow-y: auto;
     border: 1px solid #334155;
     border-radius: 10px;
-    background-color: white;
     padding: 10px;
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
+    color: white !important;
 }
 
-thead {
-    /* position: sticky; */
-    background-color: #1e293b;
-}
 
-th, td {
+
+.userWorkspacePublicTh, .userWorkspacePublicTd {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #334155;
+    color: black !important; /* Ensures the text color is black */
 }
 
-th {
-    color: #cbd5e1;
-}
-/* 
-tbody tr:hover {
-    background-color: #707884;
-} */
-
+/* Media Queries for Responsive Design */
 @media screen and (max-width: 768px) {
-    #heading {
+    #userWorkspacePublicTaskHeading {
         font-size: 2rem;
     }
 
-    th, td {
+    .userWorkspacePublicTh, .userWorkspacePublicTd {
         font-size: 0.9rem;
         padding: 8px 10px;
+        color: black !important; /* Ensures the text color is black */
     }
 
-    #filter {
+    #userWorkspacePublicFilter {
         font-size: 1.5rem;
     }
 }
-.TaskResponseBtn
-{
+
+/* Button Styling */
+.userWorkspacePublicTaskResponseBtn {
     width: 70px;
     height: 40px;
     color: white;
@@ -89,37 +84,83 @@ tbody tr:hover {
     border-radius: 10px;
     margin-bottom: 10px;
 }
-.TaskResponseBtn:hover{
+
+.userWorkspacePublicTaskResponseBtn:hover {
     background-color: #707884;
 }
-.UpdateBtn
-{
+
+.userWorkspacePublicUpdateBtn {
     background-color: #1e293b;
 }
-.DeleteBtn
-{
-    background-color: #1e293b
+
+.userWorkspacePublicDeleteBtn {
+    background-color: #1e293b;
 }
-/* .ResponseTd
-{
-    height: initial;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-} */
 
-
-.assignTask
-{
+/* Modal and Form Styles */
+.userWorkspacePublicAssignTask {
     width: 160px;
     height: 50px;
-    background-color:#1e293b;
+    background-color: #1e293b;
     position: absolute;
     right: 70px;
-  border: none;
+    border: none;
     color: white;
     border-radius: 20px;
     font-size: 20px;
- 
 }
 
+.userWorkspacePublicModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.userWorkspacePublicModalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+   width: 100%;
+   height: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.userWorkspacePublicClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.userWorkspacePublicFormInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.userWorkspacePublicBtn.primary {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.userWorkspacePublicBtn.primary:hover {
+    background-color: #45a049;
+}
+
+.rowrowrow
+{
+    color: white !important;
+}

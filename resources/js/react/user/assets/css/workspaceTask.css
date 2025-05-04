@@ -1,5 +1,3 @@
-
-
 .userWorkspaceTableWrapper {
     box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -9,11 +7,11 @@
     overflow: auto;
   }
   
-  #userWorkspaceTableBody tr {
+  #userWorkspaceTableBody .userWorkspaceTableRow {
     background-color: white;
   }
   
-  .userProjectOpenBtn button {
+  .userWorkspaceOpenBtn button {
     width: 100px;
     height: 40px;
     color: white;
@@ -39,25 +37,30 @@
     transition: color 0.3s, transform 0.3s;
   }
   
-  .userTableContainer table {
+  .userWorkspaceTable {
     width: 100%;
     border-collapse: collapse;
   }
   
-  .userTableContainer table thead {
+  .userWorkspaceTableHead {
     position: sticky;
     top: 0;
     background-color: #1e293b;
     z-index: 1;
   }
   
-  th, td {
+  .userWorkspaceTable th,
+  .userWorkspaceTable td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #334155;
+   
   }
-  
-  th {
+  .userWorkspaceTable td 
+  {
+    color: black !important;
+  }
+  .userWorkspaceTable th {
     color: #cbd5e1;
   }
   
@@ -66,7 +69,8 @@
       font-size: 2rem;
     }
   
-    th, td {
+    .userWorkspaceTable th,
+    .userWorkspaceTable td {
       font-size: 0.9rem;
       padding: 8px 10px;
     }
@@ -76,7 +80,7 @@
     }
   }
   
-  .userAssignTaskBtn {
+  .userWorkspaceAssignTaskBtn {
     width: 160px;
     height: 50px;
     border: 1px solid black;
@@ -88,14 +92,14 @@
     right: 70px;
   }
   
-  .userAssignTaskBtn:hover {
+  .userWorkspaceAssignTaskBtn:hover {
     background-color: white;
     color: black;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
     border: none;
   }
   
-  .userBtnContainer {
+  .userWorkspaceBtnContainer {
     display: flex;
     justify-content: flex-end;
     margin-top: 1rem;

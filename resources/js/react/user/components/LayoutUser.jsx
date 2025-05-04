@@ -13,7 +13,6 @@ export default function LayoutUser() {
         <Link to="tasks">Tasks</Link>
         <Link to="comments">Discussion Forum</Link>
         <Link to="notices">Notices</Link>
-        <Link to="members">Employees</Link>
         <Link to="profile">Profile</Link>
         <Link to="UserLogout">Logout</Link>
 
