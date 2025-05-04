@@ -11,11 +11,11 @@ function Projects() {
 
     const handleOpenProject = (id) => {
         setSelectedProjectId(id);
-        navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
+        navigate('projectDash', { state: { selectedProjectId: id } });
       };
       const goToProjectForm=()=>
       {
-        navigate('/react/projectManager/projectCreateForm');
+        navigate('projectCreateForm');
 
       }
     return (

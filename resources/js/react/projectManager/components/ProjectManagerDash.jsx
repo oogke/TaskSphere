@@ -37,12 +37,12 @@ export default function ProjectManagerDash() {
 const OpenWorkspace=(id)=>
 {
   setselectedWorkspace(id);
-  navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+  navigate('workspaceDash', { state: { workspaceId: id } });
 }
 const OpenProject=(id)=>
 {
   setselectedProject(id);
-  navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
+  navigate('projectDash', { state: { selectedProjectId: id } });
 }
 const ChangeTodoStatus=async(id,status,employeeId)=>
 {

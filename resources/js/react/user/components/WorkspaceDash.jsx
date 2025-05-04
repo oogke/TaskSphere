@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import useFetch from "../../hooks/UseFetch";
 import '../assets/css/workspaceDash.css';
 import Comment from "./Comment";
-import Member from "./Members";
 import WorkspaceTask from "./WorkspaceTask";
 import { useLocation } from "react-router-dom";
 

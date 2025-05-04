@@ -6,7 +6,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/c5a4938a4c.js" crossorigin="anonymous"></script>
-  <title>Admin Dashboard</title>
+  <title>Project Manager Dashboard</title>
   <style>
     * {
       box-sizing: border-box;
@@ -65,6 +65,6 @@
 <body  id="root">
 
   @viteReactRefresh
-  @vite('resources/js/react/admin/ProjectManagerApp.jsx')
+  @vite('resources/js/react/projectManager/ProjectManagerApp.jsx')
 </body>
 </html>

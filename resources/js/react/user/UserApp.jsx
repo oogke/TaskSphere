@@ -10,20 +10,30 @@ import UserDash from './components/UserDash';
 import ProjectDash from './components/ProjectDash';
 import WorkspaceDash from './components/WorkspaceDash';
 import Comment from './components/Comment';
-const App = () => {
+import LayoutUser from './components/LayoutUser';
+import Profile from './components/Profile';
+import Notice from './components/Notice';
+import NoticeDash from './components/NoticeDash';
+const UserApp = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/react/user'>
           <Routes>
-          <Route path="/react/user/projects" element={<Projects />} />
-      <Route path="/react/user/workspaces" element={<Workspaces />} />
-      <Route path="/react/user/tasks" element={<Tasks />} />
-      <Route path="/react/user/attendances" element={<Attendances />} />
-      <Route path="/react/user/userdash" element={<UserDash />} />
-      <Route path="/react/user/projectDash" element={<ProjectDash />} />
-      <Route path="/react/user/comments" element={<Comment />} />
-      <Route path="/react/user/workspaceDash" element={<WorkspaceDash />} />
-     <Route path="/react/user/profile" element={<Profile />} />
+             <Route path="/" element={<LayoutUser />}>
+             <Route index element={<UserDash />} />
+          <Route path="projects" element={<Projects />} />
+      <Route path="workspaces" element={<Workspaces />} />
+      <Route path="tasks" element={<Tasks />} />
+      <Route path="attendances" element={<Attendances />} />
+      <Route path="userdash" element={<UserDash />} />
+      <Route path="projectDash" element={<ProjectDash />} />
+      <Route path="comments" element={<Comment />} />
+      <Route path="workspaceDash" element={<WorkspaceDash />} />
+     <Route path="profile" element={<Profile />} />
+     <Route path="userDash" element={<UserDash />} />
+     <Route path="notices" element={<Notice />} />
+     <Route path="noticeDash" element={<NoticeDash />} />
     
+    </Route>
 
 
           </Routes>
@@ -31,4 +41,5 @@ const App = () => {
       );
 };
 
-ReactDOM.createRoot(document.getElementById('main')).render(<App />);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<UserApp />);

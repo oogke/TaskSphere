@@ -11,7 +11,8 @@ const navigate= useNavigate();
     const WorkspaceDash=(id)=>
     {
         setWorkspaceId(id);
-        navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+        navigate('/workspaceDash', { state: { workspaceId: id } });
+
     }
     return (
         <>

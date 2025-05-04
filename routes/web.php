@@ -60,13 +60,29 @@ Route::view('/attendanceIndex','design/AttendanceIndex');
 Route::get('/react/admin', function () {
     return view('adminReact'); 
 })->name("reactAdmin");
+
+
 Route::get('/react/admin/{any}', function () {
     return view('adminReact')->where('any','.*')->name('adminReact'); 
-})->name("reactAdmin");
+});
+
+
 Route::get('/react/projectManager', function () {
     return view('projectManagerReact'); 
 })->name("projectManagerReact");
+
+
+Route::get('/react/projectManager/{any}', function () {
+    return view('projectManagerReact')->where('any','.*')->name('projectManagerReactAny'); 
+});
+
+
 Route::get('/react/user', function () {
     return view('userReact'); 
 })->name("userReact");
 
+
+
+Route::get('/react/user/{any}', function () {
+    return view('userReact')->where('any','.*')->name('userReactAny'); 
+});

@@ -12,12 +12,13 @@ function WorkspaceTask({id})
     const navigate=useNavigate();
     const assignTask=(workspaceId)=>
     {
-        navigate("/react/projectManager/workspaceTaskForm",{state:{id:workspaceId}});
+        navigate("/workspaceTaskForm", { state: { id: workspaceId } });
+
     }
     return(
         <>
   <h1 id="pmheading">Tasks</h1>
-    <button className="assignTaskWorkspace" onClick={assignTask}>Assign Task</button> 
+  <button className="assignTaskWorkspace" onClick={() => assignTask(workspaceId)}>Assign Task</button>
         <div className="pmthirdDiv">
         <table>
             <thead>

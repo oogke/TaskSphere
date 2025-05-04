@@ -16,27 +16,38 @@ import WorkspaceDash from './components/WorkspaceDash';
 import Profile from './components/Profile';
 import WorkspaceTaskForm from './components/WorkspaceTaskForm';
 import ProjectManagerDash from './components/ProjectManagerDash';
-const App = () => {
+import LayoutProjectManager from './components/LayoutProjectManager';
+import Notice from './components/Notice';
+import NoticeDash from '../admin/components/NoticeDash';
+const ProjectManagerApp = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/react/projectManager'>
           <Routes>
-          <Route path="/react/projectManager/projects" element={<Projects />} />
-      <Route path="/react/projectManager/workspaces" element={<Workspaces />} />
-      <Route path="/react/projectManager/tasks" element={<Tasks />} />
-      <Route path="/react/projectManager/attendances" element={<Attendances />} />
-      <Route path="/react/projectManager/projectDash" element={<ProjectDash />} />
-      <Route path="/react/projectManager/projectCreateForm" element={<ProjectCreateForm />} />
-      <Route path="/react/projectManager/workspaceCreateForm" element={<CreateWorkspace />} />
-      <Route path="/react/projectManager/TaskCreateForm" element={<TaskForm />} />
-      <Route path="/react/projectManager/workspaceTaskForm" element={<WorkspaceTaskForm />} />
-      <Route path="/react/projectManager/comments" element={<Comment />} />
-      <Route path="/react/projectManager/members" element={<Members />} />
-      <Route path="/react/projectManager/workspaceDash" element={<WorkspaceDash />} />
-      <Route path="/react/projectManager/profile" element={<Profile />} />
-      <Route path="/react/projectManager/projectManagerDash" element={<ProjectManagerDash />} />
+             <Route path="/" element={<LayoutProjectManager />}>
+      <Route index element={<ProjectManagerDash />} />
+      <Route  path="projectDash" element={<ProjectDash />} />
+      <Route path="projects" element={<Projects />} />
+      <Route path="workspaces" element={<Workspaces />} />
+      <Route path="tasks" element={<Tasks />} />
+      <Route path="attendances" element={<Attendances />} />
+      <Route path="projectCreateForm" element={<ProjectCreateForm />} />
+      <Route path="workspaceCreateForm" element={<CreateWorkspace />} />
+      <Route path="TaskCreateForm" element={<TaskForm />} />
+      <Route path="workspaceTaskForm" element={<WorkspaceTaskForm />} />
+      <Route path="comments" element={<Comment />} />
+      <Route path="members" element={<Members />} />
+      <Route path="workspaceDash" element={<WorkspaceDash />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="projectManagerDash" element={<ProjectManagerDash />} />
+      <Route path="notices" element={<Notice />} />
+      <Route path="noticeDash" element={<NoticeDash />} />
+
+      </Route>
           </Routes>
         </BrowserRouter>
       );
 };
 
-ReactDOM.createRoot(document.getElementById('main')).render(<App />);
+const root= ReactDOM.createRoot(document.getElementById("root"));
+root.render(<ProjectManagerApp />);
+

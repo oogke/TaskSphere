@@ -7,23 +7,22 @@ import '../assets/css/noticeDash.css';
 function NoticeDash() {
   const location = useLocation();
   const { noticeId } = location.state;
-  const { data, loading, error } = useFetch(`/api/singleNotice/${noticeId}`);
+  const { data:notice, loading, error } = useFetch(`/api/singleNotice/${noticeId}`);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const { head, description, image, publishedDate } = data;
-
+  
   return (
     <div className="notice-dashboard">
       <div className="notice-header">
-        <h2>{head}</h2>
-        <span className="notice-date">{new Date(publishedDate).toLocaleDateString()}</span>
+        <h2>{notice.noticeHead}</h2>
+        <span className="notice-date">{notice.created_at}</span>
       </div>
       <div className="notice-description">
-        <p>{description}</p>
+        <p>{notice.noticeDescription}</p>
       </div>
-      {image && <img className="notice-image" src={image} alt="Notice" />}
+      {notice.image && <img className="notice-image" src={notice.image} alt="Notice" />}
     </div>
   );
 }

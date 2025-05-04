@@ -2,7 +2,7 @@ import React from "react";
 import '../assets/css/members.css';
 import useFetch from "../../hooks/UseFetch";
 
-function Member()
+function Members()
 {
        const { data, loading, error } = useFetch("/api/allUsers");
     return(
@@ -34,4 +34,4 @@ data?.data?.length>0 && data.data.map((Employee,index)=>
         </>
     )
 }
-export default Member;
+export default Members;
