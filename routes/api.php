@@ -115,3 +115,5 @@ Route::post('/changeTodoStatus',[TodoController::class,'changeTodoStatus'])->nam
 // Route::get('/react/admin', function () {
 //     return view('react'); 
 // })->name("reactAdmin");
+
+Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth:sanctum');

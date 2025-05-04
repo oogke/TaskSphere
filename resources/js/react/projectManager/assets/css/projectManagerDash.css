@@ -183,6 +183,8 @@ padding: 5px 10px;
 border-radius: 15px;
 font-size: 0.9rem;
 font-weight: bold;
+cursor: pointer;
+user-select: none;
 }
 .todoStatus.pending {
 background-color: red; /* yellow */

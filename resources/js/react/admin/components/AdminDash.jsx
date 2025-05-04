@@ -45,8 +45,7 @@ export default function AdminDash()
     setselectedProject(id);
     navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
   }
-  const ChangeTodoStatus=async(id,status,employeeId)=>
-  {
+  const ChangeTodoStatus = async (id, status, employeeId) => {
     setselectedTodo(id);
   
     const updatedStatus = status === "pending" ? "completed" : "pending";
@@ -57,8 +56,26 @@ export default function AdminDash()
       employeeId: employeeId,
     };
   
-    const result = await postData("/api/changeTodoStatus", input);
-  }
+    // Post data to change the status in the database
+    await postData("/api/changeTodoStatus", input);
+  
+    // Update the status on the frontend (state)
+    const updatedTodos = data.data.todo.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, status: updatedStatus }; // Update the status of the specific todo
+      }
+      return todo;
+    });
+  
+    // Set the updated todos back to the state
+    setData((prevData) => ({
+      ...prevData,
+      data: {
+        ...prevData.data,
+        todo: updatedTodos, // Update the todos array with the new status
+      },
+    }));
+  };
     if (loading) {
       return <div>Loading...</div>;
     }
@@ -70,23 +87,23 @@ export default function AdminDash()
 
   const openEmail=()=>
   {
-    navigate("/react/admin/sendEmail");
+    navigate("sendEmail");
   }
   const goToCreateNotice=()=>
     {
-      navigate("/react/admin/createNotice");
+      navigate("createNotices");
     }
     const CheckEmployeeData=()=>
       {
-        navigate("/react/admin/employees");
+        navigate("employees");
       }
       const goToRegisterApplication=()=>
         {
-          navigate("/react/admin/registerApplication");
+          navigate("registerApplication");
         }
         const CheckNotices=()=>
           {
-            navigate("/react/admin/notices");
+            navigate("notices");
           }
 
 return(
@@ -114,82 +131,36 @@ return(
                     <div className="todoItem">
                       <span className="todoSerial">{index+1}</span>
                       <span className="todoName">{todo.todo}</span>
-                      <span className={`todoStatus ${todo.status.toLowerCase()}`} onDoubleClick={()=>ChangeTodoStatus(todo.id,todo.status,todo.employeeId)}>
-                        {todo.status}
-                      </span>
+                      <span 
+          className={`todoStatus ${todo.status.toLowerCase()}`} 
+          onDoubleClick={(e) => {
+            e.preventDefault(); // Prevent text selection
+            ChangeTodoStatus(todo.id, todo.status, todo.employeeId);
+          }}
+        >{todo.status}</span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-      <div class="project">
-      <div class="projectBar">
-       <h1 class="projectHead">
-  Projects
+      <div class="RegisterApplicationAdmin">
+      <div class="RegisterApplicationAdminBar">
+       <h1 class="RegisterApplicationAdminHead">
+Register Applications
 </h1>   
   
         </div>
-        <div class="projectBody">
-  <div class="projectlist">
-  <div class="projectItem">
-   <span class="projectSNO">1</span>
-   <span class="projectTitle">Swiftstay</span>
-   <span>
-    <span class="ApplicationBtn ApplicationAcceptBtn"><button>Accept</button></span>
-   <span class="ApplicationBtn ApplicationRejectBtn"><button>Reject</button></span>
-   </span>
+
+
+        <div class="RegisterApplicationAdminBody">
+
+  <div class="RegisterApplicationAdminlist">
+  <div class="RegisterApplicationAdminItem">
+   <span class="RegisterApplicationAdminSNO">1</span>
+   <span class="RegisterApplicationAdminTitle">Swiftstay</span>
   </div>
 </div>
-<div class="projectlist">
-  <div class="projectItem">
-   <span class="projectSNO">2</span>
-   <span class="projectTitle">Tasksphere</span>
-   <span>
-    <span class="ApplicationBtn ApplicationAcceptBtn"><button>Accept</button></span>
-   <span class="ApplicationBtn ApplicationRejectBtn"><button>Reject</button></span>
-   </span>
-  </div>
-</div>
-<div class="projectlist">
-  <div class="projectItem">
-   <span class="projectSNO">3</span>
-   <span class="projectTitle">Soul</span>
-   <span>
-    <span class="ApplicationBtn ApplicationAcceptBtn"><button>Accept</button></span>
-   <span class="ApplicationBtn ApplicationRejectBtn"><button>Reject</button></span>
-   </span>
-  </div>
-</div>
-<div class="projectlist">
-  <div class="projectItem">
-   <span class="projectSNO">4</span>
-   <span class="projectTitle">SoulApi</span>
-   <span>
-    <span class="ApplicationBtn ApplicationAcceptBtn"><button>Accept</button></span>
-   <span class="ApplicationBtn ApplicationRejectBtn"><button>Reject</button></span>
-   </span>
-  </div>
-</div>
-<div class="projectlist">
-  <div class="projectItem">
-   <span class="projectSNO">5</span>
-   <span class="projectTitle">Ownah</span>
-   <span>
-    <span class="ApplicationBtn ApplicationAcceptBtn"><button>Accept</button></span>
-   <span class="ApplicationBtn ApplicationRejectBtn"><button>Reject</button></span>
-   </span>
-  </div>
-</div>
-<div class="projectlist">
-  <div class="projectItem">
-   <span class="projectSNO">6</span>
-   <span class="projectTitle">Mental support system</span>
-   <span>
-    <span class="ApplicationBtn ApplicationAcceptBtn"><button>Accept</button></span>
-   <span class="ApplicationBtn ApplicationRejectBtn"><button>Reject</button></span>
-   </span>
-  </div>
-</div>
+
 </div>
       </div>
   </div>

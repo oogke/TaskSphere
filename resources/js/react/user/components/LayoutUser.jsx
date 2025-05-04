@@ -15,7 +15,7 @@ export default function LayoutUser() {
         <Link to="notices">Notices</Link>
         <Link to="members">Employees</Link>
         <Link to="profile">Profile</Link>
-        <Link to="#">Logout</Link>
+        <Link to="UserLogout">Logout</Link>
 
       </div>
       <div id="main">

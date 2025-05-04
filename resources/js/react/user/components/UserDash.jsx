@@ -44,8 +44,7 @@ const OpenProject=(id)=>
   setselectedProject(id);
   navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
 }
-const ChangeTodoStatus=async(id,status,employeeId)=>
-{
+const ChangeTodoStatus = async (id, status, employeeId) => {
   setselectedTodo(id);
 
   const updatedStatus = status === "pending" ? "completed" : "pending";
@@ -56,8 +55,26 @@ const ChangeTodoStatus=async(id,status,employeeId)=>
     employeeId: employeeId,
   };
 
-  const result = await postData("/api/changeTodoStatus", input);
-}
+  // Post data to change the status in the database
+  await postData("/api/changeTodoStatus", input);
+
+  // Update the status on the frontend (state)
+  const updatedTodos = data.data.todo.map((todo) => {
+    if (todo.id === id) {
+      return { ...todo, status: updatedStatus }; // Update the status of the specific todo
+    }
+    return todo;
+  });
+
+  // Set the updated todos back to the state
+  setData((prevData) => ({
+    ...prevData,
+    data: {
+      ...prevData.data,
+      todo: updatedTodos, // Update the todos array with the new status
+    },
+  }));
+};
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -141,9 +158,13 @@ const ChangeTodoStatus=async(id,status,employeeId)=>
                     <div className="todoItem">
                       <span className="todoSerial">{index+1}</span>
                       <span className="todoName">{todo.todo}</span>
-                      <span className={`todoStatus ${todo.status.toLowerCase()}`} onDoubleClick={()=>ChangeTodoStatus(todo.id,todo.status,todo.employeeId)}>
-                        {todo.status}
-                      </span>
+                      <span 
+          className={`todoStatus ${todo.status.toLowerCase()}`} 
+          onMouseDown={(e) => {
+            e.preventDefault(); // Prevent text selection
+            ChangeTodoStatus(todo.id, todo.status, todo.employeeId);
+          }}
+        />
                     </div>
                   </div>
                 ))}

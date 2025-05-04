@@ -13,6 +13,7 @@ import SendEmail from './components/SendEmail';
 import NoticeDash from './components/NoticeDash';
 import Profile from './components/Profile';
 import AdminDash from './components/AdminDash';
+import AdminLogout from './components/adminLogout';
 
 const AdminApp= () => {
   return (
@@ -31,6 +32,7 @@ const AdminApp= () => {
           <Route path="noticeDash" element={<NoticeDash />} />
           <Route path="profile" element={<Profile />} />
           <Route path="adminDash" element={<AdminDash />} />
+          <Route path="adminLogout" element={<AdminLogout />} />
         </Route>
       </Routes>
     </BrowserRouter>

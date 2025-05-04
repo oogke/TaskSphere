@@ -125,15 +125,16 @@
                if(data.status === true) {
                     const token = data.token;
                     localStorage.setItem('token', token);
-                    localStorage.setItem("userId",data.id);
-                    localStorage.setItem("role",role);
-                    localStorage.setItem("email",email);
+                    localStorage.setItem("userId",data.data.id);
+                    localStorage.setItem("role",data.data.role);
+                    localStorage.setItem("email",data.data.email);
                     if (data.data.role === "admin") {
-            window.location.href = "/api/adminDash";
+                        
+            window.location.href = "/react/admin";
         } else if (data.data.role === "Project Manager") {
-            window.location.href = "/api/projectManagerDash";
+            window.location.href = "/react/projectManager";
         } else {
-            window.location.href = "/api/userDash";
+            window.location.href = "/react/user";
         }
                } else {
                     alert(data.message);

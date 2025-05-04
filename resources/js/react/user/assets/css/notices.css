@@ -18,10 +18,13 @@
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
+    color: black;
   }
   
   .notice-table th {
-    background-color: #f4f4f4;
+    background-color: #334155;
+    color: white;
+      font-size: 23px;
   }
   
   button {

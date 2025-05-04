@@ -23,7 +23,7 @@ function ProjectDash() {
         const WorkspaceDash=(id)=>
         {
             setWorkspaceId(id);
-            navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+            navigate('/workspaceDash',{state:{workspaceId :id}});
         }
     useEffect(() => {
         // Fetch project details
@@ -63,7 +63,7 @@ function ProjectDash() {
     
    const CreateWorkspace=()=>
    {
-    navigate('/react/projectManager/workspaceCreateForm');
+    navigate('/workspaceCreateForm');
    }
     return (
     <>

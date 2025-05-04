@@ -19,6 +19,7 @@ import ProjectManagerDash from './components/ProjectManagerDash';
 import LayoutProjectManager from './components/LayoutProjectManager';
 import Notice from './components/Notice';
 import NoticeDash from '../admin/components/NoticeDash';
+import PmLogout from './components/PmLogout';
 const ProjectManagerApp = () => {
     return (
         <BrowserRouter basename='/react/projectManager'>
@@ -41,7 +42,7 @@ const ProjectManagerApp = () => {
       <Route path="projectManagerDash" element={<ProjectManagerDash />} />
       <Route path="notices" element={<Notice />} />
       <Route path="noticeDash" element={<NoticeDash />} />
-
+<Route path="pmLogout" element={<PmLogoutLogout />} />
       </Route>
           </Routes>
         </BrowserRouter>

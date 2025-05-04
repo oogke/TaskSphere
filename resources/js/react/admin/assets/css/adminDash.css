@@ -84,7 +84,7 @@ overflow-y: auto;
 position: absolute;
 margin: auto;
 }
-.projectBody
+.RegisterApplicationAdminBody
 {
 width: 92%;
 height: 80%;
@@ -92,7 +92,7 @@ overflow-y: auto;
 position: absolute;
 margin: auto;
 }
-  .project
+  .RegisterApplicationAdmin
   {
     width: 45%;
     height: 500px;
@@ -101,7 +101,7 @@ position: relative;
     border-radius: 10px;
     padding: 20px;
   }
-  .projectHead
+  .RegisterApplicationAdminHead
   {
     font-family: 'Baloo 2', cursive;
 
@@ -117,7 +117,7 @@ position: relative;
     margin-top: 10px;
     
   }
-  .projectlist
+  .RegisterApplicationAdminlist
   {
     width: 98%;
     margin: auto;
@@ -135,7 +135,7 @@ position: relative;
     justify-content: space-between;
     border-bottom: 1px solid gray;
   }
-  .projectBar
+  .RegisterApplicationAdminBar
   {
     display: flex;
     flex-direction: row;
@@ -151,9 +151,9 @@ padding: 0 20px;
 color: white;
 font-family: 'Arial', sans-serif;
 }
-.projectItem {
+.RegisterApplicationAdminItem {
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
 height: 100%;
 padding: 0 20px;
@@ -161,7 +161,7 @@ color: white;
 font-family: 'Arial', sans-serif;
 font-size: 1rem;
 }
-.projectlist:hover{
+.RegisterApplicationAdminlist:hover{
 transform: translateY(-2px);
 }
 .todolist:hover{
@@ -183,6 +183,8 @@ padding: 5px 10px;
 border-radius: 15px;
 font-size: 0.9rem;
 font-weight: bold;
+cursor: pointer;
+user-select: none;
 }
 .todoStatus.pending {
 background-color: red; /* yellow */
