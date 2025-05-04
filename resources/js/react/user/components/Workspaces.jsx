@@ -1,28 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
-import '../assets/css/workspaces.css';
+import '../assets/css/workspaces.css'; // <-- updated CSS import
 import { useState } from "react";
 
+function UserWorkspaces() {
+    const { data, loading, error } = useFetch("/api/workspaceIndex");
+    const [workspaceId, setWorkspaceId] = useState(null);
+    const navigate = useNavigate();
 
-function Workspaces() {
-    const {data, loading, error } = useFetch("/api/workspaceIndex");
-   const [workspaceId,setWorkspaceId]=useState(null);
-const navigate= useNavigate();
-    const WorkspaceDash=(id)=>
-    {
+    const WorkspaceDash = (id) => {
         setWorkspaceId(id);
-        navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+        navigate('/workspaceDash', { state: { workspaceId: id } });
     }
+
     return (
         <>
- <h1 id="workspaceHeading">Workspaces</h1> 
-            <div className="workspaceIndex">
+            <h1 id="userWorkspaceHeading">Workspaces</h1>
+            <div className="userWorkspaceIndex">
                 {data?.data?.length > 0 && data?.data?.map((workspace, index) => {
-                    return (  // Add return here
-                        <div key={index} className="workspaceCard">
+                    return (
+                        <div key={index} className="userWorkspaceCard">
                             <ul>
                                 <li>{workspace?.name}</li>
-                                <li><button className="workspaceBtn" onClick={() => WorkspaceDash(workspace.id)}>Open</button></li>
+                                <li><button className="userWorkspaceBtn" onClick={() => WorkspaceDash(workspace.id)}>Open</button></li>
                             </ul>
                         </div>
                     );
@@ -32,4 +32,4 @@ const navigate= useNavigate();
     );
 }
 
-export default Workspaces;
+export default UserWorkspaces;

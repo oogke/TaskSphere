@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import usePost from "../../hooks/usePost";
 
 export default function UserDash() {
-  const employeeId= localStorage.getItem("userId");
+  // const employeeId= localStorage.getItem("userId");
+  const employeeId="86";
  const { postData } = usePost();
   const [data, setData] = useState(null); 
   const [loading, setLoading] = useState(true);
@@ -15,6 +16,7 @@ export default function UserDash() {
   const [selectedTodo,setselectedTodo]=useState(null);
   const [selectedProject,setselectedProject]=useState(null);
   const navigate=useNavigate();
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,25 +26,54 @@ export default function UserDash() {
           throw new Error("Failed to fetch data");
         }
         const result = await response.json();
-        setData(result);
+  
+        // 🔍 Filter only involved projects
+        const involvedProjects = result.data.projects.filter(project =>
+          result.data.projectInvolved.includes(project.id)
+        );
+  
+        // 🔍 Filter only involved workspaces
+        const involvedWorkspaces = result.data.workspaces.filter(workspace =>
+          result.data.workspaceInvolved.includes(workspace.id)
+        );
+  
+        // 🔍 Filter only involved tasks
+        const involvedTasks = result.data.tasks.filter(task =>
+          result.data.taskInvolved.includes(task.id)
+        );
+  
+        // 🧠 Now replace original data with filtered data
+        const filteredData = {
+          ...result,
+          data: {
+            ...result.data,
+            projects: involvedProjects,
+            workspaces: involvedWorkspaces,
+            tasks: involvedTasks,
+          }
+        };
+  
+        setData(filteredData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
         setLoading(false);
       }
     };
+  
     fetchData();
-  }, [employeeId]); 
+  }, [employeeId]);
+  
 
 const OpenWorkspace=(id)=>
 {
   setselectedWorkspace(id);
-  navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+  navigate('/workspaceDash',{state:{workspaceId :id}});
 }
 const OpenProject=(id)=>
 {
   setselectedProject(id);
-  navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
+  navigate('/projectDash',{ state: { selectedProjectId: id } });
 }
 const ChangeTodoStatus = async (id, status, employeeId) => {
   setselectedTodo(id);
@@ -160,11 +191,11 @@ const ChangeTodoStatus = async (id, status, employeeId) => {
                       <span className="todoName">{todo.todo}</span>
                       <span 
           className={`todoStatus ${todo.status.toLowerCase()}`} 
-          onMouseDown={(e) => {
-            e.preventDefault(); // Prevent text selection
+          onDoubleClick={(e) => {
+            e.preventDefault(); 
             ChangeTodoStatus(todo.id, todo.status, todo.employeeId);
           }}
-        />
+        >{todo.status}</span>
                     </div>
                   </div>
                 ))}

@@ -87,7 +87,7 @@ Route::get('/adminDashShow' ,[AdminController::class,'show'])->name('adminDashSh
 
 Route::get('/userDashDestroy' ,[UserController::class,'destroy'])->name('userDashDestroy');
 Route::get('/projectManagerDashDestroy' ,[ProjectManagerController::class,'destroy'])->name('projectManagerDashDestroy');
-Route::get('/adminDashDestroy' ,[AdminController::class,'update'])->name('destroyDestroy');
+Route::get('/adminDashDestroy' ,[AdminController::class,'destroy'])->name('destroyDestroy');
 
 Route::get('/userDash' ,[UserController::class,'userDash'])->name('userDash');
 Route::get('/projectManagerDash' ,[ProjectManagerController::class,'projectManagerDash'])->name('projectManagerDash');
@@ -111,9 +111,7 @@ Route::get('/projectManagerDashView/{id}',[ProjectManagerController::class,'proj
 Route::get('/userDashView/{id}',[UserController::class,'userDashView'])->name('userDashView');
 Route::get('/adminDashView/{id}',[AdminController::class,'adminDashView'])->name('adminDashView');
 Route::post('/changeTodoStatus',[TodoController::class,'changeTodoStatus'])->name('changeTodoStatus');
+Route::get('/projectInvolved',[ProjectController::class,'projectInvolved'])->name('projectInvolved');
 
-// Route::get('/react/admin', function () {
-//     return view('react'); 
-// })->name("reactAdmin");
 
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth:sanctum');

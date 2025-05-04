@@ -113,13 +113,48 @@ try {
           value={secretCode || ""}
           onChange={(e) => setSecretCode(e.target.value)}
         />
-        <input
+
+
+{/* <div className="form-group">
+        <label htmlFor="ProjectId">Employee</label>
+          <select
+             name="projectId" id="ProjectId" 
+             value={formData.projectId}
+            onChange={handleChange}
+            required
+          >
+            <option disabled value="">-- Select Project --</option>
+            {projects?.data?.length > 0 &&
+              projects.data.map((project, index) => (
+                <option value={project.id} key={index}>
+                  {project.name}
+                </option>
+              ))}
+          </select>
+        </div> */}
+
+
+
+        <select
+             name="role" id="role" 
+             value={role || ""}
+            onChange={(e) => setRole(e.target.value)}
+            required
+          >
+            <option disabled value="">-- Select role --</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="Project Manager">Project Manager</option>
+          </select>
+
+
+        {/* <input
           type="text"
           id="role"
           placeholder="Role"
           value={role || ""}
           onChange={(e) => setRole(e.target.value)}
-        />
+        /> */}
         <input
           type="hidden"
           name="applicationId"

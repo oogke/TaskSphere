@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import usePost from "../../hooks/usePost";
 import '../assets/css/adminDash.css';
+import useFetch from "../../hooks/UseFetch";
 export default function AdminDash()
 {
 // const employeeId=localStorage.getItem("userId");
@@ -14,8 +15,10 @@ export default function AdminDash()
     const [selectedWorkspace,setselectedWorkspace] =useState(null);
     const [selectedTodo,setselectedTodo]=useState(null);
     const [selectedProject,setselectedProject]=useState(null);
+const {data:applications,loading:loading1,error:error1}=useFetch("/api/allApplication");
   const employeeId=96;
   const navigate=useNavigate();
+ 
   
     useEffect(() => {
       const fetchData = async () => {
@@ -38,12 +41,12 @@ export default function AdminDash()
   const OpenWorkspace=(id)=>
   {
     setselectedWorkspace(id);
-    navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+    navigate('/workspaceDash',{state:{workspaceId :id}});
   }
   const OpenProject=(id)=>
   {
     setselectedProject(id);
-    navigate('/react/projectManager/projectDash',{ state: { selectedProjectId: id } });
+    navigate('/projectDash',{ state: { selectedProjectId: id } });
   }
   const ChangeTodoStatus = async (id, status, employeeId) => {
     setselectedTodo(id);
@@ -108,13 +111,13 @@ export default function AdminDash()
 
 return(
    <>
-       <h3 class="serviceHead">Services</h3>
-    <div class="serviceIndex">
-      <div class="AdminEmail projectRow"><ul><li><strong>Send Email</strong></li><li><button class="statusBtn" onClick={openEmail}>Open</button></li></ul></div>
-      <div class="AdminCreateNotice projectRow"><ul><li><strong>Create Notice</strong></li><li><button class="statusBtn" onClick={goToCreateNotice}>Open</button></li></ul></div>
-      <div class="AdminEmployeeData projectRow"><ul><li><strong>Check Employee Data</strong></li><li><button class="statusBtn" onClick={CheckEmployeeData}>Open</button></li></ul></div>
-      <div class="RegisterApplication projectRow"><ul><li><strong>Register Application</strong></li><li><button class="statusBtn" onClick={goToRegisterApplication}>Open</button></li></ul></div>
-      <div class="notices projectRow"><ul><li><strong>Notices</strong></li><li><button class="statusBtn" onClick={CheckNotices}>Open</button></li></ul></div>      
+       <h3 className="serviceHead">Services</h3>
+    <div className="serviceIndex">
+      <div className="AdminEmail projectRow"><ul><li><strong>Send Email</strong></li><li><button className="statusBtn" onClick={openEmail}>Open</button></li></ul></div>
+      <div className="AdminCreateNotice projectRow"><ul><li><strong>Create Notice</strong></li><li><button className="statusBtn" onClick={goToCreateNotice}>Open</button></li></ul></div>
+      <div className="AdminEmployeeData projectRow"><ul><li><strong>Check Employee Data</strong></li><li><button className="statusBtn" onClick={CheckEmployeeData}>Open</button></li></ul></div>
+      <div className="RegisterApplication projectRow"><ul><li><strong>Register Application</strong></li><li><button className="statusBtn" onClick={goToRegisterApplication}>Open</button></li></ul></div>
+      <div className="notices projectRow"><ul><li><strong>Notices</strong></li><li><button className="statusBtn" onClick={CheckNotices}>Open</button></li></ul></div>      
     </div>
 
     <div className="secondDiv">
@@ -134,7 +137,7 @@ return(
                       <span 
           className={`todoStatus ${todo.status.toLowerCase()}`} 
           onDoubleClick={(e) => {
-            e.preventDefault(); // Prevent text selection
+            e.preventDefault(); 
             ChangeTodoStatus(todo.id, todo.status, todo.employeeId);
           }}
         >{todo.status}</span>
@@ -143,23 +146,26 @@ return(
                 ))}
               </div>
             </div>
-      <div class="RegisterApplicationAdmin">
-      <div class="RegisterApplicationAdminBar">
-       <h1 class="RegisterApplicationAdminHead">
+      <div className="RegisterApplicationAdmin">
+      <div className="RegisterApplicationAdminBar">
+       <h1 className="RegisterApplicationAdminHead">
 Register Applications
 </h1>   
-  
         </div>
 
 
-        <div class="RegisterApplicationAdminBody">
+        <div className="RegisterApplicationAdminBody">
 
-  <div class="RegisterApplicationAdminlist">
-  <div class="RegisterApplicationAdminItem">
-   <span class="RegisterApplicationAdminSNO">1</span>
-   <span class="RegisterApplicationAdminTitle">Swiftstay</span>
+        {applications?.data?.map((application, index) => (
+  <div key={application.id} className="RegisterApplicationAdminlist">
+    <div className="RegisterApplicationAdminItem">
+      <span className="RegisterApplicationAdminSNO">{index + 1}</span>
+      <span className="RegisterApplicationAdminTitle">{application.fname}</span>
+    </div>
   </div>
-</div>
+))}
+
+
 
 </div>
       </div>

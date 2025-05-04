@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../assets/css/userLogout.css';
+import '../assets/css/adminLogout.css';
 
 export default function AdminLogout() {
     const navigate = useNavigate();

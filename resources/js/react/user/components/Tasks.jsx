@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 function Tasks()
 {
-const {data, loading, error} = useFetch("/api/taskIndex");
-const { data: employees, loading: loading1, error: error1 } = useFetch("/api/allUsers");
+const {data,loading, error} = useFetch("/api/taskIndex");
+const {data: employees, loading: loading1, error: error1 } = useFetch("/api/allUsers");
 const [showUpdateModal,setShowUpdateModal]=useState(false);
 const [formData,setFormData]=useState({
     name:"",
@@ -16,8 +16,10 @@ const [formData,setFormData]=useState({
     edate:"",
     status:"Not started",
     priority:"",
-    workspaceId:id
+    workspaceId:""
 });
+console.log("Employees loaded:", employees?.data?.length);
+
 const navigate= useNavigate();
 const handleInputChange=(e)=>
 {
@@ -67,15 +69,37 @@ return (
                 </tr>
             </thead>
             <tbody id="TaskTableBody">
-               
-               {data?.data?.length>0 && data?.data?.map((task,index)=>
+            {data?.data?.length > 0 && data?.data?.map((task, index) => 
+ 
                {
                 return(
  <tr key={index}>
                     <td>{index+1}</td>
                     <td>{task.name}</td>
                     <td>{task.description}</td>
-                    <td>{task.employee}</td>
+                    <td>
+  {(() => {
+    let empIds = [];
+    try {
+      empIds = Array.isArray(task.employee) 
+        ? task.employee 
+        : JSON.parse(task.employee);
+    } catch (e) {
+      console.error("Invalid employee JSON", task.employee);
+      empIds = [];
+    }
+
+    return empIds.map((empId) => {
+      const emp = employees?.data?.find((e) => e.id === parseInt(empId));
+      return (
+        <span key={empId} style={{ marginRight: '5px' }}>
+          {emp?.fname + " " + emp?.lname || 'Unknown'}
+        </span>
+      );
+    });
+  })()}
+</td>
+
                     <td>{task.sdate}</td>
                     <td>{task.edate}</td>
                     <td>{task.status}</td>

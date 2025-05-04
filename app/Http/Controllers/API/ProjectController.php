@@ -14,6 +14,26 @@ use View;
 class ProjectController extends BaseController
 {
 
+
+
+
+    public function projectInvolved(Request $request)
+{
+    $userId = $request->user()->id;
+
+    // If one-to-many: project.user_id
+    $projects = Project::where('user_id', $userId)->get();
+
+    // If many-to-many (pivot table): project_user
+    // $projects = Project::whereHas('users', function($q) use ($userId) {
+    //     $q->where('user_id', $userId);
+    // })->get();
+
+    return response()->json(['data' => $projects]);
+}
+
+
+
     public function workspaceExtract(string $id)
     {
         $workspaces= Workspace::where('projectId',$id)->get();

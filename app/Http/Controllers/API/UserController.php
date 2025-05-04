@@ -20,27 +20,60 @@ public function userDash()
 
 public function userDashView(string $id)
 {
- $todo=Todo::where('employeeId',$id)->get();
- $projects=Project::all();
- $workspaces=Workspace::all();
- $tasks=Task::all();
- $projectCount=Project::count();
- $workspaceCount=Workspace::count();
- $taskCount=Task::count();
-$employeeCount=User::count();
+    $projectInvolved = [];
+    $workspaceInvolved = [];
+    $tasks = [];
+    $userId = $id;
 
- return $this->sendResponse([
-    'todo'=> $todo,
-    'projects'=>$projects,
-    'workspaces'=> $workspaces,
-    'tasks'=> $tasks,
-    'projectCount'=> $projectCount,
-    'workspaceCount'=>$workspaceCount,
-    'taskCount'=>$taskCount,
-    'employeeCount'=>$employeeCount
+    $user = User::find($userId);
+    $todo = Todo::where('employeeId', $userId)->get();
+    $projects = Project::all();
+    $workspaces = Workspace::all();
+    $tasks = Task::all();
 
- ],"UserDash");
+    foreach ($projects as $project) {
+        $members = json_decode($project->members, true); 
+        if (in_array($userId, $members)) {
+            $projectInvolved[] = $project->id;
+        }
+    }
+
+
+    foreach ($workspaces as $workspace) {
+        $members = json_decode($workspace->members, true); 
+        if (in_array($userId, $members)) {
+            $workspaceInvolved[] = $workspace->id;
+        }
+    }
+   
+    foreach ($tasks as $task) {
+        $members = json_decode($task->employee, true); 
+        if (in_array($userId, $members)) {
+            $taskInvolved[] = $task->id;
+        }
+    }
+
+   
+    $projectCount = Project::count();
+    $workspaceCount = Workspace::count();
+    $taskCount = Task::count();
+    $employeeCount = User::count();
+
+    return $this->sendResponse([
+        'todo' => $todo,
+        'projectInvolved' => $projectInvolved, 
+        'workspaceInvolved' => $workspaceInvolved, 
+        'taskInvolved' => $taskInvolved, 
+        'projects' => $projects,
+        'workspaces' => $workspaces,
+        'tasks' => $tasks,
+        'projectCount' => $projectCount,
+        'workspaceCount' => $workspaceCount,
+        'taskCount' => $taskCount,
+        'employeeCount' => $employeeCount
+    ], "UserDash");
 }
+
     /**
      * Display a listing of the resource.
      */

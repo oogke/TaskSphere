@@ -21,7 +21,7 @@ class AuthController extends BaseController
     {
 $toEmail=$request->email;
 $fname=$request->firstname;
-$msg= "Thanks for signing up to The SoulAPI. Before we can continue, we need to validate your email address.";
+$msg= "Thanks for signing up to tasksphere. Before we can continue, we need to verify your email address. This is your verification code";
 $verifcode=rand(100000,999999);
 $footer="Please Do not share this email";
 Mail::to($toEmail)->send(new EmailVerification($fname,$msg,$verifcode,$footer));

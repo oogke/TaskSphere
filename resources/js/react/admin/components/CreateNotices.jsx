@@ -3,7 +3,7 @@ import usePost from "../../hooks/usePost";
 import "../assets/css/createNotice.css";
 
 function CreateNotices() {
-    const { postData, loading, error, response } = usePost();
+  const { postData, loading, error, response } = usePost();
   const [formData, setFormData] = useState({
     noticeHead: "",
     noticeDescription: "",
@@ -11,7 +11,6 @@ function CreateNotices() {
   });
 
   const [preview, setPreview] = useState(null);
-  
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -38,7 +37,11 @@ function CreateNotices() {
     input.append("noticeDescription", formData.noticeDescription);
     input.append("image", formData.image);
 
-    await postData("/api/storeNotice",JSON.stringify(input));
+    try {
+      await postData("/api/storeNotice", input);  
+    } catch (err) {
+      console.error("Error occurred while submitting form:", err);
+    }
   };
 
   return (

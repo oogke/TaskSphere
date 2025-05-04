@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
     <title>Login</title>
     <style>
         body {
             background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            font-family: 'Arial', sans-serif;
+            font-family: 'Baloo 2', sans-serif;
+        }
+        .ProjectTopic
+        {
+            font-family: 'Baloo 2', sans-serif;
+       font-weight: bolder;
+       text-align: center;
+       font-size: 5rem;
+       margin-top: 70px;
+       color:  #30475e;
+       text-shadow:  5px -5px 2px #30475e;
         }
 
         .login-form {
@@ -21,7 +32,7 @@
             backdrop-filter: blur(15px);
             border-radius: 12px;
             margin: auto;
-            margin-top: 100px;
+            margin-top: 30px;
         }
 
         .login-form h2 {
@@ -86,6 +97,7 @@
 </head>
 
 <body>
+    <h1 class="ProjectTopic">TaskSphere</h1>
     <div class="login-form">
         <h2>Login</h2>
         <input type="text" placeholder="E-mail or Username" name="email" required id="email">

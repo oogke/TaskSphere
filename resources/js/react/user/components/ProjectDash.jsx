@@ -23,7 +23,7 @@ function ProjectDash() {
         const WorkspaceDash=(id)=>
         {
             setWorkspaceId(id);
-            navigate('/react/projectManager/workspaceDash',{state:{workspaceId :id}});
+            navigate('/workspaceDash',{state:{workspaceId :id}});
         }
     useEffect(() => {
         // Fetch project details
@@ -69,8 +69,6 @@ function ProjectDash() {
     <>
       <div className="project-dash-wrapper">
             <h1>{projectData?.name}</h1>
-            <button id="createWorkspace" onClick={CreateWorkspace}>Create Workspace</button>
-
             <div className="projectIntro">
                 <h2>Project Details</h2>
                 <div className="details">

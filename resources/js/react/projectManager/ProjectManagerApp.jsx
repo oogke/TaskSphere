@@ -42,7 +42,7 @@ const ProjectManagerApp = () => {
       <Route path="projectManagerDash" element={<ProjectManagerDash />} />
       <Route path="notices" element={<Notice />} />
       <Route path="noticeDash" element={<NoticeDash />} />
-<Route path="pmLogout" element={<PmLogoutLogout />} />
+<Route path="pmLogout" element={<PmLogout />} />
       </Route>
           </Routes>
         </BrowserRouter>
