@@ -141,10 +141,11 @@ else{
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(string $id)
     {
-$id= $request->taskId;
-        $task=Task::where('id',$id)->first();
+$taskid= $id;
+
+        $task=Task::where('id',$taskid)->first();
        
         if(!$task)
         {

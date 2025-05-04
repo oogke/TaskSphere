@@ -61,7 +61,7 @@ return View('projectManager.projects.workspaces.updateWorkspace',compact('worksp
      */
     public function index()
     {
-    $workspace= Workspace::all();
+    $workspace= Workspace::orderBy('created_at', 'desc')->get();
     return $this->sendResponse($workspace,"All the workspaces");
     }
 

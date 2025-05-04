@@ -2,9 +2,11 @@ import { useState } from "react";
 import "../assets/css/ProjectCreateForm.css";
 import usePost from "../../hooks/usePost";
 import useFetch from "../../hooks/UseFetch";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectCreateForm() {
   const { postData } = usePost();
+  const navigate=useNavigate();
   const { data: employees, loading: loading1, error: error1 } = useFetch("/api/allUsers");
   const [formData, setFormData] = useState({
     name: "",
@@ -32,6 +34,7 @@ export default function ProjectCreateForm() {
   
     if (result?.status === true) {
       alert("project is created");
+      navigate("/projects");
     }
   };
 

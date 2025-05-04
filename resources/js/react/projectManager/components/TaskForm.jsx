@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../assets/css/taskForm.css"; 
 import useFetch from "../../hooks/UseFetch";
+import { useNavigate } from "react-router-dom";
 
 function TaskForm() {
+  const navigate=useNavigate();
   const {data:workspaces,loading:loadingWorkspace,error:errorWorkspace}=useFetch("/api/workspaceIndex");
   const {data:projects,loading:loadingProject,error:errorProject}=useFetch("/api/projectIndex");
   const { data: employees, loading: loading1, error: error1 } = useFetch("/api/allUsers");
@@ -31,8 +33,8 @@ function TaskForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-
+    alert("Data is taken");
+navigate("/tasks");
   };
 
   return (

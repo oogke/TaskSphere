@@ -33,7 +33,8 @@ function WorkspaceTaskForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+    alert("Data is taken");
+    navigate("/workspaces");
 
   };
 

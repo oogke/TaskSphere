@@ -36,6 +36,7 @@ const CreateWorkspace = () => {
   
     if (result?.status === true) {
       alert("Workspace is created");
+      navigate("/workspaces");
     }
   };
 

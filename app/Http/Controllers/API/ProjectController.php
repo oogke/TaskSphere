@@ -83,7 +83,7 @@ class ProjectController extends BaseController
      */
     public function index()
     {
-        $project = Project::all();
+        $project = Project::orderBy('created_at', 'desc')->get();
         return $this->sendResponse($project, "All the projects");
     }
 

@@ -1,3 +1,4 @@
+import useDelete from "../../hooks/useDelete";
 import useFetch from "../../hooks/UseFetch";
 import '../assets/css/tasks.css';
 import { useState } from "react";
@@ -5,9 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 function Tasks()
 {
+  const { DeleteData,  loading:loading2, error:error2 ,data: deleteResult} = useDelete();
 const {data, loading, error} = useFetch("/api/taskIndex");
 const { data: employees, loading: loading1, error: error1 } = useFetch("/api/allUsers");
 const [showUpdateModal,setShowUpdateModal]=useState(false);
+ const [showDeleteModal,setShowDeleteModal]=useState(false);
+   const [selectedAppId,setSelectedAppId]=useState(null);
 const [formData,setFormData]=useState({
     name:"",
     description:"",
@@ -16,7 +20,7 @@ const [formData,setFormData]=useState({
     edate:"",
     status:"Not started",
     priority:"",
-    workspaceId:id
+    workspaceId:""
 });
 const navigate= useNavigate();
 const handleInputChange=(e)=>
@@ -30,15 +34,34 @@ const handleInputChange=(e)=>
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
 }
+
+const HandleDelete = (id) => {
+  setSelectedAppId(id);
+  setShowDeleteModal(true);
+};
 const handleUpdate=(e)=>
 {
     e.preventDefault();
-    console.log(formData);
+  alert("Data is taken");
+  setShowUpdateModal(false);
+
 }
 const assignTask=()=>
 {
   navigate("/TaskCreateForm"); 
 }
+const ConfirmDelete = async () => {
+  const result = await DeleteData(`/api/taskDelete/${selectedAppId}`);
+  console.log(result);
+  if (result?.status === true) {
+    alert("task Deleted ");
+    navigate("/tasks");
+  } else {
+    alert("Failed to delete the task. Please try again.");
+  }
+  setShowDeleteModal(false);
+};
+
 return (
 
     <>
@@ -57,12 +80,11 @@ return (
                     <th>S.N</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Employee Username</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Status</th>
                     <th>Priority</th>
-                    <th>Updated At</th>
+                   
                     <th>Response</th>
                 </tr>
             </thead>
@@ -75,15 +97,13 @@ return (
                     <td>{index+1}</td>
                     <td>{task.name}</td>
                     <td>{task.description}</td>
-                    <td>{task.employee}</td>
                     <td>{task.sdate}</td>
                     <td>{task.edate}</td>
                     <td>{task.status}</td>
                     <td>{task.priority}</td>
-                    <td>{task.updated_at}</td>
                     <td className="ResponseTd">
                         <button className="TaskResponseBtn UpdateBtn" onClick={()=>setShowUpdateModal(true)}>Update</button>
-                        <button className="TaskResponseBtn DeleteBtn">Delete</button>
+                        <button className="TaskResponseBtn DeleteBtn" onClick={()=>HandleDelete(task.id)}>Delete</button>
                     </td>
                 </tr>
 
@@ -141,6 +161,23 @@ return (
       </div>
     </div>
   )}
+
+
+{showDeleteModal && (
+  <div className="EmployeeModal">
+    <div className="EmployeeModal-content">
+      <span className="close" onClick={() => setShowDeleteModal(false)}>&times;</span>
+      <div className="EmployeeModal-body">
+        Are you sure you want to delete this task?
+      </div>
+      <div className="EmployeeModal-footer">
+      <button className="deleteBtn" onClick={ConfirmDelete}>Delete</button>
+<button className="cancelBtn" onClick={() => setShowDeleteModal(false)}>Cancel</button>
+
+      </div>
+    </div>
+  </div>
+)}
     </div>
 
     </>
