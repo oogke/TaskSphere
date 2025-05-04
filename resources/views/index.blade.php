@@ -387,7 +387,7 @@
 
     <div class="admin">
       <h1>Admin Panel</h1>
-      <a href="{{route('adminDash')}}"><button>
+      <a href="{{route('reactAdmin')}}"><button>
         Admin Dashboard
         </button></a>
     <a href="{{route('registerView')}}"><button>

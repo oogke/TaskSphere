@@ -6,11 +6,12 @@ import useFetch from "../../hooks/UseFetch";
 const Notice = () => {
     const navigate=useNavigate();
   const [selectedNotice, setSelectedNotice] = useState(null);
-  const {data,loading,error}=useFetch("/api/allNotices");
+  const {data:notice,loading,error}=useFetch("/api/allNotices");
+
 
   const handleViewClick = async(id) => {
     setSelectedNotice(id);
-  navigate("/react/admin/noticeDash",{state:{noticeId:selectedNotice}});
+  navigate("/react/admin/noticeDash",{state:{noticeId:id}});
   };
 
   return (
@@ -25,7 +26,7 @@ const Notice = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((notice, index) => (
+          {notice?.data?.map((notice, index) => (
             <tr key={notice.id}>
               <td>{index + 1}</td>
               <td>{notice.noticeHead}</td>

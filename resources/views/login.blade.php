@@ -125,6 +125,9 @@
                if(data.status === true) {
                     const token = data.token;
                     localStorage.setItem('token', token);
+                    localStorage.setItem("userId",data.id);
+                    localStorage.setItem("role",role);
+                    localStorage.setItem("email",email);
                     if (data.data.role === "admin") {
             window.location.href = "/api/adminDash";
         } else if (data.data.role === "Project Manager") {

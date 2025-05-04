@@ -28,7 +28,7 @@ function WorkspaceDash() {
     const renderContent = () => {
         if (activeTab === "commentSpan") return <Comment id={workspaceId}/>;
         if (activeTab === "taskSpan") return <WorkspaceTask id={workspaceId}/>;
-        if (activeTab === "memberSpan") return <Member id={workspaceId}/>;
+        if (activeTab === "memberSpan") return <Members id={workspaceId}/>;
         return <Comment id={workspaceId}/> 
     }
     return (

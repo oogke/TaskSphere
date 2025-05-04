@@ -4,7 +4,7 @@ import bleachImg from '../../../../images/bleach.jpg';
 import useFetch from "../../hooks/UseFetch";
 export default function Profile()
 {
-    const userId=84;
+    const userId=localStorage.getItem("userId");
     const {data:userData,loading,error}=useFetch(`/api/specificUser/${userId}`);
     console.log(userData);
  

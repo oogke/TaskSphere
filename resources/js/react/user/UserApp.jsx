@@ -22,6 +22,10 @@ const App = () => {
       <Route path="/react/user/projectDash" element={<ProjectDash />} />
       <Route path="/react/user/comments" element={<Comment />} />
       <Route path="/react/user/workspaceDash" element={<WorkspaceDash />} />
+     <Route path="/react/user/profile" element={<Profile />} />
+    
+
+
           </Routes>
         </BrowserRouter>
       );

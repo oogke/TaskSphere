@@ -55,3 +55,18 @@ Route::view('/members','design/members');
 Route::view('/notices','design/notices');
 Route::view('/noticeCreate','design/createNotice');
 Route::view('/attendanceIndex','design/AttendanceIndex');
+
+
+Route::get('/react/admin', function () {
+    return view('adminReact'); 
+})->name("reactAdmin");
+Route::get('/react/admin/{any}', function () {
+    return view('adminReact')->where('any','.*')->name('adminReact'); 
+})->name("reactAdmin");
+Route::get('/react/projectManager', function () {
+    return view('projectManagerReact'); 
+})->name("projectManagerReact");
+Route::get('/react/user', function () {
+    return view('userReact'); 
+})->name("userReact");
+

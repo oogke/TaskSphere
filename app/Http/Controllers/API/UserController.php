@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
+use App\Models\Task;
+use App\Models\Todo;
+use App\Models\User;
+use App\Models\Workspace;
 use Illuminate\Http\Request;
-
-class UserController extends Controller
+use App\Http\Controllers\API\BaseController as BaseController;
+class UserController extends BaseController
 {
 
 public function userDash()
@@ -13,7 +18,29 @@ public function userDash()
     return view('userDashboard');
 }
 
+public function userDashView(string $id)
+{
+ $todo=Todo::where('employeeId',$id)->get();
+ $projects=Project::all();
+ $workspaces=Workspace::all();
+ $tasks=Task::all();
+ $projectCount=Project::count();
+ $workspaceCount=Workspace::count();
+ $taskCount=Task::count();
+$employeeCount=User::count();
 
+ return $this->sendResponse([
+    'todo'=> $todo,
+    'projects'=>$projects,
+    'workspaces'=> $workspaces,
+    'tasks'=> $tasks,
+    'projectCount'=> $projectCount,
+    'workspaceCount'=>$workspaceCount,
+    'taskCount'=>$taskCount,
+    'employeeCount'=>$employeeCount
+
+ ],"UserDash");
+}
     /**
      * Display a listing of the resource.
      */

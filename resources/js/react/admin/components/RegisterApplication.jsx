@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../assets/css/registerApplication.css';
 import useFetch from '../../hooks/UseFetch';
-import usePost from '../../hooks/UsePost';
+import usePost from '../../hooks/usePost';
 import useDelete from "../../hooks/useDelete";
 
 function RegisterApplication() {
@@ -19,8 +19,8 @@ const { DeleteData,  loading:loading2, error:error2 ,data: deleteResult} = useDe
 }
 
 const HandleReject = async(id) => {
+    const SendEmailResult= await postData("/api/sendRejectEmail", id);
   const result = await DeleteData(`/api/removeData/${id}`);
-  console.log(result);
   if(result?.status===true)
     {
         alert("Application Rejected");
@@ -45,8 +45,6 @@ const input = {
     applicationId: selectedAppId, 
     role: role
 };
-
-console.log(input);
 try {
     
     const result = await postData("/api/passScode", input);

@@ -98,12 +98,20 @@ Route::get('/specificUser/{id}',[EmployeeController::class,'show'])->name('speci
 Route::get('/workspaceTask/{id}',[WorkspaceController::class,'workspaceTask'])->name("workspaceTask");
 
 Route::post('/sendEmail',[EmailController::class,'sendEmail'])->name('sendEmail');
+Route::post('/sendAcceptEmail',[EmailController::class,'sendAcceptEmail'])->name('sendAcceptEmail');
+Route::post('/sendRejectEmail',[EmailController::class,'sendRejectEmail'])->name('sendRejectEmail');
 
 
 
 Route::get('/singleNotice/{Id}',[NoticeController::class,'singleNotice'])->name('singleNotice');
-Route::get('/ allNotices',[NoticeController::class,' allNotices'])->name(' allNotices');
+Route::get('/allNotices',[NoticeController::class,'allNotices'])->name('allNotices');
 
 
 Route::get('/projectManagerDashView/{id}',[ProjectManagerController::class,'projectManagerDashView'])->name('projectManagerDashView');
+Route::get('/userDashView/{id}',[UserController::class,'userDashView'])->name('userDashView');
+Route::get('/adminDashView/{id}',[AdminController::class,'adminDashView'])->name('adminDashView');
 Route::post('/changeTodoStatus',[TodoController::class,'changeTodoStatus'])->name('changeTodoStatus');
+
+// Route::get('/react/admin', function () {
+//     return view('react'); 
+// })->name("reactAdmin");

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as BaseController;
+use App\Mail\sendEmail;
 use App\Models\User;
 use App\Models\userVerifQueue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends BaseController
@@ -96,6 +98,14 @@ public function ScodeOperation(Request $request)
     'scode'=> $scode,
     'role'=>$role
   ]);
+  if($user)
+  {
+    $fname=$userApplication['fname'];
+    $subject="Successfully Registered";
+    $content ="Hello $fname,Your Register Application has been accepted. Now you can enter this code when logging in: $scode";
+    $footer="Keep this code as secret for professional reason.";
+    Mail::to($userApplication['email'])->send(new sendEmail($subject,$content,$footer));
+  }
   return $this->sendResponse($user, 'user registered successfully');
 }
 

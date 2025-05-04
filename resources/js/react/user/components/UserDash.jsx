@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import usePost from "../../hooks/usePost";
 
 export default function UserDash() {
+  const employeeId= localStorage.getItem("userId");
  const { postData } = usePost();
   const [data, setData] = useState(null); 
   const [loading, setLoading] = useState(true);
@@ -13,13 +14,12 @@ export default function UserDash() {
   const [selectedWorkspace,setselectedWorkspace] =useState(null);
   const [selectedTodo,setselectedTodo]=useState(null);
   const [selectedProject,setselectedProject]=useState(null);
-  const employeeId = 1; 
   const navigate=useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/projectManagerDashView/${employeeId}`);
+        const response = await fetch(`/api/userDashView/${employeeId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }

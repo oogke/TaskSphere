@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/css/employees.css';
 import useFetch from '../../hooks/UseFetch';
-import usePost from '../../hooks/UsePost';
+import usePost from '../../hooks/usePost';
 import useDelete from '../../hooks/useDelete';
 
 function Employees()
