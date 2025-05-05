@@ -29,3 +29,19 @@ margin-top: 50px;
 padding: 50px;
 
 }
+
+.backButton {
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #64748b; /* slate-500 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+  background-color: #475569; /* slate-600 */
+}

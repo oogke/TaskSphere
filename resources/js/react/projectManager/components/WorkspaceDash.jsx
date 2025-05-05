@@ -4,7 +4,7 @@ import '../assets/css/workspaceDash.css';
 import Comment from "./Comment";
 import Members from "./Members";
 import WorkspaceTask from "./WorkspaceTask";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 // Create simple small components
@@ -14,6 +14,7 @@ function WorkspaceDash() {
     const [activeTab, setActiveTab] = useState(null);
     const location= useLocation();
     const { workspaceId } = location.state;
+    const navigate = useNavigate();
     const renderComment = () => {
         setActiveTab("commentSpan");
     }
@@ -23,6 +24,9 @@ function WorkspaceDash() {
     const renderMember = () => {
         setActiveTab("memberSpan");
     }
+    const goBack = () => {
+        navigate(-1); // navigates to previous page
+    };
 
     // function to choose which content to show
     const renderContent = () => {
@@ -33,6 +37,8 @@ function WorkspaceDash() {
     }
     return (
         <>
+        <button className="backButton" onClick={goBack}>Back</button>
+
             <div className="headBar">
                 <span className={activeTab === "commentSpan" ? "active" : ""} onClick={renderComment}>Comment</span>
                 <span className={activeTab === "taskSpan" ? "active" : ""} onClick={renderTask}>Tasks</span>
